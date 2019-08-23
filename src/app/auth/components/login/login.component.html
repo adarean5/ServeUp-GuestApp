@@ -4,11 +4,11 @@
 
 <!-- User NOT logged in -->
 <ng-template #guest>
-  <h3>Howdy, GUEST</h3>
+  <h3>Hello GUEST</h3>
   <p>Login to get started...</p>
 
-  <button (click)="authService.googleSignin()">
-    <i class="fa fa-google"></i> Connect Google
+  <button mat-raised-button color="primary" (click)="authService.googleSignIn()">
+    <i class="fa fa-google"></i> Sign in with Google
   </button>
 
 </ng-template>
@@ -17,9 +17,10 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="authService.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
+    <h3>Hello {{ user.displayName }}</h3>
     <img  [src]="user.photoURL" alt="user profile photo">
     <p>UID: {{ user.uid }}</p>
-    <button (click)="authService.signOut()">Logout</button>
+    <button mat-raised-button color="warn" (click)="authService.signOut()">Logout</button>
+    <button mat-raised-button color="primary" (click)="this.router.navigate(['/main']);">Main</button>
   </div>
 </ng-template>

@@ -34,10 +34,11 @@ export class AuthService {
     );
   }
 
-  async googleSignin() {
+  async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
+    return 0;
   }
 
   async signOut() {

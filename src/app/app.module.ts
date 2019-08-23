@@ -9,8 +9,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
+import { OrdersModule } from './orders/orders.module';
 
-// Firebase web config
 const firebaseConfig = {
   apiKey: 'AIzaSyBPOgjmbV8Fexc_mSzyoNvC7PHZeNsJ5G4',
   authDomain: 'serveup-android-ba698.firebaseapp.com',
@@ -34,6 +34,7 @@ const firebaseConfig = {
     AngularFireAuthModule,
     AppRoutingModule,
     AuthModule,
+    OrdersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
