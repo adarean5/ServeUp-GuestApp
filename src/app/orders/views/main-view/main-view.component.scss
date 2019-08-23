@@ -1,0 +1,9 @@
+#main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  #main-tab-group {
+    flex-grow: 1;
+  }
+}
