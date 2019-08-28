@@ -7,13 +7,32 @@ export const authReducers = (
   action: AuthActions
 ): IAuthState => {
   switch (action.type) {
-    case EAuthActions.GSignInSuccess: {
+    case EAuthActions.GET_USER: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case EAuthActions.G_SIGN_IN: {
+      return {
+        ...state,
+        user: null
+      };
+    }
+    case EAuthActions.AUTHENTICATED: {
+     return {
+       ...state,
+       user: action.payload
+     };
+    }
+    case EAuthActions.NOT_AUTHENTICATED: {
       return {
         ...state,
         user: action.payload
       };
     }
-    default:
+    default: {
       return state;
+    }
   }
 };

@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './shared/material/material.module';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -11,15 +13,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { OrdersModule } from './orders/orders.module';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyBPOgjmbV8Fexc_mSzyoNvC7PHZeNsJ5G4',
-  authDomain: 'serveup-android-ba698.firebaseapp.com',
-  databaseURL: 'https://serveup-android-ba698.firebaseio.com',
-  projectId: 'serveup-android-ba698',
-  storageBucket: 'serveup-android-ba698.appspot.com',
-  messagingSenderId: '702266610802',
-  appId: '1:702266610802:web:2e7d5ce412bc6569'
-};
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {appReducers} from './store/reducers/app.reducers';
+import {AuthEffects} from './store/effects/auth.effects';
+
+import {environment} from '../environments/environment';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
+export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
   declarations: [
@@ -33,8 +34,15 @@ const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AppRoutingModule,
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+    }),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([
+      AuthEffects
+    ]),
     AuthModule,
-    OrdersModule
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
