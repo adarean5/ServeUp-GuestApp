@@ -20,6 +20,7 @@ import {AuthEffects} from './store/effects/auth.effects';
 
 import {environment} from '../environments/environment';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
@@ -41,6 +42,7 @@ export const firebaseConfig = environment.firebaseConfig;
     EffectsModule.forRoot([
       AuthEffects
     ]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthModule,
     OrdersModule,
   ],

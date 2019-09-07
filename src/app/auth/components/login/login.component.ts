@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {GSignIn} from '../../../store/actions/auth.actions';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../../store/states/app.state';
+import {User} from '../../../store/models/user.model';
+import {selectUser} from '../../../store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +14,19 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
-    public authService: AuthService, public router: Router
+    private store: Store<IAppState>,
+    public router: Router,
   ) { }
 
   ngOnInit() {
+    this.store.select(selectUser).subscribe((user: User) => {
+      if (user) {
+        this.router.navigate(['/main']);
+      }
+    });
   }
 
+  private gSignIn() {
+    this.store.dispatch(new GSignIn());
+  }
 }

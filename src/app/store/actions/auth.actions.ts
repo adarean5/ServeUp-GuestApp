@@ -13,7 +13,7 @@ export enum EAuthActions {
 
 export class GetUser implements Action {
   public readonly type = EAuthActions.GET_USER;
-  constructor(public payload: User) {}
+  constructor(public payload?: User) {}
 }
 
 export class Authenticated implements Action {
@@ -23,15 +23,17 @@ export class Authenticated implements Action {
 
 export class NotAuthenticated implements Action {
   public readonly type = EAuthActions.NOT_AUTHENTICATED;
-  constructor(public payload: any) {}
+  constructor(public payload?: any) {}
 }
 
 export class GSignIn implements Action {
   public readonly type = EAuthActions.G_SIGN_IN;
+  constructor(public payload?: any) {}
 }
 
 export class GSignOut implements Action {
   public readonly type = EAuthActions.G_SIGN_OUT;
+  constructor(public payload?: any) {}
 }
 
 export class GAuthError implements Action {

@@ -10,14 +10,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: '',
+    path: 'main',
     component: MainViewComponent,
     canActivate: [AuthGuard]
   },
-  /*{
+  {
     path: '**',
     redirectTo: '/login'
-  }*/
+  }
 ];
 
 @NgModule({

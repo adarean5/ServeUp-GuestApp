@@ -22,13 +22,17 @@ export const authReducers = (
     case EAuthActions.AUTHENTICATED: {
      return {
        ...state,
-       user: action.payload
+       user: action.payload,
+       loading: false,
+       signedIn: true
      };
     }
     case EAuthActions.NOT_AUTHENTICATED: {
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        loading: false,
+        signedIn: false
       };
     }
     default: {

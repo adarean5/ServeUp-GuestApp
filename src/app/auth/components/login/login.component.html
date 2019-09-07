@@ -1,20 +1,21 @@
-<div *ngIf="authService.user$ | async; then authenticated else guest">
-  <!-- template will replace this div -->
-</div>
+<!--<div *ngIf="authService.user$ | async; then authenticated else guest">
+  &lt;!&ndash; template will replace this div &ndash;&gt;
+</div>-->
 
 <!-- User NOT logged in -->
-<ng-template #guest>
+<script src="../../../store/actions/auth.actions.ts"></script>
+<div>
   <h3>Hello GUEST</h3>
   <p>Login to get started...</p>
 
-  <button mat-raised-button color="primary" (click)="authService.googleSignIn()">
+  <button mat-raised-button color="primary" (click)="gSignIn()">
     <i class="fa fa-google"></i> Sign in with Google
   </button>
 
-</ng-template>
+</div>
 
 
-<!-- User logged in -->
+<!--&lt;!&ndash; User logged in &ndash;&gt;
 <ng-template #authenticated>
   <div *ngIf="authService.user$ | async as user">
     <h3>Hello {{ user.displayName }}</h3>
@@ -23,4 +24,4 @@
     <button mat-raised-button color="warn" (click)="authService.signOut()">Logout</button>
     <button mat-raised-button color="primary" (click)="this.router.navigate(['/main']);">Main</button>
   </div>
-</ng-template>
+</ng-template>-->
