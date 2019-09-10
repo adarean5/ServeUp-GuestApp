@@ -1,9 +1,11 @@
+@import "serveup-palette";
+
 #profile-container {
   height: 100%;
   display: grid;
   grid-template-rows: auto 67%;
 
   #profile-info {
-    background: aquamarine;
+    background: $sup-c-primary;
   }
 }

@@ -1,3 +1,5 @@
+@import "serveup-palette";
+
 #main-container {
   height: 100%;
   display: flex;
@@ -5,5 +7,35 @@
 
   #main-tab-group {
     flex-grow: 1;
+
+
   }
+}
+
+#home {
+  width: 300px;
+}
+
+.tab {
+  background: #00b69a;
+}
+
+// Used for changing the style of the active tab
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  flex-direction: column;
+  fill: $sup-c-primary;
+  color: $sup-c-primary;
+  opacity: 1;
+}
+
+.label-container {
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+}
+
+::ng-deep .mat-ink-bar {
+  background-color:transparent !important;
 }

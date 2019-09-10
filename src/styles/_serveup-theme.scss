@@ -1,0 +1,10 @@
+@import "serveup-palette";
+@include mat-core();
+
+$sup-theme: mat-light-theme(
+    $sup-palette-primary,
+    $sup-palette-accent,
+    $sup-palette-warn
+);
+
+@include angular-material-theme($sup-theme);

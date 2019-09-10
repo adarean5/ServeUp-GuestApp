@@ -7,7 +7,7 @@ import {StoreModule} from '@ngrx/store';
 import {authReducers} from '../store/reducers/auth.reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from '../store/effects/auth.effects';
-
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [MainViewComponent, ProfileComponent],
@@ -15,7 +15,8 @@ import {AuthEffects} from '../store/effects/auth.effects';
     CommonModule,
     MaterialModule,
     StoreModule.forFeature('auth', authReducers),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
+    SharedModule
   ]
 })
 export class OrdersModule { }

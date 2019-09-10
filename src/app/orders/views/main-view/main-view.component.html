@@ -1,13 +1,30 @@
-<script src="../../../auth/components/login/login.component.ts"></script>
 <div id="main-container">
-  <mat-tab-group mat-stretch-tabs headerPosition="below" id="main-tab-group">
-    <mat-tab label="Domov">
+  <mat-tab-group [selectedIndex]="3" mat-stretch-tabs headerPosition="below" id="main-tab-group">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="label-container">
+          <app-icon [iconName]="'home'" id="icon-home"></app-icon>
+          <p>Home</p>
+        </div>
+      </ng-template>
       <p>Domov content</p>
     </mat-tab>
-    <mat-tab label="Naročila">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="label-container">
+          <app-icon [iconName]="'orders'" id="icon-orders"></app-icon>
+          <p>Orders</p>
+        </div>
+      </ng-template>
       <p>Narocila Content</p>
     </mat-tab>
-    <mat-tab label="Profil">
+    <mat-tab >
+      <ng-template mat-tab-label>
+        <div class="label-container">
+          <app-icon [iconName]="'profile'" id="icon-profile"></app-icon>
+          <p>Profile</p>
+        </div>
+      </ng-template>
       <ng-template matTabContent>
         <app-profile (emSignOut)="gSignOut()" [user]="user"></app-profile>
       </ng-template>

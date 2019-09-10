@@ -1,0 +1,43 @@
+@import '../../node_modules/@angular/material/theming';
+
+$sup-theme-primary: (
+  50 : #e0f8f5,
+  100 : #b3ede6,
+  200 : #80e2d5,
+  300 : #4dd6c4,
+  400 : #26cdb8,
+  500 : #00c4ab,
+  600 : #00bea4,
+  700 : #00b69a,
+  800 : #00af91,
+  900 : #00a280,
+  A100 : #ccfff3,
+  A200 : #99ffe7,
+  A400 : #66ffda,
+  A700 : #4dffd4,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$sup-palette-primary: mat-palette($sup-theme-primary);
+$sup-palette-accent: mat-palette($mat-deep-purple);
+$sup-palette-warn: mat-palette($mat-red);
+
+$sup-c-primary: mat-color($sup-palette-primary);
+$sup-c-accent: mat-color($sup-palette-accent);
+$sup-c-warn: mat-color($sup-palette-warn);
+
