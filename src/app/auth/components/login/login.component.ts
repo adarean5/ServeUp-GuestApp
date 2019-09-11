@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {GSignIn} from '../../../store/actions/auth.actions';
 import {Store} from '@ngrx/store';
@@ -9,7 +9,7 @@ import {selectUser} from '../../../store/selectors/auth.selectors';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 

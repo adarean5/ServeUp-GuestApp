@@ -1,3 +1,4 @@
+@import "variables";
 @import "serveup-palette";
 
 #main-container {
@@ -5,19 +6,30 @@
   display: flex;
   flex-direction: column;
 
+  #top-nav {
+    //background: darken($sup-c-primary, 20%);
+    //color: white;
+    display: none;
+
+    #sup-logo {
+      height: 32px;
+      margin-right: 1rem;
+    }
+  }
+
   #main-tab-group {
     flex-grow: 1;
-
-
   }
 }
 
-#home {
-  width: 300px;
-}
+.label-container {
+  display: flex;
+  flex-direction: column;
 
-.tab {
-  background: #00b69a;
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
 }
 
 // Used for changing the style of the active tab
@@ -28,14 +40,60 @@
   color: $sup-c-primary;
   opacity: 1;
 }
-
-.label-container {
-  p {
-    margin: 0;
-    font-size: 0.8rem;
-  }
-}
-
 ::ng-deep .mat-ink-bar {
   background-color:transparent !important;
+}
+
+// Bigger screens
+@media only screen and (min-width: 600px) {
+  #top-nav {
+    display: flex !important;
+  }
+
+  .label-container {
+    flex-direction: row;
+    align-items: center;
+
+    p {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  // Side mat-tab-bar styling
+  ::ng-deep.mat-tab-group.mat-primary.mat-tab-group-inverted-header {
+    flex-direction: row;
+  }
+  ::ng-deep.mat-tab-header {
+    height: 100%;
+    border-right: $sup-border-light !important;
+  }
+  ::ng-deep.mat-tab-labels {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    align-items: center !important;
+  }
+  ::ng-deep.mat-tab-label {
+    flex-basis: auto !important;
+    flex-grow: 0 !important;
+    padding: 0 !important;
+  }
+  ::ng-deep.mat-tab-label-content {
+    display: inline-flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    padding-left: 1rem;
+  }
+  ::ng-deep.mat-tab-label-active {
+    padding-left: 1rem;
+  }
+  ::ng-deep.mat-tab-header-pagination {
+    display: none !important;
+    background: #00b69a;
+  }
 }
