@@ -1,5 +1,11 @@
-svg {
-  width: 24px;
-  height: 24px;
+.sup-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .sup-icon-svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 

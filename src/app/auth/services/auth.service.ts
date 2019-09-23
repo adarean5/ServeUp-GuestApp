@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
 
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {Observable} from 'rxjs';
+import {User} from '../../store/models/user.model';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-  ) {
-    console.log('Starting auth service');
-  }
+    private http: HttpClient
+  ) {}
 
   public getUserData(): Observable<User | null> {
     console.log('Service: Getting user data', this.afAuth.authState);
@@ -28,5 +29,12 @@ export class AuthService {
 
   async signOut() {
     await this.afAuth.auth.signOut();
+  }
+
+  public serveUpRegister(uid: string) {
+    return this.http.post<string>(
+      `${environment.baseUrlBackend}/user/register`,
+      uid
+    );
   }
 }

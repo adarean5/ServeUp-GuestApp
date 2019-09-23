@@ -6,6 +6,30 @@
   display: flex;
   flex-direction: column;
 
+  .toolbar-tab-active {
+    color: $sup-c-primary;
+    fill: $sup-c-primary;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      margin-left: 0.5em;
+    }
+  }
+
+  #toolbar-actions-left {
+    margin-left: 1rem;
+  }
+
+  .toolbar-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
   #top-nav {
     //background: darken($sup-c-primary, 20%);
     //color: white;
@@ -60,8 +84,11 @@
     }
   }
 
+  ::ng-deep.mat-tab-header {
+    display: none !important;
+  }
   // Side mat-tab-bar styling
-  ::ng-deep.mat-tab-group.mat-primary.mat-tab-group-inverted-header {
+  /*::ng-deep.mat-tab-group.mat-primary.mat-tab-group-inverted-header {
     flex-direction: row;
   }
   ::ng-deep.mat-tab-header {
@@ -95,5 +122,5 @@
   ::ng-deep.mat-tab-header-pagination {
     display: none !important;
     background: #00b69a;
-  }
+  }*/
 }

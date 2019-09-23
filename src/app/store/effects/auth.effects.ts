@@ -33,31 +33,32 @@ export class AuthEffects {
     exhaustMap makes sure the current authService.getUserData() call completes
     before accepting new requests. */
     exhaustMap(() => {
-      return this.authService.getUserData();
+      return this.authService.getUserData().pipe(
+        /* If user data was received,
+        create a new user object and trigger a new Authenticated action
+        else trigger a new NotAuthenticated action. */
+        map(userData => {
+          if (userData) {
+            console.log('[GetUser] AuthData received:', userData);
+            const user: User = {
+              uid: userData.uid,
+              email: userData.email,
+              photoURL: userData.photoURL,
+              displayName: userData.displayName
+            };
+            console.log('[GetUser] User:', user);
+            return new Authenticated(user);
+          } else {
+            console.log('[GetUser] AuthData not received');
+            return  new NotAuthenticated(null);
+          }
+        }),
+        catchError(err => {
+          console.log('Get user: Auth error:', err);
+          return of(new GAuthError(err));
+        })
+      );
     }),
-    /* If user data was received,
-    create a new user object and trigger a new Authenticated action
-    else trigger a new NotAuthenticated action. */
-    map(userData => {
-      if (userData) {
-        console.log('[GetUser] AuthData received:', userData);
-        const user: User = {
-          uid: userData.uid,
-          email: userData.email,
-          photoURL: userData.photoURL,
-          displayName: userData.displayName
-        };
-        console.log('[GetUser] User:', user);
-        return new Authenticated(user);
-      } else {
-        console.log('[GetUser] AuthData not received');
-        return  new NotAuthenticated(null);
-      }
-    }),
-    catchError((err => {
-      console.log('Get user: Auth error:', err);
-      return of(new GAuthError(err));
-    }))
   );
 
   @Effect()

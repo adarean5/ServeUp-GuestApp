@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'serveup-android-ba698.appspot.com',
     messagingSenderId: '702266610802',
     appId: '1:702266610802:web:2e7d5ce412bc6569'
-  }
+  },
+  baseUrlBackend: 'https://serveup-backend.herokuapp.com/api'
 };
 
 /*
