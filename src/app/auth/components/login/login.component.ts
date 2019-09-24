@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {GSignIn} from '../../../store/actions/auth.actions';
+import {gSignIn} from '../../../store/actions/auth.actions';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {User} from '../../../store/models/user.model';
@@ -27,6 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   private gSignIn() {
-    this.store.dispatch(new GSignIn());
+    this.store.dispatch(gSignIn());
   }
 }

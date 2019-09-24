@@ -38,7 +38,12 @@ export const firebaseConfig = environment.firebaseConfig;
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
     }),
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, {
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true
+      }
+    }),
     EffectsModule.forRoot([
       AuthEffects
     ]),

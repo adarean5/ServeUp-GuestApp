@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {auth} from 'firebase/app';
+import {AngularFireAuth} from '@angular/fire/auth';
 import {Observable} from 'rxjs';
 import {User} from '../../store/models/user.model';
 import {HttpClient} from '@angular/common/http';
@@ -32,9 +32,12 @@ export class AuthService {
   }
 
   public serveUpRegister(uid: string) {
-    return this.http.post<string>(
-      `${environment.baseUrlBackend}/user/register`,
-      uid
-    );
+    const url = environment.baseUrlBackend + '/user/register/';
+
+    const body = {
+      id_uporabnik: uid
+    };
+
+    return this.http.post(url, body);
   }
 }

@@ -1,30 +1,33 @@
+<div *ngIf="user then mainContainer else loadingContainer"></div>
+
+<ng-template #mainContainer >
 <div id="main-container">
   <mat-toolbar id="top-nav" color="">
     <img src="assets/img/Logo.png" alt="SU Logo" id="sup-logo">
     <p>ServeUp</p>
     <span id="toolbar-actions-left">
-      <button mat-button (click)="changeTab(tabNames.Home)" [class.toolbar-tab-active]="currentTab == tabNames.Home">
-        <span class="button-container">
-          <app-icon [iconName]="'home'" id="icon-home-nav"></app-icon>
-          <span>Home</span>
-        </span>
-      </button>
-      <button mat-button (click)="changeTab(tabNames.Orders)" [class.toolbar-tab-active]="currentTab == tabNames.Orders">
-        <span class="button-container">
-          <app-icon [iconName]="'orders'" id="icon-orders-nav"></app-icon>
-          <span>Orders</span>
-        </span>
-      </button>
-    </span>
+    <button mat-button (click)="changeTab(tabNames.Home)" [class.toolbar-tab-active]="currentTab == tabNames.Home">
+      <span class="button-container">
+        <app-icon [iconName]="'home'" id="icon-home-nav"></app-icon>
+        <span>Home</span>
+      </span>
+    </button>
+    <button mat-button (click)="changeTab(tabNames.Orders)" [class.toolbar-tab-active]="currentTab == tabNames.Orders">
+      <span class="button-container">
+        <app-icon [iconName]="'orders'" id="icon-orders-nav"></app-icon>
+        <span>Orders</span>
+      </span>
+    </button>
+  </span>
     <span class="toolbar-fill-remaining-space"></span>
     <span id="toolbar-actions-right">
-      <button mat-button (click)="changeTab(tabNames.Profile)" [class.toolbar-tab-active]="currentTab == tabNames.Profile">
-        <span class="button-container">
-          <app-icon [iconName]="'profile'" id="icon-profile-nav"></app-icon>
-          <span>Profile</span>
-        </span>
-      </button>
-    </span>
+    <button mat-button (click)="changeTab(tabNames.Profile)" [class.toolbar-tab-active]="currentTab == tabNames.Profile">
+      <span class="button-container">
+        <app-icon [iconName]="'profile'" id="icon-profile-nav"></app-icon>
+        <span>Profile</span>
+      </span>
+    </button>
+  </span>
   </mat-toolbar>
   <mat-tab-group [selectedIndex]="currentTab" mat-stretch-tabs headerPosition="below" id="main-tab-group">
     <mat-tab>
@@ -58,3 +61,10 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+</ng-template>
+
+<ng-template #loadingContainer class="main-container-loading">
+<div>
+  <p>LOADING</p>
+</div>
+</ng-template>

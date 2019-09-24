@@ -1,51 +1,40 @@
-import { Action } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 
 import { User } from '../models/user.model';
 
-export enum EAuthActions {
-  GET_USER = '[Auth] Get user',
-  AUTHENTICATED = '[Auth] User authenticated',
-  NOT_AUTHENTICATED = '[Auth] User not authenticated',
-  G_SIGN_IN = '[Auth] Google Sign in',
-  G_SIGN_OUT = '[Auth] Google Sign out success',
-  G_AUTH_ERR = '[AUTH] Google auth error'
-}
+export const getUser = createAction('[Auth] Get user');
 
-export class GetUser implements Action {
-  public readonly type = EAuthActions.GET_USER;
-  constructor(public payload?: User) {}
-}
+export const authenticated = createAction(
+  '[Auth] User authenticated',
+  props<{user: User}> ()
+);
 
-export class Authenticated implements Action {
-  public readonly type = EAuthActions.AUTHENTICATED;
-  constructor(public payload: User) {}
-}
+export const notAuthenticated = createAction(
+  '[Auth] User not authenticated'
+);
 
-export class NotAuthenticated implements Action {
-  public readonly type = EAuthActions.NOT_AUTHENTICATED;
-  constructor(public payload?: any) {}
-}
+export const gSignIn = createAction(
+  '[Auth] Google Sign in'
+);
 
-export class GSignIn implements Action {
-  public readonly type = EAuthActions.G_SIGN_IN;
-  constructor(public payload?: any) {}
-}
+export const gSignOut = createAction(
+  '[Auth] Google Sign out success'
+);
 
-export class GSignOut implements Action {
-  public readonly type = EAuthActions.G_SIGN_OUT;
-  constructor(public payload?: any) {}
-}
+export const gAuthError = createAction(
+  '[Auth] Google auth error',
+  props<{err: any}>()
+);
 
-export class GAuthError implements Action {
-  public readonly type = EAuthActions.G_AUTH_ERR;
-  constructor(public payload: any) {}
-}
+export const bRegister = createAction(
+  '[Auth] Backend register',
+  props<{uid: string}>()
+);
 
-export type AuthActions
-  = GetUser
-  | Authenticated
-  | NotAuthenticated
-  | GSignIn
-  | GSignOut
-  | GAuthError;
+export const bRegisterSuccess = createAction(
+  '[Auth] Backend register success'
+);
 
+export const bRegisterErr = createAction(
+  '[Auth] Backend register error'
+);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
-import {GSignOut} from '../../../store/actions/auth.actions';
+import {gSignOut} from '../../../store/actions/auth.actions';
 import {User} from '../../../store/models/user.model';
 import {selectUser} from '../../../store/selectors/auth.selectors';
 import {Router} from '@angular/router';
@@ -30,7 +30,7 @@ export class MainViewComponent implements OnInit {
   ngOnInit() {
     this.currentTab = this.tabNames.Profile;
     this.store.select(selectUser).subscribe((newUser: User) => {
-      if (!newUser) {
+      if (newUser === null) {
         this.router.navigate(['/login']);
       } else {
         this.user = newUser;
@@ -40,7 +40,7 @@ export class MainViewComponent implements OnInit {
 
   private gSignOut() {
     console.log('Sign out from main component.');
-    this.store.dispatch(new GSignOut());
+    this.store.dispatch(gSignOut());
   }
 
   private changeTab(tabName) {
