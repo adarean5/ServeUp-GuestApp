@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {Actions, createEffect, Effect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {catchError, exhaustMap, map, switchMap, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
@@ -15,13 +15,13 @@ export class AuthEffects {
     private actions$: Actions,
   ) {}
 
-  init = createEffect(() => this.actions$.pipe(
+  @Effect() init = createEffect(() => this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     tap(() => {console.log('[ROOT_EFFECTS_INIT] Started'); }),
     map(() => AuthActions.getUser())
   ));
 
-  getUser = createEffect(() => this.actions$.pipe(
+  @Effect() getUser = createEffect(() => this.actions$.pipe(
     // Check if action type matches getUser type
     ofType(AuthActions.getUser),
     tap(() => {console.log('[GetUser] Started'); }),
@@ -54,7 +54,7 @@ export class AuthEffects {
     }),
   ));
 
-  gSignIn = createEffect(() => this.actions$.pipe(
+  @Effect() gSignIn = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignIn),
     tap(() => {console.log('[GSignIn] Started'); }),
     switchMap(() => {
@@ -67,7 +67,7 @@ export class AuthEffects {
     })
   ));
 
-  gSignOut = createEffect(() => this.actions$.pipe(
+  @Effect() gSignOut = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignOut),
     tap(() => {console.log('[GSignOut] Started'); }),
     exhaustMap(() => {
@@ -80,13 +80,13 @@ export class AuthEffects {
     }),
   ));
 
-  authenticated = createEffect(() => this.actions$.pipe(
+  @Effect() authenticated = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.authenticated),
     tap(() => {console.log('[Authenticated] Started'); }),
     map((action) => AuthActions.bRegister({uid: action.user.uid})),
   ));
 
-  bRegister = createEffect(() => this.actions$.pipe(
+  @Effect() bRegister = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.bRegister),
     exhaustMap((action) => {
       return this.authService.serveUpRegister(action.uid).pipe(
