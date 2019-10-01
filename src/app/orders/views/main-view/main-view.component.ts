@@ -28,7 +28,7 @@ export class MainViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentTab = this.tabNames.Profile;
+    this.currentTab = this.tabNames.Home;
     this.store.select(selectUser).subscribe((newUser: User) => {
       if (newUser === null) {
         this.router.navigate(['/login']);

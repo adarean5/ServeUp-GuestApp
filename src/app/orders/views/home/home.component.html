@@ -1,1 +1,5 @@
-<p>home works!</p>
+<div id="main-container-home">
+  <div id="restaurant-list">
+    <app-home-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-home-card>
+  </div>
+</div>

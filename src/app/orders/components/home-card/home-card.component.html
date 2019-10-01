@@ -1,1 +1,7 @@
-<p>home-card works!</p>
+<mat-card class="home-card-container">
+  <mat-card-title>{{restaurant.name}}</mat-card-title>
+  <mat-card-subtitle>{{restaurant.type}}</mat-card-subtitle>
+  <div>
+    <img mat-card-lg-image src="data:image/png;base64,{{restaurant.image}}" alt="Restaurant image">
+  </div>
+</mat-card>

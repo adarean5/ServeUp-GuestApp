@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Restaurant} from '../../../store/models/restaurant.model';
 
 @Component({
   selector: 'app-home-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-card.component.scss']
 })
 export class HomeCardComponent implements OnInit {
+
+  @Input() restaurant: Restaurant;
 
   constructor() { }
 
