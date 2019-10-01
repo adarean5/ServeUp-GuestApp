@@ -8,9 +8,10 @@ import {authReducers} from '../store/reducers/auth.reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from '../store/effects/auth.effects';
 import {SharedModule} from '../shared/shared.module';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
-  declarations: [MainViewComponent, ProfileComponent],
+  declarations: [MainViewComponent, ProfileComponent, HomeComponent],
   imports: [
     CommonModule,
     MaterialModule,
