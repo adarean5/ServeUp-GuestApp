@@ -3,14 +3,15 @@
 </div>-->
 
 <!-- User NOT logged in -->
-<div>
-  <h3>Hello GUEST</h3>
-  <p>Login to get started...</p>
-
-  <button mat-raised-button color="primary" (click)="gSignIn()">
-    <i class="fa fa-google"></i> Sign in with Google
-  </button>
-
+<div id="main-container-login">
+  <img class="sup-logo" [ngClass]="{'sup-spin' : loading == true}" src="../../../../assets/img/logo.png" alt="ServeUp Logo">
+  <p class="sup-title">ServeUp</p>
+  <div id="actions-container">
+    <button mat-raised-button class="button-g-sign" (click)="gSignIn()">
+      <img src="assets/img/google-g.svg" alt="G">
+      <span>Sign in with Google</span>
+    </button>
+  </div>
 </div>
 
 

@@ -1,0 +1,35 @@
+.sup-spin {
+  -webkit-animation: sup-spin 2s infinite ease;
+  animation: sup-spin 2s infinite ease;
+}
+
+@-webkit-keyframes sup-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg) scale(1);
+  }
+}
+@keyframes sup-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg) scale(1);
+  }
+}

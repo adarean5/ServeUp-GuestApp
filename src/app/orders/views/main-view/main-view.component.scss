@@ -1,5 +1,6 @@
 @import "variables";
 @import "serveup-palette";
+@import "animations";
 
 #main-container {
   height: 100%;
@@ -43,6 +44,25 @@
 
   #main-tab-group {
     flex-grow: 1;
+  }
+}
+
+#main-container-loading {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 10em;
+  }
+
+  p {
+    color: $sup-c-primary;
+    font-size: 1.5em;
   }
 }
 

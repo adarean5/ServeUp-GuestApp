@@ -11,16 +11,19 @@ export const authReducers = createReducer(
   on(AuthActions.authenticated, (state, {user}) => ({
     ...state,
     user,
-    signedIn: true
+    signedIn: true,
+    loading: false
   })),
   on(AuthActions.notAuthenticated, state => ({
     ...state,
     user: null,
-    signedIn: false
+    signedIn: false,
+    loading: false
   })),
   on(AuthActions.gSignIn, state => ({
     ...state,
-    user: null
+    user: null,
+    loading: true
   })),
   on(AuthActions.bRegisterSuccess, state => ({
     ...state,
@@ -33,8 +36,14 @@ export const authReducers = createReducer(
     signedIn: false,
     registered: false,
     loading: false
+  })),
+  on(AuthActions.gAuthError, state => ({
+    ...state,
+    user: null,
+    signedIn: false,
+    registered: false,
+    loading: false
   }))
-
 );
 
 /*export const authReducers = (

@@ -3,7 +3,7 @@
 <ng-template #mainContainer >
 <div id="main-container">
   <mat-toolbar id="top-nav" color="">
-    <img src="assets/img/Logo.png" alt="SU Logo" id="sup-logo">
+    <img src="../../../../assets/img/logo.png" alt="SU Logo" id="sup-logo">
     <p>ServeUp</p>
     <span id="toolbar-actions-left">
     <button mat-button (click)="changeTab(tabNames.Home)" [class.toolbar-tab-active]="currentTab == tabNames.Home">
@@ -63,8 +63,9 @@
 </div>
 </ng-template>
 
-<ng-template #loadingContainer class="main-container-loading">
-<div>
-  <p>LOADING</p>
+<ng-template #loadingContainer >
+<div id="main-container-loading">
+  <img src="assets/img/logo.png" alt="ServeUp" class="sup-spin">
+  <p>ServeUp</p>
 </div>
 </ng-template>

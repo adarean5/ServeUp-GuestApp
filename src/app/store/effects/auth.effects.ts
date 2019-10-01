@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Actions, createEffect, Effect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import {of} from 'rxjs';
-import {catchError, exhaustMap, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, exhaustMap, map, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 
 import * as AuthActions from '../actions/auth.actions';
@@ -15,13 +15,13 @@ export class AuthEffects {
     private actions$: Actions,
   ) {}
 
-  @Effect() init = createEffect(() => this.actions$.pipe(
+  init = createEffect(() => this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     tap(() => {console.log('[ROOT_EFFECTS_INIT] Started'); }),
     map(() => AuthActions.getUser())
   ));
 
-  @Effect() getUser = createEffect(() => this.actions$.pipe(
+  getUser = createEffect(() => this.actions$.pipe(
     // Check if action type matches getUser type
     ofType(AuthActions.getUser),
     tap(() => {console.log('[GetUser] Started'); }),
@@ -54,10 +54,10 @@ export class AuthEffects {
     }),
   ));
 
-  @Effect() gSignIn = createEffect(() => this.actions$.pipe(
+  gSignIn = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignIn),
     tap(() => {console.log('[GSignIn] Started'); }),
-    switchMap(() => {
+    exhaustMap(() => {
       return fromPromise(this.authService.googleSignIn()).pipe(
         map( () => {
           return AuthActions.getUser();
@@ -67,7 +67,7 @@ export class AuthEffects {
     })
   ));
 
-  @Effect() gSignOut = createEffect(() => this.actions$.pipe(
+  gSignOut = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignOut),
     tap(() => {console.log('[GSignOut] Started'); }),
     exhaustMap(() => {
@@ -80,13 +80,20 @@ export class AuthEffects {
     }),
   ));
 
-  @Effect() authenticated = createEffect(() => this.actions$.pipe(
+  gAuthError = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.gAuthError),
+    tap(action => {
+      console.log('[GAuthErr] ', action);
+    }),
+  ), {dispatch: false});
+
+  authenticated = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.authenticated),
     tap(() => {console.log('[Authenticated] Started'); }),
     map((action) => AuthActions.bRegister({uid: action.user.uid})),
   ));
 
-  @Effect() bRegister = createEffect(() => this.actions$.pipe(
+  bRegister = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.bRegister),
     exhaustMap((action) => {
       return this.authService.serveUpRegister(action.uid).pipe(
