@@ -10,6 +10,7 @@ import {AuthEffects} from '../store/effects/auth.effects';
 import {SharedModule} from '../shared/shared.module';
 import { HomeComponent } from './views/home/home.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 @NgModule({
   declarations: [MainViewComponent, ProfileComponent, HomeComponent, HomeCardComponent],
@@ -18,7 +19,8 @@ import { HomeCardComponent } from './components/home-card/home-card.component';
     MaterialModule,
     StoreModule.forFeature('auth', authReducers),
     EffectsModule.forFeature([AuthEffects]),
-    SharedModule
+    SharedModule,
+    BarRatingModule
   ]
 })
 export class OrdersModule { }

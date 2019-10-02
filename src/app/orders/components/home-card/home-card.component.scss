@@ -1,3 +1,9 @@
-.home-card-container {
+.card {
   margin: 1rem;
+}
+
+.card-img {
+  min-height: 10em;
+  max-height: 15em;
+  object-fit: cover !important;
 }
