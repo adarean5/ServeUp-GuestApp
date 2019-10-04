@@ -13,13 +13,16 @@
 }
 
 .tab-button {
+  animation-duration: 300ms;
+  animation-name: shrinkTab;
   display: flex;
   flex-direction: column;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  color: black;
   text-decoration: none;
+  flex: 1;
+  color: black;
+  fill: black;
 
   span {
     margin: 0;
@@ -28,6 +31,9 @@
 }
 
 .tab-active {
+  animation-duration: 300ms;
+  animation-name: expandTab;
+  flex: 2;
   color: $sup-c-primary;
   fill: $sup-c-primary;
 }
@@ -38,4 +44,38 @@
   border-top: 1px solid gainsboro;
   z-index: 100;
   background: white;
+}
+
+@keyframes expandTab {
+  from {
+    flex: 1;
+    color: black;
+    fill: black;
+  }
+  to {
+    flex: 2;
+    color: $sup-c-primary;
+    fill: $sup-c-primary;
+  }
+}
+
+@keyframes shrinkTab {
+  from {
+    flex: 2;
+    color: $sup-c-primary;
+    fill: $sup-c-primary;
+  }
+  to {
+    flex: 1;
+    color: black;
+    fill: black;
+  }
+}
+
+
+@media only screen and (min-width: 600px) {
+
+  .tab-nav-bar {
+    display: none;
+  }
 }

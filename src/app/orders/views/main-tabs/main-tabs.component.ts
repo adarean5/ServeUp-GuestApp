@@ -6,7 +6,7 @@ import {routerAnimation} from '../../../shared/animations/router.animations';
   selector: 'app-main-tabs',
   templateUrl: './main-tabs.component.html',
   styleUrls: ['./main-tabs.component.scss'],
-  animations: [routerAnimation('300ms', 'ease-in', 'ease-out')],
+  animations: [routerAnimation('300ms', 'ease-in-out', 'ease-in-out')],
 })
 export class MainTabsComponent implements OnInit {
   private tabLinks = {

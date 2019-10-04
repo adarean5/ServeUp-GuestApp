@@ -1,9 +1,36 @@
+@import "serveup-palette";
+
 #main-container-home {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .search-bar {
+    background: $sup-c-background;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 24px;
+
+    p {
+      cursor: pointer;
+      padding-left: 1em;
+    }
+  }
+
+  .sup-center-text {
+    display: flex;
+    justify-content: center;
+
+    p {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  }
 
   #restaurant-list {
-    //overflow: auto;
-    //height: 100%;
+    margin-top: 1rem;
+    overflow: auto;
+    padding: 0;
   }
 }

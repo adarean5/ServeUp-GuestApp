@@ -37,3 +37,32 @@ body {
 
 // Rating bar color
 .br-selected:after{color:$sup-c-primary !important;}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+// Scrollbar styling (chrome only)
+
+::-webkit-scrollbar              {
+  background: $sup-c-background;
+  border-radius: 10px;
+  width: 0.5em;
+}
+::-webkit-scrollbar-button       {
+  background: black;
+  border-radius: 50%;
+  display: none;
+}
+::-webkit-scrollbar-track        {
+  border-radius: 20px;
+}
+::-webkit-scrollbar-track-piece  {
+  background: $sup-c-background;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb        {
+  background: darken($sup-c-background, 20%);
+  border-radius: 20px;
+}

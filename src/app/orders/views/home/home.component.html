@@ -1,5 +1,15 @@
 <div id="main-container-home">
-  <div class="row no-gutters" id="restaurant-list">
-  <app-home-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-home-card>
-</div>
+  <div mat-ripple class="search-bar">
+    <p>Iskanje</p>
+  </div>
+
+  <div class="sup-center-text">
+    <p>V bližini</p>
+  </div>
+
+  <div class="container-fluid" id="restaurant-list">
+    <div class="row no-gutters">
+      <app-home-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-home-card>
+    </div>
+  </div>
 </div>
