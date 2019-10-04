@@ -1,0 +1,29 @@
+<div class="main-tabs-container">
+  <div class="tabs-content" [@routerAnimation]="getRouteAnimation(router)">
+    <router-outlet #router='outlet'></router-outlet>
+  </div>
+
+  <nav class="tab-nav-bar">
+    <a mat-ripple class="tab-button"
+       [routerLink]="tabLinks.home"
+       (click)="activeTab = tabLinks.home" [class.tab-active]="activeTab === tabLinks.home">
+      <app-icon [iconName]="'home'" id="icon-home"></app-icon>
+      <span>Home</span>
+    </a>
+
+    <a mat-ripple class="tab-button"
+       [routerLink]="tabLinks.orders"
+       (click)="activeTab = tabLinks.orders" [class.tab-active]="activeTab === tabLinks.orders">
+      <app-icon [iconName]="'orders'" id="icon-orders"></app-icon>
+      <span>Orders</span>
+    </a>
+
+    <a mat-ripple class="tab-button"
+       [routerLink]="tabLinks.profile"
+       (click)="activeTab = tabLinks.profile" [class.tab-active]="activeTab === tabLinks.profile">
+      <app-icon [iconName]="'profile'" id="icon-profile"></app-icon>
+      <span>Profile</span>
+    </a>
+  </nav>
+</div>
+

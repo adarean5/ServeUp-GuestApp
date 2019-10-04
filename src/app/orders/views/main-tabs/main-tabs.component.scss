@@ -1,0 +1,41 @@
+@import "serveup-palette";
+
+.main-tabs-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.tabs-content {
+  height: 100%;
+  overflow: hidden;
+}
+
+.tab-button {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+
+  span {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+}
+
+.tab-active {
+  color: $sup-c-primary;
+  fill: $sup-c-primary;
+}
+
+.tab-nav-bar {
+  height: 64px;
+  display: flex;
+  border-top: 1px solid gainsboro;
+  z-index: 100;
+  background: white;
+}

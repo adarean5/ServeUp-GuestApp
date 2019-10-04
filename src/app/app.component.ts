@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   async dispatchUser() {
-    const dispatchResult = await this.store.dispatch(getUser());
-    console.log('Dispatch result:', dispatchResult);
+    // const dispatchResult = await this.store.dispatch(getUser());
+    // console.log('Dispatch result:', dispatchResult);
   }
 }

@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
 import { MainViewComponent } from './orders/views/main-view/main-view.component';
 import {AuthGuard} from './auth/auth.guard';
+import {HomeComponent} from './orders/views/home/home.component';
+import {ProfileComponent} from './orders/views/profile/profile.component';
+import {MainTabsComponent} from './orders/views/main-tabs/main-tabs.component';
+import {OrdersTabComponent} from './orders/views/orders-tab/orders-tab.component';
 
 const routes: Routes = [
   {
@@ -12,12 +16,35 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainViewComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: MainTabsComponent,
+        children: [
+          {
+            path: 'home',
+            component: HomeComponent,
+            data: {num: 1}
+          },
+          {
+            path: 'orders',
+            component: OrdersTabComponent,
+            data: {num: 2}
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+            data: {num: 3}
+          }
+        ]
+      }
+    ]
   },
-  {
+  /*{
     path: '**',
     redirectTo: '/login'
-  }
+  }*/
 ];
 
 @NgModule({

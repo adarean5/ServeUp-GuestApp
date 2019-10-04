@@ -1,4 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../../store/states/app.state';
+import {selectUser} from '../../../store/selectors/auth.selectors';
+import {User} from '../../../store/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -7,14 +11,17 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() user;
+  private user;
   @Output() emSignOut = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private store: Store<IAppState>
+  ) { }
 
   ngOnInit() {
-    console.log('[ProfileComponent] Started');
-    console.log('[ProfileComponent] User ', this.user);
+    this.store.select(selectUser).subscribe((newUser: User) => {
+      this.user = newUser;
+    });
   }
 
   signOut() {

@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     IconComponent,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   imports: [
     MaterialModule,

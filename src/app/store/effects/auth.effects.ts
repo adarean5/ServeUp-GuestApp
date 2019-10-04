@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, exhaustMap, map, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 
 import * as AuthActions from '../actions/auth.actions';
 import {AuthService} from '../../auth/services/auth.service';
 import {User} from '../models/user.model';
+import {Action} from '@ngrx/store';
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +19,7 @@ export class AuthEffects {
   init = createEffect(() => this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     tap(() => {console.log('[ROOT_EFFECTS_INIT] Started'); }),
-    map(() => AuthActions.getUser())
+    exhaustMap(() => this.getUserFromFire())
   ));
 
   getUser = createEffect(() => this.actions$.pipe(
@@ -104,4 +105,29 @@ export class AuthEffects {
       );
     })
   ));
+
+  getUserFromFire(): Observable<Action> {
+    return this.authService.getUserData().pipe(
+      /* If user data was received,
+      create a new user object and trigger a new Authenticated action
+      else trigger a new NotAuthenticated action. */
+      map(userData => {
+        if (userData) {
+          console.log('[GetUser] AuthData received:', userData);
+          const user: User = {
+            uid: userData.uid,
+            email: userData.email,
+            photoURL: userData.photoURL,
+            displayName: userData.displayName
+          };
+          console.log('[GetUser] User:', user);
+          return AuthActions.authenticated({user});
+        } else {
+          console.log('[GetUser] AuthData not received');
+          return  AuthActions.notAuthenticated();
+        }
+      }),
+      catchError(err => of(AuthActions.gAuthError(err)))
+    );
+  }
 }

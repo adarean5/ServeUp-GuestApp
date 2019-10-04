@@ -11,16 +11,28 @@ import {SharedModule} from '../shared/shared.module';
 import { HomeComponent } from './views/home/home.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
+import {RouterModule} from '@angular/router';
+import { RestaurantMealsComponent } from './views/restaurant-meals/restaurant-meals.component';
+import {MainTabsComponent} from './views/main-tabs/main-tabs.component';
+import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
 
 @NgModule({
-  declarations: [MainViewComponent, ProfileComponent, HomeComponent, HomeCardComponent],
+  declarations: [
+    MainViewComponent,
+    ProfileComponent,
+    HomeComponent,
+    HomeCardComponent,
+    MainTabsComponent,
+    RestaurantMealsComponent,
+    OrdersTabComponent],
   imports: [
     CommonModule,
     MaterialModule,
     StoreModule.forFeature('auth', authReducers),
     EffectsModule.forFeature([AuthEffects]),
     SharedModule,
-    BarRatingModule
+    BarRatingModule,
+    RouterModule
   ]
 })
 export class OrdersModule { }

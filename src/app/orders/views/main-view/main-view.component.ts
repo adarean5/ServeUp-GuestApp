@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 
 enum TabNames {
   Home,
+  Restaurant,
   Orders,
   Profile
 }
@@ -18,6 +19,12 @@ enum TabNames {
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
+  private tabLinks = {
+    home: 'home',
+    orders: 'orders' ,
+    profile: 'profile'
+  };
+  private activeLink = this.tabLinks[0];
   private user: User;
   private tabNames = TabNames;
   private currentTab: number;
