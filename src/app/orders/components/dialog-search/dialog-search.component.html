@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Najdi restavracije</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Lokacija</mat-label>
+    <input (input)="location = $event.target.value" matInput placeholder="Npr. Ljubljana">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-select [(value)]="foodType" placeholder="Tip hrane">
+      <mat-option value="Option 1">Option 1</mat-option>
+      <mat-option value="Option 2">Option 2</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Termin od</mat-label>
+    <input matInput placeholder="Npr 13:35">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Termin do</mat-label>
+    <input matInput placeholder="Npr. 14:50">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="search()">Iskanje</button>
+</mat-dialog-actions>

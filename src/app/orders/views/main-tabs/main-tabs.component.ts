@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {routerAnimation} from '../../../shared/animations/router.animations';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-main-tabs',
@@ -26,5 +27,4 @@ export class MainTabsComponent implements OnInit {
       ? -1
       : outlet.activatedRouteData.num;
   }
-
 }

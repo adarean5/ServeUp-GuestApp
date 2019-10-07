@@ -15,6 +15,7 @@ import {RouterModule} from '@angular/router';
 import { RestaurantMealsComponent } from './views/restaurant-meals/restaurant-meals.component';
 import {MainTabsComponent} from './views/main-tabs/main-tabs.component';
 import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
+import { DialogSearchComponent } from './components/dialog-search/dialog-search.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
     HomeCardComponent,
     MainTabsComponent,
     RestaurantMealsComponent,
-    OrdersTabComponent],
+    OrdersTabComponent,
+    DialogSearchComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -33,6 +35,9 @@ import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
     SharedModule,
     BarRatingModule,
     RouterModule
+  ],
+  entryComponents: [
+    DialogSearchComponent
   ]
 })
 export class OrdersModule { }

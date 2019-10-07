@@ -5,6 +5,8 @@ import {gSignOut} from '../../../store/actions/auth.actions';
 import {User} from '../../../store/models/user.model';
 import {selectUser} from '../../../store/selectors/auth.selectors';
 import {Router} from '@angular/router';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
 
 enum TabNames {
   Home,
@@ -31,7 +33,8 @@ export class MainViewComponent implements OnInit {
 
   constructor(
     private store: Store<IAppState>,
-    private router: Router
+    private router: Router,
+    private searchDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -43,6 +46,7 @@ export class MainViewComponent implements OnInit {
         this.user = newUser;
       }
     });
+    this.openSearchDialog();
   }
 
   private gSignOut() {
@@ -52,5 +56,10 @@ export class MainViewComponent implements OnInit {
 
   private changeTab(tabName) {
     this.currentTab = tabName;
+  }
+
+  private openSearchDialog() {
+    const dialogConfig = new MatDialogConfig();
+    this.searchDialog.open(DialogSearchComponent, dialogConfig);
   }
 }
