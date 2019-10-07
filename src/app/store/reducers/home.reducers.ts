@@ -4,6 +4,7 @@ import * as HomeActions from '../actions/home.actions';
 
 export const homeReducers = createReducer(
   initialHomeState,
+  // Get restaurants
   on(HomeActions.getRestaurants, state => ({
     ...state,
     loadingRestaurants: true
@@ -17,5 +18,19 @@ export const homeReducers = createReducer(
     ...state,
     restaurants: null,
     loadingRestaurants: false
+  })),
+  // Search dialog
+  on(HomeActions.openSearchDialog, state => ({
+    ...state,
+    searchDialogOpened: true
+  })),
+  on(HomeActions.closeSearchDialog, state => ({
+    ...state,
+    searchDialogOpened: false
+  })),
+  // Get restaurant types
+  on(HomeActions.getRestaurantTypesSuccess, (state, {restaurantTypes}) => ({
+    ...state,
+    restaurantTypes
   }))
 );

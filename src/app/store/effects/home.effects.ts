@@ -5,6 +5,7 @@ import * as HomeActions from '../actions/home.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {Restaurant} from '../models/restaurant.model';
 import {of} from 'rxjs';
+import {RestaurantType} from '../models/restaurant-type.model';
 
 @Injectable()
 export class HomeEffects {
@@ -37,4 +38,18 @@ export class HomeEffects {
       console.log('[GetRestaurantsErr] ', action);
     })
   ), {dispatch: false});
+
+  getRestaurantTypes = createEffect(() => this.actions$.pipe(
+    ofType(HomeActions.getRestaurantTypes),
+    switchMap(() => {
+      return this.ordersService.getRestaurantTypes().pipe(
+        map((response: []) => {
+          const restaurantTypes = response.map(apiType => RestaurantType.fromApi(apiType));
+          console.log('Response:', restaurantTypes);
+          return HomeActions.getRestaurantTypesSuccess({restaurantTypes});
+        }),
+        catchError((err: any) => of(HomeActions.getRestaurantsErr(err)))
+      );
+    }),
+  ));
 }

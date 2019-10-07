@@ -7,6 +7,7 @@ import {selectUser} from '../../../store/selectors/auth.selectors';
 import {Router} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
+import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 
 enum TabNames {
   Home,
@@ -39,6 +40,7 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit() {
     this.currentTab = this.tabNames.Home;
+    // Select current user from store
     this.store.select(selectUser).subscribe((newUser: User) => {
       if (newUser === null) {
         this.router.navigate(['/login']);
@@ -46,7 +48,13 @@ export class MainViewComponent implements OnInit {
         this.user = newUser;
       }
     });
-    this.openSearchDialog();
+    // Open search dialog
+    this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
+      console.log(opened);
+      if (opened) {
+        this.openSearchDialog();
+      }
+    });
   }
 
   private gSignOut() {

@@ -19,4 +19,10 @@ export class OrdersService {
 
     return this.http.post(url, body);
   }
+
+  public getRestaurantTypes() {
+    const url = environment.baseUrlBackend + '/restaurant_type/';
+
+    return this.http.get(url);
+  }
 }
