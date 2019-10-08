@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<IAppState>) {}
 
   async ngOnInit() {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log('Position',  position);
+    });
     console.log('Starting app component init');
     this.user$ = this.store.select(selectUser);
     console.log('Starting dispatchUser');

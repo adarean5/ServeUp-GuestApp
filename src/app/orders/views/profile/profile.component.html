@@ -1,26 +1,24 @@
-<div id="profile-container">
-  <div id="profile-info">
-    <img src="{{user.photoURL}}" alt="Profile Picture" id="profile-picture">
-    <p id="profile-name">{{ user.displayName }}</p>
-  </div>
-  <div id="profile-actions">
-    <button mat-raised-button>
-      <span class="button-container">
-        <app-icon iconName="profile"></app-icon>
-        <span>Account info</span>
-      </span>
-    </button>
-    <button mat-raised-button>
-      <span class="button-container">
-        <app-icon iconName="settings"></app-icon>
-        <span>Settings</span>
-      </span>
-    </button>
-    <button mat-raised-button color="warn" (click)="signOut()" class="sign-out-button">
-      <span class="button-container">
-        <app-icon iconName="sign-out"></app-icon>
-        <span>Sign out</span>
-      </span>
-    </button>
-  </div>
+<div id="profile-info">
+  <img src="{{user.photoURL}}" alt="Profile Picture" id="profile-picture">
+  <p id="profile-name">{{ user.displayName }}</p>
+</div>
+<div id="profile-actions">
+  <button mat-raised-button>
+    <span class="button-container">
+      <app-icon iconName="profile"></app-icon>
+      <span>Account info</span>
+    </span>
+  </button>
+  <button mat-raised-button>
+    <span class="button-container">
+      <app-icon iconName="settings"></app-icon>
+      <span>Settings</span>
+    </span>
+  </button>
+  <button mat-raised-button color="warn" (click)="signOut()" class="sign-out-button">
+    <span class="button-container">
+      <app-icon iconName="sign-out"></app-icon>
+      <span>Sign out</span>
+    </span>
+  </button>
 </div>

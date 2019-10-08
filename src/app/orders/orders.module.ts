@@ -16,6 +16,7 @@ import { RestaurantMealsComponent } from './views/restaurant-meals/restaurant-me
 import {MainTabsComponent} from './views/main-tabs/main-tabs.component';
 import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
 import { DialogSearchComponent } from './components/dialog-search/dialog-search.component';
+import { RestaurantGridComponent } from './components/restaurant-grid/restaurant-grid.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DialogSearchComponent } from './components/dialog-search/dialog-search.
     MainTabsComponent,
     RestaurantMealsComponent,
     OrdersTabComponent,
-    DialogSearchComponent],
+    DialogSearchComponent,
+    RestaurantGridComponent],
   imports: [
     CommonModule,
     MaterialModule,

@@ -1,15 +1,10 @@
-<div id="main-container-home">
-  <div mat-ripple class="search-bar" (click)="openSearchDialog()">
-    <p class="search-text">Iskanje</p>
-  </div>
-
-  <div class="sup-center-text">
-    <p>V bližini</p>
-  </div>
-
-  <div class="container-fluid" id="restaurant-list">
-    <div class="row no-gutters">
-      <app-home-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-home-card>
-    </div>
-  </div>
+<div mat-ripple class="search-bar" (click)="openSearchDialog()">
+  <p class="search-text">Iskanje</p>
 </div>
+
+<div class="sup-center-text">
+  <p>V bližini</p>
+</div>
+
+<app-restaurant-grid [restaurants]="restaurants"></app-restaurant-grid>
+

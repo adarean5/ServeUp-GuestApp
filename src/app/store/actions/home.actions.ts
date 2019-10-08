@@ -38,3 +38,11 @@ export const getRestaurantTypesErr = createAction(
   props<{err: any}>()
 );
 
+export const searchRestaurants = createAction(
+  '[Home] Search Restaurants',
+  props<{
+    location: string;
+    restaurantType: string
+  }>()
+);
+

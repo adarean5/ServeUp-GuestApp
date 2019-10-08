@@ -7,6 +7,7 @@ import {Restaurant} from '../../../store/models/restaurant.model';
   styleUrls: ['./home-card.component.scss'],
 })
 export class HomeCardComponent implements OnInit {
+  @HostBinding('class.card')
   @HostBinding('class.col-sm-12')
   @HostBinding('class.col-md-6')
   @HostBinding('class.col-lg-6')

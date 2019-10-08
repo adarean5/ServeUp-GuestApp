@@ -1,6 +1,6 @@
 @import "serveup-palette";
 
-.main-tabs-container {
+:host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
