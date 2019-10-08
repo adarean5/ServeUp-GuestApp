@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
-import {closeSearchDialog, getRestaurantTypes} from '../../../store/actions/home.actions';
+import {closeSearchDialog, getRestaurantTypes, searchRestaurants} from '../../../store/actions/home.actions';
 import {RestaurantType} from '../../../store/models/restaurant-type.model';
 import {selectRestaurantTypes} from '../../../store/selectors/home.selector';
 
@@ -33,6 +33,7 @@ export class DialogSearchComponent implements OnInit {
   }
 
   search() {
+    this.store.dispatch(searchRestaurants({location: this.location, restaurantType: this.foodType}));
     this.dialogRef.close();
     console.log(this.foodType, this.location);
   }

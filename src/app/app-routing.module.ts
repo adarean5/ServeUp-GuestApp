@@ -7,6 +7,7 @@ import {HomeComponent} from './orders/views/home/home.component';
 import {ProfileComponent} from './orders/views/profile/profile.component';
 import {MainTabsComponent} from './orders/views/main-tabs/main-tabs.component';
 import {OrdersTabComponent} from './orders/views/orders-tab/orders-tab.component';
+import {RestaurantSearchDisplayComponent} from './orders/views/restaurant-search-display/restaurant-search-display.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
             data: {num: 3}
           }
         ]
+      },
+      {
+        path: 'search-results',
+        component: RestaurantSearchDisplayComponent
       }
     ]
   },

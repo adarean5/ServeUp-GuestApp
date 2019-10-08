@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class OrdersService {
+  private currentLocation = 'Ljubljana'; // TODO: Replace with actual location
 
   constructor(
     private http: HttpClient
@@ -14,7 +15,7 @@ export class OrdersService {
   public restaurantsHome() {
     const url = environment.baseUrlBackend + '/restaurant/home/';
     const body = {
-      location: 'Ljubljana' // TODO Get actual location
+      location: this.currentLocation
     };
 
     return this.http.post(url, body);
@@ -24,5 +25,14 @@ export class OrdersService {
     const url = environment.baseUrlBackend + '/restaurant_type/';
 
     return this.http.get(url);
+  }
+
+  public searchRestaurants(location: string) {
+    const url = environment.baseUrlBackend + '/restaurant/home/';
+    const body = {
+      location: !location ? this.currentLocation : location
+    };
+
+    return this.http.post(url, body);
   }
 }

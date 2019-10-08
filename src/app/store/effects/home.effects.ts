@@ -2,16 +2,18 @@ import {Injectable} from '@angular/core';
 import {OrdersService} from '../../orders/services/orders.service';
 import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import * as HomeActions from '../actions/home.actions';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {Restaurant} from '../models/restaurant.model';
 import {of} from 'rxjs';
 import {RestaurantType} from '../models/restaurant-type.model';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class HomeEffects {
   constructor(
     private ordersService: OrdersService,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
   init = createEffect(() => this.actions$.pipe(
@@ -51,5 +53,24 @@ export class HomeEffects {
         catchError((err: any) => of(HomeActions.getRestaurantsErr(err)))
       );
     }),
+  ));
+
+  searchRestaurants = createEffect(() => this.actions$.pipe(
+    ofType(HomeActions.searchRestaurants),
+    switchMap(action => {
+      const restaurantType = action.restaurantType;
+      return this.ordersService.searchRestaurants(action.location).pipe(
+        map((result: any[]) => {
+          console.log('[SearchRestaurants] Api result before filter', result);
+          const restaurantsSearch = result
+            .filter(responseRestaurant => responseRestaurant.tip === restaurantType)
+            .map(responseRestaurant => Restaurant.fromApi(responseRestaurant));
+          console.log('[SearchRestaurants] Api result after filter', restaurantsSearch);
+          this.router.navigate(['main/search-results']);
+          return HomeActions.searchRestaurantsSuccess({restaurantsSearch});
+        }),
+        catchError(err => of(HomeActions.searchRestaurantsErr(err)))
+      );
+    })
   ));
 }

@@ -6,11 +6,15 @@ export interface IHomeState {
   restaurantTypes: RestaurantType[];
   loadingRestaurants: boolean;
   searchDialogOpened: boolean;
+  restaurantsSearch: Restaurant[];
+  loadingSearch: boolean;
 }
 
 export const initialHomeState: IHomeState = {
   restaurants: undefined,
   restaurantTypes: undefined,
   loadingRestaurants: false,
-  searchDialogOpened: false
+  searchDialogOpened: false,
+  restaurantsSearch: [],
+  loadingSearch: false
 };

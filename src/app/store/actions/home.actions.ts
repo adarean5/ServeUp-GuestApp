@@ -2,6 +2,7 @@ import {createAction, props} from '@ngrx/store';
 import {Restaurant} from '../models/restaurant.model';
 import {RestaurantType} from '../models/restaurant-type.model';
 
+// Get restaurants
 export const getRestaurants = createAction(
   '[Home] Get restaurants'
 );
@@ -16,6 +17,8 @@ export const getRestaurantsErr = createAction(
   props<{err: any}>()
 );
 
+
+// Search dialog
 export const openSearchDialog = createAction(
   '[Home] Open search dialog'
 );
@@ -24,6 +27,7 @@ export const closeSearchDialog = createAction(
   '[Home] Close search dialog'
 );
 
+// Get restaurant types
 export const getRestaurantTypes = createAction(
   '[Home] GetRestaurantTypes'
 );
@@ -38,11 +42,24 @@ export const getRestaurantTypesErr = createAction(
   props<{err: any}>()
 );
 
+// Search restaurants
 export const searchRestaurants = createAction(
   '[Home] Search Restaurants',
   props<{
     location: string;
     restaurantType: string
   }>()
+);
+
+export const searchRestaurantsSuccess = createAction(
+  '[Home] Search restaurants success',
+  props<{
+    restaurantsSearch: Restaurant[]
+  }>()
+);
+
+export const searchRestaurantsErr = createAction(
+  '[Home] Search restaurants err',
+  props<{err: any}>()
 );
 
