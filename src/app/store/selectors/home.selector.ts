@@ -23,3 +23,13 @@ export const selectRestaurantTypes = createSelector(
   selectHomeState,
   (state: IHomeState) => state.restaurantTypes
 );
+
+export const selectRestaurantsSearch = createSelector(
+  selectHomeState,
+  (state: IHomeState) => state.restaurantsSearch
+);
+
+export const selectLoadingSearch = createSelector(
+  selectHomeState,
+  (state: IHomeState) => state.loadingSearch
+);

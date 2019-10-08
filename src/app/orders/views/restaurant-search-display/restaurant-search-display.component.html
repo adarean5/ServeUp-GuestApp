@@ -1,1 +1,14 @@
-<p>restaurant-search-display works!</p>
+<div class="sup-header">
+  <div>
+    <button mat-button class="left"><-</button>
+  </div>
+  <div class="center">
+    <h4 class="title">Rezultati iskanja</h4>
+  </div>
+  <div class="right"></div>
+</div>
+
+<app-restaurant-grid
+  [restaurants]="restaurants"
+  (rIdEmitter)="cardClicked($event)"
+></app-restaurant-grid>

@@ -62,9 +62,10 @@ export class HomeEffects {
       return this.ordersService.searchRestaurants(action.location).pipe(
         map((result: any[]) => {
           console.log('[SearchRestaurants] Api result before filter', result);
-          const restaurantsSearch = result
-            .filter(responseRestaurant => responseRestaurant.tip === restaurantType)
-            .map(responseRestaurant => Restaurant.fromApi(responseRestaurant));
+          result = restaurantType
+            ? result.filter(responseRestaurant => responseRestaurant.tip === restaurantType)
+            : result;
+          const restaurantsSearch = result.map(responseRestaurant => Restaurant.fromApi(responseRestaurant));
           console.log('[SearchRestaurants] Api result after filter', restaurantsSearch);
           this.router.navigate(['main/search-results']);
           return HomeActions.searchRestaurantsSuccess({restaurantsSearch});

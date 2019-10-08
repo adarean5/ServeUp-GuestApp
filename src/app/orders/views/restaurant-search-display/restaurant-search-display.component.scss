@@ -1,0 +1,21 @@
+.sup-header {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  align-items: stretch;
+  //justify-content: space-between;
+
+  .left {
+    float: left;
+  }
+
+  .center {
+    margin: auto;
+    display: flex;
+    align-content: center;
+  }
+
+  .center {
+    float: right;
+  }
+}
