@@ -27,4 +27,8 @@ export class HomeComponent implements OnInit {
   private openSearchDialog() {
     this.store.dispatch(openSearchDialog());
   }
+
+  private restaurantClicked(restaurantId: number) {
+    console.log('Restaurant clicked main', restaurantId);
+  }
 }

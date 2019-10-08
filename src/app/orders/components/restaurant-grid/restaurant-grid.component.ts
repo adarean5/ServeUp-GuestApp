@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {Restaurant} from '../../../store/models/restaurant.model';
 
 @Component({
@@ -11,9 +11,15 @@ export class RestaurantGridComponent implements OnInit {
 
   @Input() restaurants: Restaurant[];
 
+  @Output() rIdEmitter: EventEmitter<number> = new EventEmitter<number>();
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  emitClickedRestaurant(restaurantId: number) {
+    console.log('Restaurant id from grid', restaurantId);
+    this.rIdEmitter.emit(restaurantId);
   }
 
 }

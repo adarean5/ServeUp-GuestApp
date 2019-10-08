@@ -1,3 +1,7 @@
 <div class="row no-gutters">
-  <app-home-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-home-card>
+  <app-home-card
+    *ngFor="let restaurant of restaurants"
+    [restaurant]="restaurant"
+    (clickEmitter)="emitClickedRestaurant($event)"
+  ></app-home-card>
 </div>

@@ -6,5 +6,8 @@
   <p>V bližini</p>
 </div>
 
-<app-restaurant-grid [restaurants]="restaurants"></app-restaurant-grid>
+<app-restaurant-grid
+  [restaurants]="restaurants"
+  (rIdEmitter)="restaurantClicked($event)"
+></app-restaurant-grid>
 
