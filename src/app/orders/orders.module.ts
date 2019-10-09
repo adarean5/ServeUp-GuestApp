@@ -18,6 +18,8 @@ import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
 import { DialogSearchComponent } from './components/dialog-search/dialog-search.component';
 import { RestaurantGridComponent } from './components/restaurant-grid/restaurant-grid.component';
 import { RestaurantSearchDisplayComponent } from './views/restaurant-search-display/restaurant-search-display.component';
+import { ListLayoutComponent } from './components/list-layout/list-layout.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { RestaurantSearchDisplayComponent } from './views/restaurant-search-disp
     OrdersTabComponent,
     DialogSearchComponent,
     RestaurantGridComponent,
-    RestaurantSearchDisplayComponent],
+    RestaurantSearchDisplayComponent,
+    ListLayoutComponent,
+    IconButtonComponent],
   imports: [
     CommonModule,
     MaterialModule,

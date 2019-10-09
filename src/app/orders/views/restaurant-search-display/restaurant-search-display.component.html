@@ -1,4 +1,27 @@
-<div class="sup-header">
+<app-list-layout>
+  <ng-container class="header-left">
+    <app-icon-button icon="back"></app-icon-button>
+  </ng-container>
+
+  <ng-container class="header-title">
+    Main Title
+  </ng-container>
+  <ng-container class="header-subtitle">
+    Subtitle
+  </ng-container>
+
+  <ng-container class="header-right">
+    <button mat-button>Right</button>
+  </ng-container>
+
+  <app-restaurant-grid
+    [restaurants]="restaurants"
+    (rIdEmitter)="cardClicked($event)"
+  ></app-restaurant-grid>
+</app-list-layout>
+
+
+<!--<div class="sup-header">
   <div>
     <button mat-button class="left"><-</button>
   </div>
@@ -11,4 +34,4 @@
 <app-restaurant-grid
   [restaurants]="restaurants"
   (rIdEmitter)="cardClicked($event)"
-></app-restaurant-grid>
+></app-restaurant-grid>-->
