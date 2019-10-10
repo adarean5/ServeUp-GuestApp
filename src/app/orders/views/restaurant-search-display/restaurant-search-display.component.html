@@ -1,18 +1,14 @@
 <app-list-layout>
   <ng-container class="header-left">
-    <app-icon-button icon="back"></app-icon-button>
+    <app-icon-button icon="back" [iconWidth]="'32px'"></app-icon-button>
   </ng-container>
 
   <ng-container class="header-title">
-    Main Title
+    Najdene restavracije
   </ng-container>
-  <ng-container class="header-subtitle">
-    Subtitle
-  </ng-container>
-
-  <ng-container class="header-right">
-    <button mat-button>Right</button>
-  </ng-container>
+  <!--<ng-container class="header-subtitle">
+    Ljubljana, Mehiška
+  </ng-container>-->
 
   <app-restaurant-grid
     [restaurants]="restaurants"

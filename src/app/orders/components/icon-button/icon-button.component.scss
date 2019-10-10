@@ -1,10 +1,23 @@
-.icon-button-container {
+:host {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
 
-  span {
-    margin-left: 1em;
+  .sup-icon-button {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex: 1;
+    min-width: auto;
+    padding: 0;
+
+    .icon-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+
+      span {
+        margin-left: 1em;
+      }
+    }
   }
 }

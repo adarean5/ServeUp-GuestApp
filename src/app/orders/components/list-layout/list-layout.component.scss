@@ -8,12 +8,14 @@
     position: relative;
     justify-content: center;
     margin: 1em;
+    min-height: 40px;
 
     .side-header {
       position: absolute;
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
 
       &.h-left {
         left: 0;
@@ -28,9 +30,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
 
       .header-title {
         margin-bottom: 0;
+      }
+
+      .header-subtitle {
+        font-weight: bold;
       }
     }
   }

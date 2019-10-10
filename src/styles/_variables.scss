@@ -1,2 +1,22 @@
 // Borders
 $sup-border-light: 1px solid rgba(0, 0, 0, 0.12);
+
+// Bootstrap breakpoint definition
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px,
+  xxxl: 1920px
+);
+
+// Breakpoint variables
+$size-xs: map-get($grid-breakpoints, xs);
+$size-sm: map-get($grid-breakpoints, sm);
+$size-md: map-get($grid-breakpoints, md);
+$size-lg: map-get($grid-breakpoints, lg);
+$size-xl: map-get($grid-breakpoints, xl);
+$size-xxl: map-get($grid-breakpoints, xxl);
+$size-xxxl: map-get($grid-breakpoints, xxxl);

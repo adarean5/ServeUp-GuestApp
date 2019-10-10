@@ -1,17 +1,18 @@
 @import "serveup-theme";
 @import "serveup-palette";
-@import "variables";
 @import '~ngx-bar-rating/themes/br-default-theme';
+@import "variables";
 
 // Custom changes to the bootstrap scss
-$grid-breakpoints: (
+/*$grid-breakpoints: (
   xs: 0,
-  sm: 600px,
+  sm: 576px,
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1600px
-);
+  xxl: 1600px,
+  xxxl: 1920px
+);*/
 
 @import '~bootstrap/scss/bootstrap';
 
@@ -38,6 +39,10 @@ p {
 
 .mat-tab-body-wrapper{
   flex-grow: 1;
+}
+
+.no-padding {
+  padding: 0 !important;
 }
 
 // Rating bar color

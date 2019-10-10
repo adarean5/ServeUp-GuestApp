@@ -1,6 +1,10 @@
-<button mat-button>
+<button class="sup-icon-button" mat-button>
   <span class="icon-button-container">
-    <app-icon *ngIf="icon" [iconName]="icon"></app-icon>
+    <app-icon *ngIf="icon"
+              [iconName]="icon"
+              [height]="iconHeight"
+              [width]="iconWidth"
+    ></app-icon>
     <span *ngIf="text">{{text}}</span>
   </span>
 </button>

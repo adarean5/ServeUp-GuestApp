@@ -8,19 +8,13 @@
   </mat-card-title-group>
 </mat-card>-->
 
-<div class="card mat-elevation-z1" mat-ripple>
-  <div class="container">
-    <div class="row">
-      <div class="col-6 col-sm-12 no-padding">
-        <img class="card-img" src="data:image/png;base64,{{restaurant.image}}" alt="Restaurant image">
-      </div>
-      <div class="col-6 col-sm-12 no-padding">
-        <div class="card-body">
-          <h5 class="card-title">{{restaurant.name}}</h5>
-          <p class="card-subtitle text-muted">{{restaurant.type}}</p>
-          <bar-rating [(rate)]="restaurant.rating" [max]="5" [readOnly]="true"></bar-rating>
-        </div>
-      </div>
-    </div>
+<div class="card" mat-ripple>
+  <div class="card-img-container">
+    <img class="card-img" src="data:image/png;base64,{{restaurant.image}}" alt="Restaurant image">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{restaurant.name}}</h5>
+    <p class="card-subtitle text-muted">{{restaurant.type}}</p>
+    <bar-rating [(rate)]="restaurant.rating" [max]="5" [readOnly]="true"></bar-rating>
   </div>
 </div>

@@ -8,6 +8,8 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 export class IconButtonComponent implements OnInit {
   @Input() icon: string;
   @Input() text: string;
+  @Input() iconHeight?: string;
+  @Input() iconWidth?: string;
 
   constructor() { }
 

@@ -7,12 +7,35 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IconComponent implements OnInit {
   @Input() iconName: string;
-  @Input() width = '24px';
+  @Input() width?: string;
   @Input() height?: string;
+
+  private defaultWidth = '24px';
+  private defaultHeight = '24px';
+
+  private actualWidth: string;
+  private actualHeight: string;
 
   constructor() { }
 
   ngOnInit() {
+    if (this.height) {
+      this.actualHeight = this.height;
+    } else if (this.width) {
+      // noinspection JSSuspiciousNameCombination
+      this.actualHeight = this.width;
+    } else {
+      this.actualHeight = this.defaultHeight;
+    }
+
+    if (this.width) {
+      this.actualWidth = this.width;
+    } else if (this.height) {
+      // noinspection JSSuspiciousNameCombination
+      this.actualWidth = this.height;
+    } else {
+      this.actualWidth = this.defaultWidth;
+    }
   }
 
 }

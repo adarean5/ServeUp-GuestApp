@@ -1,9 +1,43 @@
-:host {
-  padding: 0 0.5rem 1rem 0.5rem !important;
-}
+@import "variables";
 
-.card-img {
-  min-height: 10em;
-  max-height: 15em;
-  object-fit: cover !important;
+:host {
+  padding: 0 0.5rem 0.5rem 0.5rem !important;
+
+  @media only screen and (min-width: $size-sm) {
+    padding: 0.5rem !important;
+  }
+
+  &:first-of-type {
+    padding: 0.5rem !important;
+  }
+
+  .card {
+    flex-direction: row;
+    // border: none;
+    @media only screen and (min-width: $size-sm) {
+      flex-direction: column;
+    }
+
+    .card-img-container {
+      flex: 3;
+      padding: 0.5em 0 0.5em 0.5em;
+
+      @media only screen and (min-width: $size-sm) {
+        padding: 0.5em 0.5em 0 0.5em;
+      }
+
+      .card-img {
+        height: 100%;
+        object-fit: cover !important;
+
+        @media only screen and (min-width: $size-sm) {
+          height: 15em;
+        }
+      }
+    }
+
+    .card-body {
+      flex: 4;
+    }
+  }
 }

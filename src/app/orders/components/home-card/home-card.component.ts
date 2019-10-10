@@ -12,11 +12,12 @@ export class HomeCardComponent implements OnInit {
 
   @Output() clickEmitter: EventEmitter<number> = new EventEmitter<number>();
 
-  @HostBinding('class.col-sm-12')
-  @HostBinding('class.col-md-6')
-  @HostBinding('class.col-lg-6')
-  @HostBinding('class.col-xl-4')
-  @HostBinding('class.col-xxl-3')
+  @HostBinding('class.col-xs-12')
+  @HostBinding('class.col-sm-6')
+  @HostBinding('class.col-md-4')
+  @HostBinding('class.col-lg-4')
+  @HostBinding('class.col-xl-3')
+  @HostBinding('class.col-xxl-2')
 
   @HostListener('click', ['$event']) onClick() {
     console.log('Clicked restaurant:', this.restaurant.id);
