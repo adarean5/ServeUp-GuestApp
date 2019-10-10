@@ -15,6 +15,8 @@
   <div class="card-body">
     <h5 class="card-title">{{restaurant.name}}</h5>
     <p class="card-subtitle text-muted">{{restaurant.type}}</p>
-    <bar-rating [(rate)]="restaurant.rating" [max]="5" [readOnly]="true"></bar-rating>
+    <div class="card-rating-container">
+      <bar-rating [(rate)]="restaurant.rating" [max]="5" [readOnly]="true"></bar-rating>
+    </div>
   </div>
 </div>

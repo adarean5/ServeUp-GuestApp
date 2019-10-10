@@ -19,7 +19,7 @@ export class RestaurantSearchDisplayComponent implements OnInit {
     this.store.select(selectLoadingSearch).subscribe((loading: boolean) => {
       this.loading = loading;
     });
-    this.store.select(selectRestaurants).subscribe((restaurants: Restaurant[]) => {
+    this.store.select(selectRestaurantsSearch).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
     });
   }
