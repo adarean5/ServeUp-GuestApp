@@ -22,9 +22,18 @@
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
+        justify-content: center;
 
         &.left {
           flex: 9;
+
+          .card-title {
+            margin: 0 !important;
+          }
+
+          .card-subtitle {
+            margin-top: 0.5rem;
+          }
         }
 
         &.right {
@@ -33,7 +42,6 @@
           flex-wrap: nowrap;
           font-weight: bold;
           font-size: 1em;
-          justify-content: center;
           align-items: flex-end;
         }
       }
