@@ -1,7 +1,3 @@
 <div class="row no-gutters" id="card-grid">
-  <app-home-card
-    *ngFor="let restaurant of restaurants"
-    [restaurant]="restaurant"
-    (clickEmitter)="emitClickedRestaurant($event)"
-  ></app-home-card>
+  <ng-content></ng-content>
 </div>

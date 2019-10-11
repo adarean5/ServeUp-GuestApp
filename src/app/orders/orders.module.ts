@@ -21,6 +21,7 @@ import { RestaurantSearchDisplayComponent } from './views/restaurant-search-disp
 import { ListLayoutComponent } from './components/list-layout/list-layout.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MealsComponent } from './views/meals/meals.component';
+import { MealCardComponent } from './components/meal-card/meal-card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MealsComponent } from './views/meals/meals.component';
     ListLayoutComponent,
     IconButtonComponent,
     MealsComponent,
+    MealCardComponent,
   ],
   imports: [
     CommonModule,

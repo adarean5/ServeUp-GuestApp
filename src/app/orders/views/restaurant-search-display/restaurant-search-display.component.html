@@ -12,10 +12,15 @@
     Ljubljana, Mehiška
   </ng-container>-->
 
-  <app-restaurant-grid
-    [restaurants]="restaurants"
-    (rIdEmitter)="cardClicked($event)"
-  ></app-restaurant-grid>
+  <app-restaurant-grid>
+    <ng-container>
+      <app-home-card
+        *ngFor="let restaurant of restaurants"
+        [restaurant]="restaurant"
+        (clickEmitter)="cardClicked($event)"
+      ></app-home-card>
+    </ng-container>
+  </app-restaurant-grid>
 </app-list-layout>
 
 
