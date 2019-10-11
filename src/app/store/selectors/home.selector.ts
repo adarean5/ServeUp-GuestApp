@@ -33,3 +33,13 @@ export const selectLoadingSearch = createSelector(
   selectHomeState,
   (state: IHomeState) => state.loadingSearch
 );
+
+export const selectMeals = createSelector(
+  selectHomeState,
+  (state: IHomeState) => state.meals
+);
+
+export const selectLoadingMeals = createSelector(
+  selectHomeState,
+  (state: IHomeState) => state.loadingMeals
+);

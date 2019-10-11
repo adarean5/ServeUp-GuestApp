@@ -17,7 +17,7 @@ export class HomeCardComponent implements OnInit {
   @HostBinding('class.col-md-4')
   @HostBinding('class.col-lg-4')
   @HostBinding('class.col-xl-3')
-  @HostBinding('class.col-xxl-2')
+  @HostBinding('class.col-xxl-3')
 
   @HostListener('click', ['$event']) onClick() {
     console.log('Clicked restaurant:', this.restaurant.id);

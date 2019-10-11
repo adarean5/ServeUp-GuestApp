@@ -1,0 +1,42 @@
+@import "variables";
+@import "serveup-palette";
+
+:host {
+  padding: 0 0.5rem 0.5rem 0.5rem !important;
+
+  @media only screen and (min-width: $size-sm) {
+    padding: 0.5rem !important;
+  }
+
+  &:first-of-type {
+    padding: 0.5rem !important;
+  }
+
+  .card {
+    .card-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .body-part {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        &.left {
+          flex: 9;
+        }
+
+        &.right {
+          flex: 3;
+          color: $sup-c-primary;
+          flex-wrap: nowrap;
+          font-weight: bold;
+          font-size: 1em;
+          justify-content: center;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+}
