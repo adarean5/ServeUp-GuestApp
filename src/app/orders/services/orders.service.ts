@@ -35,4 +35,10 @@ export class OrdersService {
 
     return this.http.post(url, body);
   }
+
+  public getMealsForRestaurant(restaurantId: number) {
+    const url = environment.baseUrlBackend + '/meals/?id_restavracija=' + restaurantId;
+
+    return this.http.get(url);
+  }
 }

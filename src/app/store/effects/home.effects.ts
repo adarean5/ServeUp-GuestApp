@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {OrdersService} from '../../orders/services/orders.service';
 import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import * as HomeActions from '../actions/home.actions';
-import {catchError, filter, map, switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 import {Restaurant} from '../models/restaurant.model';
 import {of} from 'rxjs';
 import {RestaurantType} from '../models/restaurant-type.model';
 import {Router} from '@angular/router';
+import {Meal} from '../models/meal.model';
 
 @Injectable()
 export class HomeEffects {
@@ -50,7 +51,7 @@ export class HomeEffects {
           console.log('Response:', restaurantTypes);
           return HomeActions.getRestaurantTypesSuccess({restaurantTypes});
         }),
-        catchError((err: any) => of(HomeActions.getRestaurantsErr(err)))
+        catchError((err: any) => of(HomeActions.getRestaurantsErr({err})))
       );
     }),
   ));
@@ -70,7 +71,23 @@ export class HomeEffects {
           this.router.navigate(['main/search-results']);
           return HomeActions.searchRestaurantsSuccess({restaurantsSearch});
         }),
-        catchError(err => of(HomeActions.searchRestaurantsErr(err)))
+        catchError(err => of(HomeActions.searchRestaurantsErr({err})))
+      );
+    })
+  ));
+
+  getMealsForRestaurant = createEffect(() => this.actions$.pipe(
+    ofType(HomeActions.getMealsForRestaurant),
+    switchMap(action => {
+      return this.ordersService.getMealsForRestaurant(action.restaurantId).pipe(
+        map((meals: any) => {
+          Object.keys(meals).forEach(key => {
+            meals[key] = meals[key].map(apiMeal => Meal.fromApi(apiMeal));
+          });
+          console.log('Final meals', meals);
+          return HomeActions.getMealsForRestaurantSuccess({meals});
+        }),
+        catchError(err => of(HomeActions.getMealsForRestaurantErr({err})))
       );
     })
   ));

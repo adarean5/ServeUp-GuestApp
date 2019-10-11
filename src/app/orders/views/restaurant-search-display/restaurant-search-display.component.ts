@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {Restaurant} from '../../../store/models/restaurant.model';
-import {selectLoadingSearch, selectRestaurants, selectRestaurantsSearch} from '../../../store/selectors/home.selector';
+import {selectLoadingSearch, selectRestaurantsSearch} from '../../../store/selectors/home.selector';
+import {getMealsForRestaurant} from '../../../store/actions/home.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-search-display',
@@ -13,7 +15,10 @@ export class RestaurantSearchDisplayComponent implements OnInit {
   private restaurants: Restaurant[];
   private loading: boolean;
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(
+    private store: Store<IAppState>,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.store.select(selectLoadingSearch).subscribe((loading: boolean) => {
@@ -25,6 +30,8 @@ export class RestaurantSearchDisplayComponent implements OnInit {
   }
 
   cardClicked(restaurantId: number) {
-    console.log('Card clicked from search', restaurantId);
+    // console.log('Card clicked from search', restaurantId);
+    // this.store.dispatch(getMealsForRestaurant({restaurantId}));
+    this.router.navigate(['/main/meals', restaurantId]);
   }
 }

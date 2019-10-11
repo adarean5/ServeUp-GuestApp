@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
 import {selectRestaurants} from '../../../store/selectors/home.selector';
-import {openSearchDialog} from '../../../store/actions/home.actions';
+import {openSearchDialog, getMealsForRestaurant} from '../../../store/actions/home.actions';
 import {Restaurant} from '../../../store/models/restaurant.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,13 @@ export class HomeComponent implements OnInit {
   private restaurants: Restaurant[];
 
   constructor(
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.store.select(selectRestaurants).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
-      console.log('Restaurants from home tab', this.restaurants);
     });
   }
 
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   private restaurantClicked(restaurantId: number) {
-    console.log('Restaurant clicked main', restaurantId);
+    this.router.navigate(['/main/meals', restaurantId]);
+    // this.store.dispatch(getMealsForRestaurant({restaurantId}));
   }
 }

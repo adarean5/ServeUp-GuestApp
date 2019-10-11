@@ -8,6 +8,7 @@ import {ProfileComponent} from './orders/views/profile/profile.component';
 import {MainTabsComponent} from './orders/views/main-tabs/main-tabs.component';
 import {OrdersTabComponent} from './orders/views/orders-tab/orders-tab.component';
 import {RestaurantSearchDisplayComponent} from './orders/views/restaurant-search-display/restaurant-search-display.component';
+import {MealsComponent} from './orders/views/meals/meals.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'search-results',
         component: RestaurantSearchDisplayComponent
+      },
+      {
+        path: 'meals/:id',
+        component: MealsComponent
       }
     ]
   },

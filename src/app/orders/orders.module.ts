@@ -20,6 +20,7 @@ import { RestaurantGridComponent } from './components/restaurant-grid/restaurant
 import { RestaurantSearchDisplayComponent } from './views/restaurant-search-display/restaurant-search-display.component';
 import { ListLayoutComponent } from './components/list-layout/list-layout.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { MealsComponent } from './views/meals/meals.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
     RestaurantGridComponent,
     RestaurantSearchDisplayComponent,
     ListLayoutComponent,
-    IconButtonComponent],
+    IconButtonComponent,
+    MealsComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,

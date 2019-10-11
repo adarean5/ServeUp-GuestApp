@@ -63,3 +63,21 @@ export const searchRestaurantsErr = createAction(
   props<{err: any}>()
 );
 
+// Get meals for restaurant
+export const getMealsForRestaurant = createAction(
+  '[Home] Get meals for restaurant',
+  props<{restaurantId: number}>()
+);
+
+export const getMealsForRestaurantSuccess = createAction(
+  '[Home] Get meals for restaurant success',
+  props<{meals: any}>()
+);
+
+export const getMealsForRestaurantErr = createAction(
+  '[Home] Get meals for restaurant err',
+  props<{err: any}>()
+);
+
+
+

@@ -34,17 +34,31 @@ export const homeReducers = createReducer(
     restaurantTypes
   })),
   // Restaurant search
-  on(HomeActions.searchRestaurants, (state => ({
+  on(HomeActions.searchRestaurants, state => ({
     ...state,
     loadingRestaurants: true
-  }))),
-  on(HomeActions.searchRestaurantsSuccess, ((state, {restaurantsSearch}) => ({
+  })),
+  on(HomeActions.searchRestaurantsSuccess, (state, {restaurantsSearch}) => ({
     ...state,
     loadingRestaurants: false,
     restaurantsSearch
-  }))),
+  })),
   on(HomeActions.searchRestaurantsErr, state => ({
     ...state,
     loadingRestaurants: false
+  })),
+  // Meals
+  on(HomeActions.getMealsForRestaurant, state => ({
+    ...state,
+    loadingMeals: true
+  })),
+  on(HomeActions.getMealsForRestaurantSuccess, (state, {meals}) => ({
+    ...state,
+    meals,
+    loadingMeals: false
+  })),
+  on(HomeActions.getMealsForRestaurantErr, (state, {err}) => ({
+    ...state,
+    loadingMeals: false
   }))
 );
