@@ -23,6 +23,7 @@ const routes: Routes = [
       {
         path: '',
         component: MainTabsComponent,
+        data: {num: 1},
         children: [
           {
             path: 'home',
@@ -43,11 +44,13 @@ const routes: Routes = [
       },
       {
         path: 'search-results',
-        component: RestaurantSearchDisplayComponent
+        component: RestaurantSearchDisplayComponent,
+        data: {num: 2},
       },
       {
         path: 'meals/:id',
-        component: MealsComponent
+        component: MealsComponent,
+        data: {num: 3},
       }
     ]
   },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {getMealsForRestaurant} from '../../../store/actions/home.actions';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
@@ -15,7 +15,8 @@ export class MealsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private router: Router
   ) { }
 
   ngOnInit() {

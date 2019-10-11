@@ -4,10 +4,11 @@ import {Store} from '@ngrx/store';
 import {gSignOut} from '../../../store/actions/auth.actions';
 import {User} from '../../../store/models/user.model';
 import {selectUser} from '../../../store/selectors/auth.selectors';
-import {Router} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
 import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
+import {routerAnimation} from '../../../shared/animations/router.animations';
 
 enum TabNames {
   Home,
@@ -19,7 +20,8 @@ enum TabNames {
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
-  styleUrls: ['./main-view.component.scss']
+  styleUrls: ['./main-view.component.scss'],
+  animations: [routerAnimation('300ms', 'ease-in-out', 'ease-in-out')],
 })
 export class MainViewComponent implements OnInit {
   private tabLinks = {
@@ -69,5 +71,11 @@ export class MainViewComponent implements OnInit {
   private openSearchDialog() {
     const dialogConfig = new MatDialogConfig();
     this.searchDialog.open(DialogSearchComponent, dialogConfig);
+  }
+
+  public getRouteAnimation(outlet: RouterOutlet) {
+    return outlet.activatedRouteData.num === undefined
+      ? -1
+      : outlet.activatedRouteData.num;
   }
 }
