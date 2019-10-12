@@ -37,6 +37,10 @@ p {
   padding: 0;
 }
 
+button:focus {
+  outline:0;
+}
+
 .mat-tab-body-wrapper{
   flex-grow: 1;
 }
@@ -45,8 +49,50 @@ p {
   padding: 0 !important;
 }
 
+.vertical-div {
+  border: 1px solid darken($sup-c-primary, 25%);
+  margin: 0.25em;
+
+}
+
 // Rating bar color
 .br-selected:after{color:$sup-c-primary !important;}
+
+.sup-search-dialog {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  border: $sup-border-light;
+
+  @media only screen and (min-width: $size-sm) {
+    top: calc(60px);
+    left: calc(50% - 200px);
+    position: absolute !important;
+    height: 550px;
+    width: 400px;
+  }
+
+  @media only screen and (min-width: $size-md) {
+    left: calc(50% - 200px);
+  }
+
+  @media only screen and (min-width: $size-lg) {
+    left: calc(50% - 325px);
+  }
+
+  @media only screen and (min-width: $size-xl) {
+    left: calc(50% - 425px);
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: none;
+}
+.sup-form-field {
+  width: 100%;
+}
 
 // Scrollbar styling (chrome only)
 

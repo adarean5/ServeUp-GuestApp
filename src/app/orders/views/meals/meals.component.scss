@@ -1,4 +1,10 @@
 :host {
+  height: 100%;
+
+  mat-tab-group {
+    height: 100%;
+  }
+
   ::ng-deep.mat-tab-label-container {
     display: none;
   }

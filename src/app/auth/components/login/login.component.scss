@@ -1,27 +1,37 @@
 @import "serveup-palette";
 @import "animations";
 
-#main-container-login {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.container {
+  align-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: white;
 
-  .sup-logo {
-    width: 10em;
-  }
+  #main-container-login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  .sup-title {
-    font-size: 1.5em;
-    color: $sup-c-primary;
-  }
+    .sup-logo {
+      width: 10em;
+      margin-bottom:1em;
+    }
 
-  .button-g-sign {
-    img {
-      height: 1.5em;
-      margin-right: 1em;
+    .sup-title {
+      font-size: 1.5em;
+      color: $sup-c-primary;
+    }
+
+    .button-g-sign {
+      margin-top: 1em;
+      img {
+        height: 1.5em;
+        margin-right: 1em;
+      }
     }
   }
 }

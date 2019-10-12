@@ -69,8 +69,12 @@ export class MainViewComponent implements OnInit {
   }
 
   private openSearchDialog() {
-    const dialogConfig = new MatDialogConfig();
-    this.searchDialog.open(DialogSearchComponent, dialogConfig);
+    this.searchDialog.open(DialogSearchComponent, {
+      panelClass: 'sup-search-dialog',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      // hasBackdrop: false
+    });
   }
 
   public getRouteAnimation(outlet: RouterOutlet) {

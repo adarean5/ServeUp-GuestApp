@@ -12,8 +12,12 @@
     margin: 1em;
     padding: 1em;
     border-radius: 24px;
-    display: flex;
     align-items: center;
+    display: flex;
+
+    @media only screen and (min-width: $size-sm) {
+      display: none;
+    }
 
     .search-text {
       cursor: pointer;
@@ -24,6 +28,11 @@
   .sup-center-text {
     display: flex;
     justify-content: center;
+
+    @media only screen and (min-width: $size-sm) {
+      margin: 1rem;
+      font-size: 1.2em;
+    }
 
     p {
       font-weight: bold;

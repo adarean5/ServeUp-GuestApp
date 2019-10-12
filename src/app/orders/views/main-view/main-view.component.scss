@@ -7,12 +7,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background: $sup-c-background;
 
   .content-container {
     height: 100%;
     width: 100%;
-
     padding: 0 !important;
+    background: white;
+    border-left: $sup-border-light;
+    border-right: $sup-border-light;
   }
 
   .button-container {
@@ -33,6 +36,11 @@
 
   #toolbar-actions-left {
     margin-left: 1rem;
+    display: flex;
+  }
+
+  #toolbar-actions-right {
+    display: flex;
   }
 
   .toolbar-fill-remaining-space {
@@ -40,13 +48,15 @@
   }
 
   #top-nav {
-    //background: darken($sup-c-primary, 20%);
-    //color: white;
+    background: darken($sup-c-primary, 20%);
+    color: white;
+    fill: white;
     display: none;
 
     #sup-logo {
-      height: 32px;
+      height: 30px;
       margin-right: 1rem;
+      border-radius: 50%;
     }
   }
 }
@@ -74,6 +84,11 @@
 @media only screen and (min-width: $size-sm) {
   #top-nav {
     display: flex !important;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
 
     p {
       margin-bottom: 0;

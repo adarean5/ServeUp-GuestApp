@@ -3,6 +3,7 @@ import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectUser} from '../../../store/selectors/auth.selectors';
 import {User} from '../../../store/models/user.model';
+import {gSignOut} from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,6 @@ export class ProfileComponent implements OnInit {
   }
 
   signOut() {
-    this.emSignOut.emit();
+    this.store.dispatch(gSignOut());
   }
 }

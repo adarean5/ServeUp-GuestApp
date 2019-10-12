@@ -1,39 +1,46 @@
-<h2 mat-dialog-title>Najdi restavracije</h2>
+<div class="dialog-container">
+  <div class="dialog-title" mat-dialog-title>
+    <app-icon-button class="back-button" (click)="dialogRef.close()" icon="back" [iconHeight]="'32px'"></app-icon-button>
+    <p>Najdi restavracije</p>
+  </div>
 
-<mat-dialog-content>
-  <mat-form-field appearance="outline">
-    <mat-label>Lokacija</mat-label>
-    <input (input)="location = $event.target.value" matInput placeholder="Npr. Ljubljana">
-  </mat-form-field>
+  <div class="search-content">
+    <mat-dialog-content >
+      <mat-form-field class="sup-form-field" appearance="outline">
+        <mat-label>Lokacija</mat-label>
+        <input (input)="location = $event.target.value" matInput placeholder="Npr. Ljubljana">
+      </mat-form-field>
 
-  <br>
+      <br>
 
-  <mat-form-field appearance="outline">
-    <mat-select [(value)]="foodType" placeholder="Tip hrane">
-      <mat-option *ngFor="let restaurantType of restaurantTypes"
-                  [value]="restaurantType.typeName">
-        {{restaurantType.typeName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field class="sup-form-field" appearance="outline">
+        <mat-select [(value)]="foodType" placeholder="Tip hrane">
+          <mat-option *ngFor="let restaurantType of restaurantTypes"
+                      [value]="restaurantType.typeName">
+            {{restaurantType.typeName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <br>
-
-
-  <mat-form-field appearance="outline">
-    <mat-label>Termin od</mat-label>
-    <input matInput placeholder="Npr 13:35">
-  </mat-form-field>
-
-  <br>
+      <br>
 
 
-  <mat-form-field appearance="outline">
-    <mat-label>Termin do</mat-label>
-    <input matInput placeholder="Npr. 14:50">
-  </mat-form-field>
-</mat-dialog-content>
+      <mat-form-field class="sup-form-field" appearance="outline">
+        <mat-label>Termin od</mat-label>
+        <input matInput placeholder="Npr 13:35">
+      </mat-form-field>
 
-<mat-dialog-actions>
-  <button mat-button class="search-button" (click)="search()">Iskanje</button>
-</mat-dialog-actions>
+      <br>
+
+
+      <mat-form-field class="sup-form-field" appearance="outline">
+        <mat-label>Termin do</mat-label>
+        <input matInput placeholder="Npr. 14:50">
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-button class="search-button" (click)="search()">Iskanje</button>
+    </mat-dialog-actions>
+  </div>
+</div>
