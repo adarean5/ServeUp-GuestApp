@@ -43,6 +43,10 @@
           font-weight: bold;
           font-size: 1em;
           align-items: flex-end;
+
+          .card-value-cust {
+            color: $sup-c-primary;
+          }
         }
       }
     }
