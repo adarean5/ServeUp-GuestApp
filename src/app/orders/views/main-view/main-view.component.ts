@@ -9,6 +9,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
 import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 import {routerAnimation} from '../../../shared/animations/router.animations';
+import {openSearchDialog} from '../../../store/actions/home.actions';
 
 enum TabNames {
   Home,
@@ -33,6 +34,7 @@ export class MainViewComponent implements OnInit {
   private user: User;
   private tabNames = TabNames;
   private currentTab: number;
+  private searchOpened = false;
 
   constructor(
     private store: Store<IAppState>,
@@ -52,9 +54,15 @@ export class MainViewComponent implements OnInit {
     });
     // Open search dialog
     this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
+      this.searchOpened = opened;
       console.log(opened);
-      if (opened) {
-        this.openSearchDialog();
+      if (this.searchOpened) {
+        this.searchDialog.open(DialogSearchComponent, {
+          panelClass: 'sup-search-dialog',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+          autoFocus: false
+        });
       }
     });
   }
@@ -69,12 +77,7 @@ export class MainViewComponent implements OnInit {
   }
 
   private openSearchDialog() {
-    this.searchDialog.open(DialogSearchComponent, {
-      panelClass: 'sup-search-dialog',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      // hasBackdrop: false
-    });
+    this.store.dispatch(openSearchDialog());
   }
 
   public getRouteAnimation(outlet: RouterOutlet) {

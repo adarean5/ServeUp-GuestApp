@@ -3,13 +3,14 @@
 <ng-template #mainContainer >
   <div id="main-container">
     <mat-toolbar id="top-nav" color="">
-      <div class="container">
+      <div class="container" style="align-items: center">
         <img src="../../../../assets/img/logo.png" alt="SU Logo" id="sup-logo">
-        <p>ServeUp</p>
+        <p style="color: white">ServeUp</p>
 
         <span id="toolbar-actions-left">
           <app-icon-button icon="search" text="Išči"
                            (click)="openSearchDialog()"
+                           [class.toolbar-tab-active]="searchOpened"
           ></app-icon-button>
 
           <span class="vertical-div"></span>
@@ -29,11 +30,14 @@
         <span class="toolbar-fill-remaining-space"></span>
 
         <span id="toolbar-actions-right">
-          <app-icon-button icon="profile" text="Profil"
-                           [class.toolbar-tab-active]="currentTab == tabNames.Profile"
-                           (click)="changeTab(tabNames.Profile)"
-                           [routerLink]="['/main/profile']"
-          ></app-icon-button>
+          <button mat-button [class.toolbar-tab-active]="currentTab == tabNames.Profile"
+                  (click)="changeTab(tabNames.Profile)"
+                  [routerLink]="['/main/profile']">
+            <span class="profile-button-container">
+              <span>{{user.displayName.split(' ')[0]}}</span>
+              <img src="{{user.photoURL}}" alt="Profile">
+            </span>
+          </button>
         </span>
       </div>
     </mat-toolbar>

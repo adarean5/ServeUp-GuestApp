@@ -32,6 +32,10 @@ body {
   overflow: hidden;
 }
 
+p, h6, h5, h4, h3, h2, h1 {
+  color: $sup-c-black;
+}
+
 p {
   margin: 0;
   padding: 0;
@@ -50,7 +54,8 @@ button:focus {
 }
 
 .vertical-div {
-  border: 1px solid darken($sup-c-primary, 25%);
+  border: 1px solid lighten($sup-c-black, 5%);
+  border-radius: 1px;
   margin: 0.25em;
 
 }

@@ -34,11 +34,17 @@ $sup-theme-primary: (
 );
 
 $sup-palette-primary: mat-palette($sup-theme-primary);
-$sup-palette-accent: mat-palette($mat-deep-purple);
+$sup-palette-accent: mat-palette($mat-pink);
 $sup-palette-warn: mat-palette($mat-red);
+
+$sup-c-background: whitesmoke;
 
 $sup-c-primary: mat-color($sup-palette-primary);
 $sup-c-accent: mat-color($sup-palette-accent);
 $sup-c-warn: mat-color($sup-palette-warn);
+$sup-c-black: #373838;
 
-$sup-c-background: whitesmoke;
+// Borders
+$sup-border-light: 1px solid rgba(0, 0, 0, 0.12);
+$sup-border-dark: 2px solid $sup-c-black;
+
