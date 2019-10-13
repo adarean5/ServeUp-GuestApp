@@ -22,6 +22,7 @@ import { ListLayoutComponent } from './components/list-layout/list-layout.compon
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MealsComponent } from './views/meals/meals.component';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
+import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-cart.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MealCardComponent } from './components/meal-card/meal-card.component';
     IconButtonComponent,
     MealsComponent,
     MealCardComponent,
+    DialogAddCartComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { MealCardComponent } from './components/meal-card/meal-card.component';
     RouterModule
   ],
   entryComponents: [
-    DialogSearchComponent
+    DialogSearchComponent,
+    DialogAddCartComponent
   ]
 })
 export class OrdersModule { }

@@ -54,7 +54,7 @@ export class MainViewComponent implements OnInit {
       }
     });
 
-    // Open search dialog
+    // Search dialog handling based on store state
     this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
       this.searchOpened = opened;
       console.log(opened);

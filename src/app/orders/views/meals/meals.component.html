@@ -39,6 +39,7 @@
                        [title]="meal.name"
                        [info]="meal.description"
                        [value]="meal.price + ' €'"
+                       (click)="mealClicked(meal.id)"
         ></app-meal-card>
       </app-restaurant-grid>
     </app-list-layout>

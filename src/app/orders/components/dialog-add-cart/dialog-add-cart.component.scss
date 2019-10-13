@@ -1,0 +1,59 @@
+@import "serveup-palette";
+
+.button-amount {
+  font-size: 2em;
+  color: $sup-c-primary;
+}
+
+.amount-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.priceText {
+  font-weight: bold;
+  text-align: center;
+
+  & &h4 {
+    color: $sup-c-primary;
+  }
+
+  &.center {
+    text-align: center;
+  }
+}
+
+.amountText {
+  text-align: center;
+  width: 3.5em;
+  background: $sup-c-primary;
+  padding: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-radius: 0.3em;
+  font-weight: bold;
+  color: white;
+}
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .priceText {
+   color: $sup-c-primary;
+    margin-left: 1em;
+  }
+}
+
+mat-dialog-actions {
+  justify-content: center;
+  button {
+    margin: 0.5em;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
