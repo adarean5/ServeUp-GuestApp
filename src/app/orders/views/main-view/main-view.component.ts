@@ -4,19 +4,12 @@ import {Store} from '@ngrx/store';
 import {gSignOut} from '../../../store/actions/auth.actions';
 import {User} from '../../../store/models/user.model';
 import {selectUser} from '../../../store/selectors/auth.selectors';
-import {Router, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
 import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 import {routerAnimation} from '../../../shared/animations/router.animations';
 import {openSearchDialog} from '../../../store/actions/home.actions';
-
-enum TabNames {
-  Home,
-  Restaurant,
-  Orders,
-  Profile
-}
 
 @Component({
   selector: 'app-main-view',
@@ -26,14 +19,12 @@ enum TabNames {
 })
 export class MainViewComponent implements OnInit {
   private tabLinks = {
-    home: 'home',
-    orders: 'orders' ,
-    profile: 'profile'
+    home: '/main/home',
+    orders: '/main/orders' ,
+    profile: '/main/profile'
   };
-  private activeLink = this.tabLinks[0];
+  private currentTab: string;
   private user: User;
-  private tabNames = TabNames;
-  private currentTab: number;
   private searchOpened = false;
 
   constructor(
@@ -43,7 +34,17 @@ export class MainViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentTab = this.tabNames.Home;
+    // Set initial url
+    this.currentTab = this.router.url;
+
+    // Detect route change
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.currentTab = val.url;
+        console.log('Current tab', this.currentTab);
+      }
+    });
+
     // Select current user from store
     this.store.select(selectUser).subscribe((newUser: User) => {
       if (newUser === null) {
@@ -52,6 +53,7 @@ export class MainViewComponent implements OnInit {
         this.user = newUser;
       }
     });
+
     // Open search dialog
     this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
       this.searchOpened = opened;
@@ -73,7 +75,7 @@ export class MainViewComponent implements OnInit {
   }
 
   private changeTab(tabName) {
-    this.currentTab = tabName;
+    // this.currentTab = tabName;
   }
 
   private openSearchDialog() {

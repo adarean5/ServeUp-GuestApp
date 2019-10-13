@@ -9,17 +9,24 @@ import {MainTabsComponent} from './orders/views/main-tabs/main-tabs.component';
 import {OrdersTabComponent} from './orders/views/orders-tab/orders-tab.component';
 import {RestaurantSearchDisplayComponent} from './orders/views/restaurant-search-display/restaurant-search-display.component';
 import {MealsComponent} from './orders/views/meals/meals.component';
+import {MainGuard} from './orders/main.guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [MainGuard]
   },
   {
     path: 'main',
     component: MainViewComponent,
     // canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/main/home'
+      },
       {
         path: '',
         component: MainTabsComponent,
@@ -54,6 +61,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: '**', redirectTo: '/login' }
   /*{
     path: '**',
     redirectTo: '/login'

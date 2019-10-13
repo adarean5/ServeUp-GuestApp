@@ -12,7 +12,9 @@ import {Store} from '@ngrx/store';
 import {selectSignedIn} from '../store/selectors/auth.selectors';
 import {IAppState} from '../store/states/app.state';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate {
   constructor(
     private store: Store<IAppState>,

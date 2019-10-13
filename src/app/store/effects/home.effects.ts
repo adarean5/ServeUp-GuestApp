@@ -59,6 +59,7 @@ export class HomeEffects {
   searchRestaurants = createEffect(() => this.actions$.pipe(
     ofType(HomeActions.searchRestaurants),
     switchMap(action => {
+      this.router.navigate(['main/search-results']);
       const restaurantType = action.restaurantType;
       return this.ordersService.searchRestaurants(action.location).pipe(
         map((result: any[]) => {
@@ -68,7 +69,6 @@ export class HomeEffects {
             : result;
           const restaurantsSearch = result.map(responseRestaurant => Restaurant.fromApi(responseRestaurant));
           console.log('[SearchRestaurants] Api result after filter', restaurantsSearch);
-          this.router.navigate(['main/search-results']);
           return HomeActions.searchRestaurantsSuccess({restaurantsSearch});
         }),
         catchError(err => of(HomeActions.searchRestaurantsErr({err})))
