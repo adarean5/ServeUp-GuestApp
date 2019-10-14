@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
 import {gSignOut} from '../../../store/actions/auth.actions';
@@ -10,6 +10,7 @@ import {DialogSearchComponent} from '../../components/dialog-search/dialog-searc
 import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 import {routerAnimation} from '../../../shared/animations/router.animations';
 import {openSearchDialog} from '../../../store/actions/home.actions';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-view',
@@ -17,7 +18,9 @@ import {openSearchDialog} from '../../../store/actions/home.actions';
   styleUrls: ['./main-view.component.scss'],
   animations: [routerAnimation('300ms', 'ease-in-out', 'ease-in-out')],
 })
-export class MainViewComponent implements OnInit {
+export class MainViewComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+
   private tabLinks = {
     home: '/main/home',
     orders: '/main/orders' ,
@@ -34,28 +37,31 @@ export class MainViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.subscription = new Subscription();
+
     // Set initial url
     this.currentTab = this.router.url;
 
     // Detect route change
-    this.router.events.subscribe((val) => {
+    this.subscription.add(this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.currentTab = val.url;
         console.log('Current tab', this.currentTab);
       }
-    });
+    }));
 
     // Select current user from store
-    this.store.select(selectUser).subscribe((newUser: User) => {
+    this.subscription.add(this.store.select(selectUser).subscribe((newUser: User) => {
       if (newUser === null) {
         this.router.navigate(['/login']);
       } else {
         this.user = newUser;
       }
-    });
+    }));
 
     // Search dialog handling based on store state
-    this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
+
+    this.subscription.add(this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
       this.searchOpened = opened;
       console.log(opened);
       if (this.searchOpened) {
@@ -66,7 +72,7 @@ export class MainViewComponent implements OnInit {
           autoFocus: false
         });
       }
-    });
+    }));
   }
 
   private gSignOut() {
@@ -86,5 +92,9 @@ export class MainViewComponent implements OnInit {
     return outlet.activatedRouteData.num === undefined
       ? -1
       : outlet.activatedRouteData.num;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
