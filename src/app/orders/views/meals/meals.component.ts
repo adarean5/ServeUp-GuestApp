@@ -4,10 +4,12 @@ import {getMealsForRestaurant} from '../../../store/actions/home.actions';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {Location} from '@angular/common';
-import {selectLoadingMeals, selectMeals} from '../../../store/selectors/home.selector';
+import {selectLoadingMeals, selectMeals, selectRestaurants} from '../../../store/selectors/home.selector';
 import {MatDialog} from '@angular/material';
 import {DialogAddCartComponent} from '../../components/dialog-add-cart/dialog-add-cart.component';
 import {Meal} from '../../../store/models/meal.model';
+import {take} from 'rxjs/operators';
+import {Restaurant} from '../../../store/models/restaurant.model';
 
 @Component({
   selector: 'app-meals',
@@ -81,6 +83,17 @@ export class MealsComponent implements OnInit {
     });
     dialogRefCart.afterClosed().subscribe(result => {
       console.log(result, this.getMealById(result.id));
+      let restaurantFromId;
+      this.store.select(selectRestaurants).pipe(take(1)).subscribe((restaurants: Restaurant[]) => {
+        console.log('RRRR', restaurants);
+        const correctRestaurant = restaurants.find((restaurant: Restaurant) => {
+          console.log(restaurant, +this.restaurantId);
+          return restaurant.id === +this.restaurantId;
+        });
+        restaurantFromId = correctRestaurant; // TODO WORKS Send it to store
+      });
+      console.log('Correct restaurant', restaurantFromId);
+      // this.store.dispatch()
     });
   }
 
