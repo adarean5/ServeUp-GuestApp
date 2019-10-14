@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loadingMeals; then loading else notLoading"></ng-container>
+<ng-container *ngIf="loadingMeals; then loading else notLoading"></ng-container>
 
 <ng-template #notLoading>
   <mat-tab-group [selectedIndex]="selectedIndex">
