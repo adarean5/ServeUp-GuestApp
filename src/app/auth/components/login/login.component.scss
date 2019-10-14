@@ -1,16 +1,21 @@
 @import "serveup-palette";
 @import "animations";
 
-.container {
+:host {
+  display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: white;
+  width: 100%;
+  background-image: url("/assets/img/background.png");
 
   #main-container-login {
-    height: 100%;
-    width: 100%;
+    padding: 4em;
+    margin: 1em;
+    border: $sup-border-light;
+    border-radius: 0.5em;
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,10 +32,14 @@
     }
 
     .button-g-sign {
+      padding: 0.5em 1.5em 0.5em 1.5em;
       margin-top: 1em;
       img {
         height: 1.5em;
         margin-right: 1em;
+        &.img-disabled {
+          filter: grayscale(100%);
+        }
       }
     }
   }

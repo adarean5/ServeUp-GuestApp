@@ -1,29 +1,10 @@
-<!--<div *ngIf="authService.user$ | async; then authenticated else guest">
-  &lt;!&ndash; template will replace this div &ndash;&gt;
-</div>-->
-
-<!-- User NOT logged in -->
-<div class="container">
-  <div id="main-container-login">
-    <img class="sup-logo" [ngClass]="{'sup-spin' : loading == true}" src="../../../../assets/img/logo.png" alt="ServeUp Logo">
-    <p class="sup-title">ServeUp</p>
-    <div id="actions-container">
-      <button mat-raised-button class="button-g-sign" (click)="gSignIn()">
-        <img src="assets/img/google-g.svg" alt="G">
-        <span>Sign in with Google</span>
-      </button>
-    </div>
+<div id="main-container-login">
+  <img class="sup-logo" [ngClass]="{'sup-spin' : loading == true}" src="../../../../assets/img/logo.png" alt="ServeUp Logo">
+  <p class="sup-title">ServeUp</p>
+  <div id="actions-container">
+    <button [disabled]="loading" mat-stroked-button class="button-g-sign" (click)="gSignIn()">
+      <img [ngClass]="{'img-disabled': loading}" src="assets/img/google-g.svg" alt="G">
+      <span>Sign in with Google</span>
+    </button>
   </div>
 </div>
-
-
-<!--&lt;!&ndash; User logged in &ndash;&gt;
-<ng-template #authenticated>
-  <div *ngIf="authService.user$ | async as user">
-    <h3>Hello {{ user.displayName }}</h3>
-    <img  [src]="user.photoURL" alt="user profile photo">
-    <p>UID: {{ user.uid }}</p>
-    <button mat-raised-button color="warn" (click)="authService.signOut()">Logout</button>
-    <button mat-raised-button color="primary" (click)="this.router.navigate(['/main']);">Main</button>
-  </div>
-</ng-template>-->

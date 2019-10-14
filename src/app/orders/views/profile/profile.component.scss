@@ -36,7 +36,9 @@
       height: 4em;
 
       &.sign-out-button {
-        fill: white;
+        border: 1px solid $sup-c-warn;
+        color: $sup-c-warn;
+        fill: $sup-c-warn;
       }
 
       .button-container {

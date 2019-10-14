@@ -1,8 +1,21 @@
 @import "serveup-palette";
+@import "variables";
 
 .button-amount {
   font-size: 2em;
   color: $sup-c-primary;
+}
+
+.description {
+  display: flex;
+
+  @media only screen and (min-width: $size-sm) {
+
+  }
+
+  @media only screen and (min-width: $size-md) {
+    max-width: 400px;
+  }
 }
 
 .amount-container {

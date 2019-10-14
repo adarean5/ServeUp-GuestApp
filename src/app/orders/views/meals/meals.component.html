@@ -1,47 +1,55 @@
-<mat-tab-group [selectedIndex]="selectedIndex">
-  <mat-tab label="categories">
-    <app-list-layout>
-      <ng-container class="header-left">
-        <app-icon-button icon="back" [iconWidth]="'32px'"
-                         (click)="location.back()"
-        ></app-icon-button>
-      </ng-container>
-      <ng-container class="header-title">
-        Jedilni list
-      </ng-container>
-      <ng-container class="header-subtitle">
-        Ime restavracije
-      </ng-container>
-      <app-restaurant-grid>
-        <app-meal-card *ngFor="let category of mealCategories"
-                       [title]="category"
-                       (click)="categoryClicked(category)"
-        ></app-meal-card>
-      </app-restaurant-grid>
-    </app-list-layout>
-  </mat-tab>
+<ng-container *ngIf="!loadingMeals; then loading else notLoading"></ng-container>
 
-  <mat-tab label="category">
-    <app-list-layout>
-      <ng-container class="header-left">
-        <app-icon-button icon="back" [iconWidth]="'32px'"
-                         (click)="selectedIndex = mealTabs.categories"
-        ></app-icon-button>
-      </ng-container>
-      <ng-container class="header-title">
-        {{selectedCategory}}
-      </ng-container>
-      <ng-container class="header-subtitle">
-        Ime restavracije
-      </ng-container>
-      <app-restaurant-grid>
-        <app-meal-card *ngFor="let meal of meals[selectedCategory]"
-                       [title]="meal.name"
-                       [info]="meal.description"
-                       [value]="meal.price + ' €'"
-                       (click)="mealClicked(meal.id)"
-        ></app-meal-card>
-      </app-restaurant-grid>
-    </app-list-layout>
-  </mat-tab>
-</mat-tab-group>
+<ng-template #notLoading>
+  <mat-tab-group [selectedIndex]="selectedIndex">
+    <mat-tab label="categories">
+      <app-list-layout>
+        <ng-container class="header-left">
+          <app-icon-button icon="back" [iconWidth]="'32px'"
+                           (click)="location.back()"
+          ></app-icon-button>
+        </ng-container>
+        <ng-container class="header-title">
+          Jedilni list
+        </ng-container>
+        <ng-container class="header-subtitle">
+          Ime restavracije
+        </ng-container>
+        <app-restaurant-grid>
+          <app-meal-card *ngFor="let category of mealCategories"
+                         [title]="category"
+                         (click)="categoryClicked(category)"
+          ></app-meal-card>
+        </app-restaurant-grid>
+      </app-list-layout>
+    </mat-tab>
+
+    <mat-tab label="category">
+      <app-list-layout>
+        <ng-container class="header-left">
+          <app-icon-button icon="back" [iconWidth]="'32px'"
+                           (click)="selectedIndex = mealTabs.categories"
+          ></app-icon-button>
+        </ng-container>
+        <ng-container class="header-title">
+          {{selectedCategory}}
+        </ng-container>
+        <ng-container class="header-subtitle">
+          Ime restavracije
+        </ng-container>
+        <app-restaurant-grid>
+          <app-meal-card *ngFor="let meal of meals[selectedCategory]"
+                         [title]="meal.name"
+                         [info]="meal.description"
+                         [value]="meal.price + ' €'"
+                         (click)="mealClicked(meal.id)"
+          ></app-meal-card>
+        </app-restaurant-grid>
+      </app-list-layout>
+    </mat-tab>
+  </mat-tab-group>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading>Restavracije</app-loading>
+</ng-template>

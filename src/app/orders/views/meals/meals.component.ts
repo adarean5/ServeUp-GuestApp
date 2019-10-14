@@ -21,7 +21,7 @@ export class MealsComponent implements OnInit {
     category: 1
   };
   private restaurantId: number; // ID of the currently displayed restaurant
-  private meals: any; // Meals for restaurant from API
+  private meals: []; // Meals for restaurant from API
   private mealCategories: any;
   private loadingMeals: boolean;
   private selectedCategory: string; // What to display on the category page
@@ -38,8 +38,8 @@ export class MealsComponent implements OnInit {
   ngOnInit() {
     this.selectedIndex = this.mealTabs.categories;
     this.restaurantId = this.route.snapshot.params.id;
-    this.selectedCategory = 'Glavne jedi'; // TODO Remove
-    this.selectedIndex = this.mealTabs.category; // TODO Remove
+    /*this.selectedCategory = 'Glavne jedi'; // TODO Remove
+    this.selectedIndex = this.mealTabs.category; // TODO Remove*/
 
     // Get updates on api meal loading status
     this.store.select(selectLoadingMeals).subscribe((loadingMeals: boolean) => {

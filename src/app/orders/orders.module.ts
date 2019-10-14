@@ -12,7 +12,6 @@ import { HomeComponent } from './views/home/home.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
 import {RouterModule} from '@angular/router';
-import { RestaurantMealsComponent } from './views/restaurant-meals/restaurant-meals.component';
 import {MainTabsComponent} from './views/main-tabs/main-tabs.component';
 import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
 import { DialogSearchComponent } from './components/dialog-search/dialog-search.component';
@@ -23,6 +22,7 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 import { MealsComponent } from './views/meals/meals.component';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
 import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-cart.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-
     HomeComponent,
     HomeCardComponent,
     MainTabsComponent,
-    RestaurantMealsComponent,
     OrdersTabComponent,
     DialogSearchComponent,
     RestaurantGridComponent,
@@ -41,6 +40,7 @@ import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-
     MealsComponent,
     MealCardComponent,
     DialogAddCartComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
