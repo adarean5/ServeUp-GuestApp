@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
-import {selectRestaurants} from '../../../store/selectors/home.selector';
+import {selectLoadingRestaurants, selectRestaurants} from '../../../store/selectors/home.selector';
 import {openSearchDialog, getMealsForRestaurant} from '../../../store/actions/home.actions';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {Router} from '@angular/router';
@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private loadingRestaurants: boolean;
   private restaurants: Restaurant[];
 
   constructor(
@@ -20,6 +21,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.store.select(selectLoadingRestaurants).subscribe((loading: boolean) => {
+      this.loadingRestaurants = loading;
+    });
     this.store.select(selectRestaurants).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
     });

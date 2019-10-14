@@ -1,3 +1,4 @@
+
 <app-list-layout>
   <ng-container class="header-left">
     <app-icon-button icon="back" [iconWidth]="'32px'"
@@ -8,10 +9,20 @@
   <ng-container class="header-title">
     Najdene restavracije
   </ng-container>
-  <!--<ng-container class="header-subtitle">
-    Ljubljana, Mehiška
-  </ng-container>-->
 
+  <ng-container *ngIf="loadingSearch; then loading else notLoading"></ng-container>
+
+</app-list-layout>
+
+<ng-template #loading>
+  <app-loading>Rezultate</app-loading>
+</ng-template>
+
+<ng-template #notLoading>
+  <ng-container *ngIf="restaurants.length > 0; then notEmpty else empty"></ng-container>
+</ng-template>
+
+<ng-template #notEmpty>
   <app-restaurant-grid>
     <ng-container>
       <app-home-card
@@ -21,20 +32,10 @@
       ></app-home-card>
     </ng-container>
   </app-restaurant-grid>
-</app-list-layout>
+</ng-template>
 
-
-<!--<div class="sup-header">
-  <div>
-    <button mat-button class="left"><-</button>
+<ng-template #empty>
+  <div class="empty-container">
+    <h4>Ni rezultatov</h4>
   </div>
-  <div class="center">
-    <h4 class="title">Rezultati iskanja</h4>
-  </div>
-  <div class="right"></div>
-</div>
-
-<app-restaurant-grid
-  [restaurants]="restaurants"
-  (rIdEmitter)="cardClicked($event)"
-></app-restaurant-grid>-->
+</ng-template>

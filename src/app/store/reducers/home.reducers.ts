@@ -36,16 +36,17 @@ export const homeReducers = createReducer(
   // Restaurant search
   on(HomeActions.searchRestaurants, state => ({
     ...state,
-    loadingRestaurants: true
+    loadingSearch: true,
+    restaurantsSearch: [],
   })),
   on(HomeActions.searchRestaurantsSuccess, (state, {restaurantsSearch}) => ({
     ...state,
-    loadingRestaurants: false,
+    loadingSearch: false,
     restaurantsSearch
   })),
   on(HomeActions.searchRestaurantsErr, state => ({
     ...state,
-    loadingRestaurants: false
+    loadingSearch: false
   })),
   // Meals
   on(HomeActions.getMealsForRestaurant, state => ({

@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class RestaurantSearchDisplayComponent implements OnInit {
   private restaurants: Restaurant[];
-  private loading: boolean;
+  private loadingSearch: boolean;
 
   constructor(
     private store: Store<IAppState>,
@@ -22,7 +22,8 @@ export class RestaurantSearchDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(selectLoadingSearch).subscribe((loading: boolean) => {
-      this.loading = loading;
+      this.loadingSearch = loading;
+      console.log('Loading search', this.loadingSearch);
     });
     this.store.select(selectRestaurantsSearch).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
