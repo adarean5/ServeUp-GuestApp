@@ -1,6 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialHomeState} from '../states/home.state';
 import * as HomeActions from '../actions/home.actions';
+import {ROOT_EFFECTS_INIT} from '@ngrx/effects';
 
 export const homeReducers = createReducer(
   initialHomeState,

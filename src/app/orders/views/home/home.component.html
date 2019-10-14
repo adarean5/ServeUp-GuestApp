@@ -1,14 +1,14 @@
+<div mat-ripple class="search-bar" (click)="openSearchDialog()">
+  <p class="search-text">Iskanje</p>
+</div>
+
+<div class="sup-center-text">
+  <p>V bližini</p>
+</div>
+
 <ng-container *ngIf="loadingRestaurants; then loading else notLoading"></ng-container>
 
 <ng-template #notLoading>
-  <div mat-ripple class="search-bar" (click)="openSearchDialog()">
-    <p class="search-text">Iskanje</p>
-  </div>
-
-  <div class="sup-center-text">
-    <p>V bližini</p>
-  </div>
-
   <app-restaurant-grid>
     <ng-container>
       <app-home-card

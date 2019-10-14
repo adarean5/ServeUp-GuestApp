@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {routerAnimation} from '../../../shared/animations/router.animations';
 import {MatDialog} from '@angular/material';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-tabs',
@@ -9,22 +10,41 @@ import {MatDialog} from '@angular/material';
   styleUrls: ['./main-tabs.component.scss'],
   animations: [routerAnimation('300ms', 'ease-in-out', 'ease-in-out')],
 })
-export class MainTabsComponent implements OnInit {
+export class MainTabsComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   private tabLinks = {
-    home: 'home',
-    orders: 'orders' ,
-    profile: 'profile'
+    home: '/main/home',
+    orders: '/main/orders' ,
+    profile: '/main/profile'
   };
-  private activeTab = this.tabLinks.home;
+  private currentTab: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.subscription = new Subscription();
+
+    // Set initial url
+    this.currentTab = this.router.url;
+
+    // Detect route change
+    this.subscription.add(this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.currentTab = val.url;
+        console.log('Current tab', this.currentTab);
+      }
+    }));
   }
 
   public getRouteAnimation(outlet: RouterOutlet) {
     return outlet.activatedRouteData.num === undefined
       ? -1
       : outlet.activatedRouteData.num;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

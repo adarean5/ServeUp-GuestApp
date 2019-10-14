@@ -21,7 +21,7 @@ export const initialHomeState: IHomeState = {
   // Search
   restaurantTypes: undefined,
   searchDialogOpened: false,
-  loadingRestaurants: false,
+  loadingRestaurants: true,
   restaurantsSearch: [],
   loadingSearch: false,
   // Meals

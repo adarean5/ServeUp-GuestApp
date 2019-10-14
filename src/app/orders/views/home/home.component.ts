@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
 import {selectLoadingRestaurants, selectRestaurants} from '../../../store/selectors/home.selector';
 import {openSearchDialog, getMealsForRestaurant} from '../../../store/actions/home.actions';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   private loadingRestaurants: boolean;
   private restaurants: Restaurant[];
 
@@ -21,12 +23,13 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectLoadingRestaurants).subscribe((loading: boolean) => {
+    this.subscription = new Subscription();
+    this.subscription.add(this.store.select(selectLoadingRestaurants).subscribe((loading: boolean) => {
       this.loadingRestaurants = loading;
-    });
-    this.store.select(selectRestaurants).subscribe((restaurants: Restaurant[]) => {
+    }));
+    this.subscription.add( this.store.select(selectRestaurants).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
-    });
+    }));
   }
 
   private openSearchDialog() {
@@ -36,5 +39,9 @@ export class HomeComponent implements OnInit {
   private restaurantClicked(restaurantId: number) {
     this.router.navigate(['/main/meals', restaurantId]);
     // this.store.dispatch(getMealsForRestaurant({restaurantId}));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

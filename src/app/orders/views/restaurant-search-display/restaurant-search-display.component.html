@@ -12,30 +12,30 @@
 
   <ng-container *ngIf="loadingSearch; then loading else notLoading"></ng-container>
 
+  <ng-template #loading>
+    <app-loading>Rezultate</app-loading>
+  </ng-template>
+
+  <ng-template #notLoading>
+    <ng-container *ngIf="restaurants.length > 0; then notEmpty else empty"></ng-container>
+
+    <ng-template #notEmpty>
+      <app-restaurant-grid>
+        <ng-container>
+          <app-home-card
+            *ngFor="let restaurant of restaurants"
+            [restaurant]="restaurant"
+            (clickEmitter)="cardClicked($event)"
+          ></app-home-card>
+        </ng-container>
+      </app-restaurant-grid>
+    </ng-template>
+
+    <ng-template #empty>
+      <div class="empty-container">
+        <h4>Ni rezultatov</h4>
+      </div>
+    </ng-template>
+  </ng-template>
+
 </app-list-layout>
-
-<ng-template #loading>
-  <app-loading>Rezultate</app-loading>
-</ng-template>
-
-<ng-template #notLoading>
-  <ng-container *ngIf="restaurants.length > 0; then notEmpty else empty"></ng-container>
-</ng-template>
-
-<ng-template #notEmpty>
-  <app-restaurant-grid>
-    <ng-container>
-      <app-home-card
-        *ngFor="let restaurant of restaurants"
-        [restaurant]="restaurant"
-        (clickEmitter)="cardClicked($event)"
-      ></app-home-card>
-    </ng-container>
-  </app-restaurant-grid>
-</ng-template>
-
-<ng-template #empty>
-  <div class="empty-container">
-    <h4>Ni rezultatov</h4>
-  </div>
-</ng-template>
