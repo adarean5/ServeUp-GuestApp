@@ -24,7 +24,8 @@ export class MainViewComponent implements OnInit, OnDestroy {
   private tabLinks = {
     home: '/main/home',
     orders: '/main/orders' ,
-    profile: '/main/profile'
+    profile: '/main/profile',
+    cart: '/main/cart'
   };
   private currentTab: string;
   private user: User;

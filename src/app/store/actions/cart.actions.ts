@@ -10,7 +10,7 @@ export const attemptAddToCart = createAction(
 
 export const addToCart = createAction(
   '[Cart] Add to cart',
-  props<{meal: Meal, restaurant: Restaurant}>()
+  props<{cartContent: {[mealId: number]: Meal}, restaurant: Restaurant}>()
 );
 
 // If user selects a different restaurant await for confirmation to clear cart or cancel add

@@ -4,9 +4,9 @@ import * as CartActions from '../actions/cart.actions';
 
 export const cartReducers = createReducer(
   initialCartState,
-  on(CartActions.addToCart, (state, {meal, restaurant}) => ({
+  on(CartActions.addToCart, (state, {cartContent, restaurant}) => ({
     ...state,
-    cartContent: [...state.cartContent, meal],
+    cartContent,
     cartRestaurant: restaurant
   }))
 );

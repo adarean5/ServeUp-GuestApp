@@ -23,6 +23,7 @@ import { MealsComponent } from './views/meals/meals.component';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
 import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-cart.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CartComponent } from './views/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     MealCardComponent,
     DialogAddCartComponent,
     LoadingComponent,
+    CartComponent,
   ],
   imports: [
     CommonModule,

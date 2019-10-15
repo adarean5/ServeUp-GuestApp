@@ -98,12 +98,12 @@ export class MealsComponent implements OnInit {
       }
     });
     dialogRefCart.afterClosed().subscribe(result => {
-      console.log(result, this.getMealById(result.id));
-      console.log('Correct restaurant', this.restaurantFromId);
-      this.store.dispatch(attemptAddToCart({
-        meal: this.getMealById(result.id),
-        restaurant: this.restaurantFromId
-      }));
+      if (result) {
+        this.store.dispatch(attemptAddToCart({
+          meal: Meal.withQuantity(this.getMealById(result.id), result.quantity),
+          restaurant: this.restaurantFromId
+        }));
+      }
     });
   }
 

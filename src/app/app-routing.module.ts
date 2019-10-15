@@ -10,6 +10,7 @@ import {OrdersTabComponent} from './orders/views/orders-tab/orders-tab.component
 import {RestaurantSearchDisplayComponent} from './orders/views/restaurant-search-display/restaurant-search-display.component';
 import {MealsComponent} from './orders/views/meals/meals.component';
 import {MainGuard} from './orders/main.guard';
+import {CartComponent} from './orders/views/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -38,15 +39,20 @@ const routes: Routes = [
             data: {num: 1}
           },
           {
+            path: 'cart',
+            component: CartComponent,
+            data: {num: 2}
+          },
+          {
             path: 'orders',
             component: OrdersTabComponent,
-            data: {num: 2}
+            data: {num: 3}
           },
           {
             path: 'profile',
             component: ProfileComponent,
-            data: {num: 3}
-          }
+            data: {num: 4}
+          },
         ]
       },
       {
@@ -58,14 +64,13 @@ const routes: Routes = [
         path: 'meals/:id',
         component: MealsComponent,
         data: {num: 3},
-      }
+      },
     ]
   },
-  { path: '**', redirectTo: '/login' }
-  /*{
+  {
     path: '**',
     redirectTo: '/login'
-  }*/
+  }
 ];
 
 @NgModule({

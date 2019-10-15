@@ -4,7 +4,8 @@ import {Injectable} from '@angular/core';
 import {concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {IAppState} from '../states/app.state';
 import {Store} from '@ngrx/store';
-import {selectCurrentRestaurant} from '../selectors/cart.selectors';
+import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
+import {Meal} from '../models/meal.model';
 
 @Injectable()
 export class CartEffects {
@@ -18,17 +19,32 @@ export class CartEffects {
     tap(() => {
       console.log('Start');
     }),
-    withLatestFrom(this.store$.select(selectCurrentRestaurant)),
+    withLatestFrom(
+      this.store$.select(selectCurrentRestaurant),
+      this.store$.select(selectCartContent)
+    ),
     tap(() => {
       console.log('Latest from');
     }),
-    map(([action, currentRestaurant]) => {
+    map(([action, currentRestaurant, cartContent]) => {
       console.log('[Attempt add to cart]', action, currentRestaurant);
       // If cart is empty or if meal belongs to restaurant in the cart => add meal to cart
       if (currentRestaurant === undefined || currentRestaurant.id === action.restaurant.id) {
         console.log('Success adding to cart');
-        return CartActions.addToCart({meal: action.meal, restaurant: action.restaurant});
+        const newCartContent = {...cartContent};
+        // If item exists in cart => update quantity
+        if (newCartContent[action.meal.id]) {
+          newCartContent[action.meal.id] = Meal.withQuantity(
+            action.meal,
+            action.meal.quantity + newCartContent[action.meal.id].quantity
+          );
+        } else {
+          // Else add a new meal to cart
+          newCartContent[action.meal.id] = action.meal;
+        }
+        return CartActions.addToCart({cartContent: newCartContent, restaurant: action.restaurant});
       } else {
+        // Else prompt user to decide if old cart should be kept, or erased in favour of new restaurant
         console.log('Prompt user');
         return CartActions.promptRestaurantChange({
           meal: action.meal,

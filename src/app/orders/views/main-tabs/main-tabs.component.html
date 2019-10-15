@@ -18,6 +18,13 @@
   </a>
 
   <a mat-ripple class="tab-button"
+     [routerLink]="tabLinks.cart"
+     (click)="currentTab = tabLinks.cart" [class.tab-active]="currentTab === tabLinks.cart">
+    <app-icon [iconName]="'cart'" id="icon-cart"></app-icon>
+    <span>Košarica</span>
+  </a>
+
+  <a mat-ripple class="tab-button"
      [routerLink]="tabLinks.profile"
      (click)="currentTab = tabLinks.profile" [class.tab-active]="currentTab === tabLinks.profile">
     <app-icon [iconName]="'profile'" id="icon-profile"></app-icon>
