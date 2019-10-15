@@ -16,16 +16,10 @@ export class CartEffects {
 
   attemptAddToCart = createEffect(() => this.actions$.pipe(
     ofType(CartActions.attemptAddToCart),
-    tap(() => {
-      console.log('Start');
-    }),
     withLatestFrom(
       this.store$.select(selectCurrentRestaurant),
       this.store$.select(selectCartContent)
     ),
-    tap(() => {
-      console.log('Latest from');
-    }),
     map(([action, currentRestaurant, cartContent]) => {
       console.log('[Attempt add to cart]', action, currentRestaurant);
       // If cart is empty or if meal belongs to restaurant in the cart => add meal to cart
@@ -54,4 +48,6 @@ export class CartEffects {
       }
     })
   ));
+
+  //addToCart = createEffect()
 }

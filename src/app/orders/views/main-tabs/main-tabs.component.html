@@ -11,17 +11,17 @@
   </a>
 
   <a mat-ripple class="tab-button"
-     [routerLink]="tabLinks.orders"
-     (click)="currentTab = tabLinks.orders" [class.tab-active]="currentTab === tabLinks.orders">
-    <app-icon [iconName]="'orders'" id="icon-orders"></app-icon>
-    <span>Naročila</span>
-  </a>
-
-  <a mat-ripple class="tab-button"
      [routerLink]="tabLinks.cart"
      (click)="currentTab = tabLinks.cart" [class.tab-active]="currentTab === tabLinks.cart">
     <app-icon [iconName]="'cart'" id="icon-cart"></app-icon>
     <span>Košarica</span>
+  </a>
+
+  <a mat-ripple class="tab-button"
+     [routerLink]="tabLinks.orders"
+     (click)="currentTab = tabLinks.orders" [class.tab-active]="currentTab === tabLinks.orders">
+    <app-icon [iconName]="'orders'" id="icon-orders"></app-icon>
+    <span>Naročila</span>
   </a>
 
   <a mat-ripple class="tab-button"
