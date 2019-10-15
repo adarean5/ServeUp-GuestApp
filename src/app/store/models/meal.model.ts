@@ -7,6 +7,7 @@ export class Meal {
     public quantity: number
   ) {}
 
+  // Use to cast api response to meal
   static fromApi(apiResponse: any) {
     return new this (
       apiResponse.id_jed,
@@ -14,6 +15,17 @@ export class Meal {
       apiResponse.opis_jedi,
       apiResponse.cena,
       apiResponse.kolicina
+    );
+  }
+
+  // Use for changing meal quantity
+  static withQuantity(meal: Meal, quantity: number) {
+    return new this (
+      meal.id,
+      meal.name,
+      meal.description,
+      meal.price,
+      quantity
     );
   }
 }

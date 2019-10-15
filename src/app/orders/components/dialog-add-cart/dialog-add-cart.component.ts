@@ -27,11 +27,9 @@ export class DialogAddCartComponent implements OnInit {
   changeQuantity(amount: number) {
     this.quantity += amount;
     this.calculateTotal();
-    console.log(this.totalPrice);
-    console.log(this.quantity);
   }
 
   addToCart() {
-    this.dialogRef.close({id: this.data.id, price: this.totalPrice});
+    this.dialogRef.close({id: this.data.id, quantity: this.quantity});
   }
 }
