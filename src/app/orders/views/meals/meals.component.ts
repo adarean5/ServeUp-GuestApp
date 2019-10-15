@@ -10,6 +10,8 @@ import {DialogAddCartComponent} from '../../components/dialog-add-cart/dialog-ad
 import {Meal} from '../../../store/models/meal.model';
 import {take} from 'rxjs/operators';
 import {Restaurant} from '../../../store/models/restaurant.model';
+import {attemptAddToCart} from '../../../store/actions/cart.actions';
+import {selectCartContent} from '../../../store/selectors/cart.selectors';
 
 @Component({
   selector: 'app-meals',
@@ -18,16 +20,17 @@ import {Restaurant} from '../../../store/models/restaurant.model';
 })
 
 export class MealsComponent implements OnInit {
-  private mealTabs = {
+  mealTabs = {
     categories : 0,
     category: 1
   };
-  private restaurantId: number; // ID of the currently displayed restaurant
-  private meals: []; // Meals for restaurant from API
-  private mealCategories: any;
-  private loadingMeals: boolean;
-  private selectedCategory: string; // What to display on the category page
-  private selectedIndex: number; // Which tab is active
+  restaurantId: number; // ID of the currently displayed restaurant
+  meals: []; // Meals for restaurant from API
+  mealCategories: any;
+  loadingMeals: boolean;
+  selectedCategory: string; // What to display on the category page
+  selectedIndex: number; // Which tab is active
+  restaurantFromId: Restaurant;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,8 +43,16 @@ export class MealsComponent implements OnInit {
   ngOnInit() {
     this.selectedIndex = this.mealTabs.categories;
     this.restaurantId = this.route.snapshot.params.id;
-    /*this.selectedCategory = 'Glavne jedi'; // TODO Remove
-    this.selectedIndex = this.mealTabs.category; // TODO Remove*/
+
+    // API does not support getting restaurant by ID, so we must resort to this
+    this.store.select(selectRestaurants).pipe(take(2)).subscribe((restaurants: Restaurant[]) => {
+      if (restaurants && restaurants.length > 0) {
+        this.restaurantFromId = restaurants.find((restaurant: Restaurant) => {
+          console.log(restaurant, +this.restaurantId);
+          return restaurant.id === +this.restaurantId;
+        });
+      }
+    });
 
     // Get updates on api meal loading status
     this.store.select(selectLoadingMeals).subscribe((loadingMeals: boolean) => {
@@ -56,6 +67,11 @@ export class MealsComponent implements OnInit {
         this.mealCategories = Object.keys(meals);
         console.log(this.mealCategories);
       }
+    });
+
+    // TODO just for testing, remove later
+    this.store.select(selectCartContent).subscribe(cartContent => {
+      console.log('Cart content: ', cartContent);
     });
 
     // Start loading meals for current restaurantId
@@ -83,17 +99,11 @@ export class MealsComponent implements OnInit {
     });
     dialogRefCart.afterClosed().subscribe(result => {
       console.log(result, this.getMealById(result.id));
-      let restaurantFromId;
-      this.store.select(selectRestaurants).pipe(take(1)).subscribe((restaurants: Restaurant[]) => {
-        console.log('RRRR', restaurants);
-        const correctRestaurant = restaurants.find((restaurant: Restaurant) => {
-          console.log(restaurant, +this.restaurantId);
-          return restaurant.id === +this.restaurantId;
-        });
-        restaurantFromId = correctRestaurant; // TODO WORKS Send it to store
-      });
-      console.log('Correct restaurant', restaurantFromId);
-      // this.store.dispatch()
+      console.log('Correct restaurant', this.restaurantFromId);
+      this.store.dispatch(attemptAddToCart({
+        meal: this.getMealById(result.id),
+        restaurant: this.restaurantFromId
+      }));
     });
   }
 

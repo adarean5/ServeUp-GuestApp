@@ -6,7 +6,7 @@ const selectCartState = (state: IAppState) => state.cart;
 
 export const selectCurrentRestaurant = createSelector(
   selectCartState,
-  (state: ICartState) => state.currentRestaurant
+  (state: ICartState) => state.cartRestaurant
 );
 
 export const selectCartContent = createSelector(

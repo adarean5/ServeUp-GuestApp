@@ -24,6 +24,7 @@ import {environment} from '../environments/environment';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {HomeEffects} from './store/effects/home.effects';
+import {CartEffects} from './store/effects/cart.effects';
 export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
@@ -50,7 +51,8 @@ export const firebaseConfig = environment.firebaseConfig;
     }),
     EffectsModule.forRoot([
       AuthEffects,
-      HomeEffects
+      HomeEffects,
+      CartEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthModule,
