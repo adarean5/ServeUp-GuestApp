@@ -9,13 +9,14 @@
     <app-meal-card *ngFor="let meal of cartContent | keyvalue"
                    [title]="meal.value.name"
                    [info]="meal.value.description"
-                   [value]="'' + meal.value.price * meal.value.quantity + ' €'"
+                   [value]="meal.value.price * meal.value.quantity"
                    [id]="meal.value.id"
                    [showActions]="true"
     >
       <app-icon-button class="delete-button" icon="delete"
                        (click)="deleteItem(meal.value.id)"
       ></app-icon-button>
+      <span class="vertical-div light"></span>
       <app-counter [quantity]="meal.value.quantity"
                    (updateQuantity)="updateQuantity(meal.value.id, $event)"
       ></app-counter>

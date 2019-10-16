@@ -99,4 +99,17 @@ export class CartEffects {
       localStorage.setItem('cartRestaurant', JSON.stringify(restaurant));
     })
   ), {dispatch: false});
+
+  updateQuantity = createEffect(() => this.actions$.pipe(
+    ofType(CartActions.updateQuantity),
+    withLatestFrom(
+      this.store$.select(selectCurrentRestaurant),
+      this.store$.select(selectCartContent)
+    ),
+    map(([action, currentRestaurant, cartContent]) => {
+      const newCartContent = {...cartContent};
+      newCartContent[action.meal.id] = action.meal;
+      return CartActions.addToCart({cartContent: newCartContent, restaurant: action.restaurant});
+    })
+  ));
 }

@@ -41,7 +41,7 @@
         <app-meal-card *ngFor="let meal of meals[selectedCategory]"
                        [title]="meal.name"
                        [info]="meal.description"
-                       [value]="meal.price + ' €'"
+                       [value]="meal.price"
                        (click)="mealClicked(meal.id)"
         ></app-meal-card>
       </app-restaurant-grid>

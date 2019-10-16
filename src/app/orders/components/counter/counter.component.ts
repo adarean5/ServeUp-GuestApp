@@ -8,6 +8,7 @@ import {debounceTime} from 'rxjs/operators';
   styleUrls: ['./counter.component.scss']
 })
 export class CounterComponent implements OnInit {
+  @Input() debounceTime = 0;
   @Input() quantity = 1;
   @Output() updateQuantity: EventEmitter<number> = new EventEmitter();
 
@@ -18,7 +19,7 @@ export class CounterComponent implements OnInit {
   ngOnInit() {
     this.quantityUpdate = new ReplaySubject(undefined);
     // Only emit updated quantity after user stops clicking for a while
-    this.quantityUpdate.pipe(debounceTime(500)).subscribe((newQuantity: number) => {
+    this.quantityUpdate.pipe(debounceTime(this.debounceTime)).subscribe((newQuantity: number) => {
       this.updateQuantity.emit(this.quantity);
     });
   }

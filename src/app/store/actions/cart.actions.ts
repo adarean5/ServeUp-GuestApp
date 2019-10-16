@@ -18,3 +18,13 @@ export const promptRestaurantChange = createAction(
 '[Cart] Prompt restaurant change',
   props<{meal: Meal, currentRestaurant: Restaurant, newRestaurant: Restaurant}>()
 );
+
+export const updateQuantity = createAction(
+  '[Cart] Update quantity',
+  props<{meal: Meal, restaurant: Restaurant}>()
+);
+
+/*export const updateQuantitySuccess = createAction(
+  '[Cart] Update quantity success',
+  props<{meal: Meal}>()
+);*/

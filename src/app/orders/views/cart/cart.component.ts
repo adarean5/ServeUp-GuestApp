@@ -5,7 +5,8 @@ import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../../../store/selectors/cart.selectors';
 import {takeWhile} from 'rxjs/operators';
-import {addToCart, attemptAddToCart} from '../../../store/actions/cart.actions';
+import {addToCart, attemptAddToCart, updateQuantity} from '../../../store/actions/cart.actions';
+import {ReplaySubject} from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +16,7 @@ import {addToCart, attemptAddToCart} from '../../../store/actions/cart.actions';
 export class CartComponent implements OnInit {
   objectKeys = Object.keys;
   cartContent: {[mealId: number]: Meal};
+  cartContentArray: Meal[];
   restaurant: Restaurant;
 
   constructor(
@@ -22,11 +24,22 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.cartContent = {};
     this.store.select(selectCartContent)
       .pipe(takeWhile(cartContent => cartContent === undefined, true))
       .subscribe(cartContent => {
-        this.cartContent = cartContent;
-        console.log('Component cart content', this.cartContent);
+        /*this.cartContent = cartContent;
+        console.log('Component cart content', this.cartContent);*/
+        /*Object.keys(cartContent).forEach((key: string) => {
+          if (!this.cartContent[key]) {
+            this.cartContent[key] = cartContent[key];
+          }
+        });*/
+        /*this.cartContent = cartContent;
+        this.cartContentArray = Object.keys(cartContent).map((key) => cartContent[key]);*/
+        Object.keys(cartContent).forEach((key) => {
+          this.cartContent[key] = Meal.withQuantity(cartContent[key], cartContent[key].quantity)
+        });
     });
 
     this.store.select(selectCurrentRestaurant)
@@ -46,9 +59,17 @@ export class CartComponent implements OnInit {
       restaurant: this.restaurant
     }));
     console.log('Amount to update', difference);*/
+    // Object.defineProperty(this.cartContent[id], 'quantity', {value: newQuantity});
+    this.cartContent[id].quantity = newQuantity;
+    this.store.dispatch(updateQuantity({
+      meal: Meal.withQuantity(this.cartContent[id], newQuantity),
+      restaurant: this.restaurant
+    }));
   }
 
   deleteItem(id: number) {
     console.log('Delete item', id, this.cartContent[id]);
+    console.log(this.cartContent);
+    delete this.cartContent[id];
   }
 }
