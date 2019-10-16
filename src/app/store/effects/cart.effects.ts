@@ -97,24 +97,6 @@ export class CartEffects {
     tap(({cartContent, restaurant}) => {
       localStorage.setItem('cartContent', JSON.stringify(cartContent));
       localStorage.setItem('cartRestaurant', JSON.stringify(restaurant));
-      /*const parsed = JSON.parse(stringify);
-
-      console.log('Cart to save locally: ', stringify);
-      console.log('Parsed back', parsed);
-
-      const cartFromStorage = {};
-      Object.keys(parsed).forEach(key => {
-        console.log('key', +key);
-        const parsedMeal = parsed[key];
-        cartFromStorage[+key] = new Meal(
-          parsedMeal.id,
-          parsedMeal.name,
-          parsedMeal.description,
-          parsedMeal.price,
-          parsedMeal.quantity
-        );
-      });
-      console.log('Final cart', cartFromStorage);*/
     })
   ), {dispatch: false});
 }
