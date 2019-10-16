@@ -12,8 +12,7 @@ import {take} from 'rxjs/operators';
   styleUrls: ['./orders-tab.component.scss']
 })
 export class OrdersTabComponent implements OnInit {
-  cartContent: {[mealId: number]: Meal};
-  restaurant: Restaurant;
+
 
   constructor(
     private store: Store<IAppState>

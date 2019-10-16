@@ -8,7 +8,7 @@ import {selectLoadingMeals, selectMeals, selectRestaurants} from '../../../store
 import {MatDialog} from '@angular/material';
 import {DialogAddCartComponent} from '../../components/dialog-add-cart/dialog-add-cart.component';
 import {Meal} from '../../../store/models/meal.model';
-import {take} from 'rxjs/operators';
+import {take, takeWhile} from 'rxjs/operators';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {attemptAddToCart} from '../../../store/actions/cart.actions';
 import {selectCartContent} from '../../../store/selectors/cart.selectors';
@@ -45,7 +45,9 @@ export class MealsComponent implements OnInit {
     this.restaurantId = this.route.snapshot.params.id;
 
     // API does not support getting restaurant by ID, so we must resort to this
-    this.store.select(selectRestaurants).pipe(take(2)).subscribe((restaurants: Restaurant[]) => {
+    this.store.select(selectRestaurants)
+      // Take the first value of restaurants that isn't undefined and then unsubscribe
+      .pipe(takeWhile(restaurants => restaurants === undefined, true)).subscribe((restaurants: Restaurant[]) => {
       if (restaurants && restaurants.length > 0) {
         this.restaurantFromId = restaurants.find((restaurant: Restaurant) => {
           console.log(restaurant, +this.restaurantId);
