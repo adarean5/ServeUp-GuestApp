@@ -1,8 +1,13 @@
-<div class="card" mat-ripple>
+<div class="card" [attr.mat-ripple]="showActions ? null : ''">
   <div class="card-body">
     <div class="body-part left">
-      <h6 class="card-title">{{title}}</h6>
-      <p *ngIf="info" class="card-subtitle">{{info}}</p>
+      <div class="card-info-text">
+        <h6 class="card-title">{{title}}</h6>
+        <p *ngIf="info" class="card-subtitle">{{info}}</p>
+      </div>
+      <div *ngIf="showActions" class="actions-container">
+        <ng-content></ng-content>
+      </div>
     </div>
     <div *ngIf="value" class="body-part right">
       <p class="card-value-cust">{{value}}</p>

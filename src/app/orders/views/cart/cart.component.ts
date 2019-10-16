@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Meal} from '../../../store/models/meal.model';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../../../store/selectors/cart.selectors';
 import {takeWhile} from 'rxjs/operators';
+import {addToCart, attemptAddToCart} from '../../../store/actions/cart.actions';
 
 @Component({
   selector: 'app-cart',
@@ -36,4 +37,18 @@ export class CartComponent implements OnInit {
       });
   }
 
+  updateQuantity(id: number, newQuantity: number) {
+    console.log('Update quantity', id, newQuantity);
+    /*const difference = newQuantity - this.cartContent[id].quantity;
+    // this.cartContent[id] = Meal.withQuantity(this.cartContent[id], newQuantity);
+    this.store.dispatch(attemptAddToCart({
+      meal: Meal.withQuantity(this.cartContent[id], difference),
+      restaurant: this.restaurant
+    }));
+    console.log('Amount to update', difference);*/
+  }
+
+  deleteItem(id: number) {
+    console.log('Delete item', id, this.cartContent[id]);
+  }
 }

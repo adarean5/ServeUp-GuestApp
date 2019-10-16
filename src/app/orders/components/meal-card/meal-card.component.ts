@@ -12,6 +12,7 @@ export class MealCardComponent implements OnInit {
   @Input() title: string;
   @Input() info?: string;
   @Input() value?: string;
+  @Input() showActions?: boolean;
 
   constructor() { }
 

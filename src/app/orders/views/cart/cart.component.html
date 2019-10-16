@@ -10,6 +10,15 @@
                    [title]="meal.value.name"
                    [info]="meal.value.description"
                    [value]="'' + meal.value.price * meal.value.quantity + ' €'"
-    ></app-meal-card>
+                   [id]="meal.value.id"
+                   [showActions]="true"
+    >
+      <app-icon-button class="delete-button" icon="delete"
+                       (click)="deleteItem(meal.value.id)"
+      ></app-icon-button>
+      <app-counter [quantity]="meal.value.quantity"
+                   (updateQuantity)="updateQuantity(meal.value.id, $event)"
+      ></app-counter>
+    </app-meal-card>
   </app-restaurant-grid>
 </app-list-layout>

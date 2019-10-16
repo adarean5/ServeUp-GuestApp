@@ -1,3 +1,10 @@
+@import "serveup-palette";
+
 :host {
   height: 100%;
+
+  .delete-button {
+    fill: $sup-c-warn;
+    color: $sup-c-warn;
+  }
 }

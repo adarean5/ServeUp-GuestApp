@@ -32,8 +32,9 @@ body {
   overflow: hidden;
 }
 
+$sup-c-text-default: $sup-c-black !default;
 p, h6, h5, h4, h3, h2, h1 {
-  color: $sup-c-black;
+  color: $sup-c-text-default;
 }
 
 p {
