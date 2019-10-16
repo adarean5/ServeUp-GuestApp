@@ -1,11 +1,12 @@
 import * as CartActions from '../actions/cart.actions';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
 import {concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {IAppState} from '../states/app.state';
 import {Store} from '@ngrx/store';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
 import {Meal} from '../models/meal.model';
+import {Restaurant} from '../models/restaurant.model';
 
 @Injectable()
 export class CartEffects {
@@ -13,6 +14,48 @@ export class CartEffects {
     private actions$: Actions,
     private store$: Store<IAppState>
   ) {}
+
+  // On init read saved card from local storage, cast it to proper objects and set state
+  init = createEffect(() => this.actions$.pipe(
+    ofType(ROOT_EFFECTS_INIT),
+    map(() => {
+      const savedCart = JSON.parse(localStorage.getItem('cartContent'));
+      const savedRestaurant = JSON.parse(localStorage.getItem('cartRestaurant'));
+
+      if (savedCart && savedRestaurant) {
+        console.log('Read from local storage', savedCart, savedRestaurant);
+        const cartContent = {};
+        // Cast each parsed string from local storage back to Meal objects
+        Object.keys(savedCart).forEach(key => {
+          console.log('key', +key);
+          const parsedMeal = savedCart[key];
+          cartContent[+key] = new Meal(
+            parsedMeal.id,
+            parsedMeal.name,
+            parsedMeal.description,
+            parsedMeal.price,
+            parsedMeal.quantity
+          );
+        });
+
+        // Cast the parsed restaurant back to Restaurant object
+        const restaurant = new Restaurant(
+          +savedRestaurant.id,
+          savedRestaurant.name,
+          savedRestaurant.rating,
+          savedRestaurant.type,
+          savedRestaurant.street,
+          +savedRestaurant.houseNumber,
+          savedRestaurant.zipCode,
+          savedRestaurant.city,
+          savedRestaurant.image
+        );
+
+        console.log('Final parsed items:', cartContent, restaurant);
+        return CartActions.addToCart({cartContent, restaurant});
+      }
+    })
+  ));
 
   attemptAddToCart = createEffect(() => this.actions$.pipe(
     ofType(CartActions.attemptAddToCart),
@@ -49,5 +92,29 @@ export class CartEffects {
     })
   ));
 
-  //addToCart = createEffect()
+  addToCart = createEffect(() => this.actions$.pipe(
+    ofType(CartActions.addToCart),
+    tap(({cartContent, restaurant}) => {
+      localStorage.setItem('cartContent', JSON.stringify(cartContent));
+      localStorage.setItem('cartRestaurant', JSON.stringify(restaurant));
+      /*const parsed = JSON.parse(stringify);
+
+      console.log('Cart to save locally: ', stringify);
+      console.log('Parsed back', parsed);
+
+      const cartFromStorage = {};
+      Object.keys(parsed).forEach(key => {
+        console.log('key', +key);
+        const parsedMeal = parsed[key];
+        cartFromStorage[+key] = new Meal(
+          parsedMeal.id,
+          parsedMeal.name,
+          parsedMeal.description,
+          parsedMeal.price,
+          parsedMeal.quantity
+        );
+      });
+      console.log('Final cart', cartFromStorage);*/
+    })
+  ), {dispatch: false});
 }
