@@ -13,3 +13,11 @@ export const selectCartContent = createSelector(
   selectCartState,
   (state: ICartState) => state.cartContent
 );
+
+export const selectTotalPrice = createSelector(
+  selectCartContent,
+  (cartContent) => {
+    console.log(cartContent);
+    return cartContent;
+  }
+);

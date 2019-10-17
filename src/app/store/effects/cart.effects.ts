@@ -1,12 +1,14 @@
 import * as CartActions from '../actions/cart.actions';
 import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {catchError, concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {IAppState} from '../states/app.state';
 import {Store} from '@ngrx/store';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
 import {Meal} from '../models/meal.model';
 import {Restaurant} from '../models/restaurant.model';
+import {of} from 'rxjs';
+import {initialCartState} from '../states/cart.state';
 
 @Injectable()
 export class CartEffects {
@@ -23,7 +25,6 @@ export class CartEffects {
       const savedRestaurant = JSON.parse(localStorage.getItem('cartRestaurant'));
 
       if (savedCart && savedRestaurant) {
-        console.log('Read from local storage', savedCart, savedRestaurant);
         const cartContent = {};
         // Cast each parsed string from local storage back to Meal objects
         Object.keys(savedCart).forEach(key => {
@@ -53,8 +54,13 @@ export class CartEffects {
 
         console.log('Final parsed items:', cartContent, restaurant);
         return CartActions.addToCart({cartContent, restaurant});
+      } else {
+        return CartActions.addToCart({
+          cartContent: initialCartState.cartContent,
+          restaurant: initialCartState.cartRestaurant
+        });
       }
-    })
+    }),
   ));
 
   attemptAddToCart = createEffect(() => this.actions$.pipe(
@@ -94,9 +100,10 @@ export class CartEffects {
 
   addToCart = createEffect(() => this.actions$.pipe(
     ofType(CartActions.addToCart),
+    // Save cart to local storage for persistence
     tap(({cartContent, restaurant}) => {
       localStorage.setItem('cartContent', JSON.stringify(cartContent));
-      localStorage.setItem('cartRestaurant', JSON.stringify(restaurant));
+      localStorage.setItem('cartRestaurant', JSON.stringify(restaurant === undefined ? null : restaurant));
     })
   ), {dispatch: false});
 

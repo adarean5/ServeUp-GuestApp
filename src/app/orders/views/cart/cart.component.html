@@ -1,4 +1,4 @@
-<app-list-layout>
+<app-list-layout *ngIf="(cartRestaurant$ | async) as restaurant else empty">
   <ng-container class="header-title">
     {{restaurant.name}}
   </ng-container>
@@ -6,7 +6,7 @@
     {{restaurant.street + ' ' + restaurant.houseNumber + ', ' + restaurant.city}}
   </ng-container>
   <app-restaurant-grid>
-    <app-meal-card *ngFor="let meal of cartContent | keyvalue"
+    <app-meal-card *ngFor="let meal of cartContent$ | async | keyvalue; trackBy: mealTrack"
                    [title]="meal.value.name"
                    [info]="meal.value.description"
                    [value]="meal.value.price * meal.value.quantity"
@@ -18,8 +18,19 @@
       ></app-icon-button>
       <span class="vertical-div light"></span>
       <app-counter [quantity]="meal.value.quantity"
-                   (updateQuantity)="updateQuantity(meal.value.id, $event)"
+                   (updateQuantity)="updateQuantity(meal.value, $event)"
       ></app-counter>
     </app-meal-card>
   </app-restaurant-grid>
+  <div>
+    <p>{{totalPrice$ | async}}</p>
+  </div>
 </app-list-layout>
+
+<ng-template #empty>
+  <p>Košarica je prazna</p>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading>Košarico</app-loading>
+</ng-template>
