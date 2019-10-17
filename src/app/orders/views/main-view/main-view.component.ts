@@ -16,7 +16,7 @@ import {Observable, Subscription} from 'rxjs';
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss'],
-  animations: [routerAnimation('300ms', 'ease-in-out', 'ease-in-out')],
+  animations: [routerAnimation('3000ms', 'ease-in-out', 'ease-in-out')],
 })
 export class MainViewComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
