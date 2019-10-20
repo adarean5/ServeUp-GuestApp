@@ -5,7 +5,7 @@ import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectCartContent, selectCurrentRestaurant, selectTotalPrice} from '../../../store/selectors/cart.selectors';
 import {map, takeWhile, tap} from 'rxjs/operators';
-import {addToCart, attemptAddToCart, updateQuantity} from '../../../store/actions/cart.actions';
+import {addToCart, attemptAddToCart, removeItem, updateQuantity} from '../../../store/actions/cart.actions';
 import {Observable, ReplaySubject} from 'rxjs';
 
 @Component({
@@ -33,16 +33,17 @@ export class CartComponent implements OnInit {
     this.totalPrice$ = this.store.select(selectTotalPrice);
   }
 
-  updateQuantity(mealToUpdate: any, newQuantity: number) {
-    console.log('Update quantity', mealToUpdate, newQuantity);
+  updateQuantity(mealId: number, quantity: number) {
+    console.log('Update quantity', mealId, quantity);
     this.store.dispatch(updateQuantity({
-      meal: Meal.withQuantity(mealToUpdate, newQuantity),
-      restaurant: this.restaurant
+      mealId,
+      quantity
     }));
   }
 
-  deleteItem(id: number) {
-    console.log('Delete id', id);
+  deleteItem(mealId: number) {
+    console.log('Delete id', mealId);
+    this.store.dispatch(removeItem({mealId}));
   }
 
   mealTrack(index, item) {

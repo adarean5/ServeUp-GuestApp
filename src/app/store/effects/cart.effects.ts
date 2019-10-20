@@ -1,5 +1,5 @@
 import * as CartActions from '../actions/cart.actions';
-import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {act, Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
 import {catchError, concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {IAppState} from '../states/app.state';
@@ -25,12 +25,9 @@ export class CartEffects {
       const savedRestaurant = JSON.parse(localStorage.getItem('cartRestaurant'));
 
       if (savedCart && savedRestaurant) {
-        const cartContent = {};
-        // Cast each parsed string from local storage back to Meal objects
-        Object.keys(savedCart).forEach(key => {
-          console.log('key', +key);
-          const parsedMeal = savedCart[key];
-          cartContent[+key] = new Meal(
+        // Cast each parsed object from local storage back to Meal objects
+        const cartContent = savedCart.map(parsedMeal => {
+          return new Meal(
             parsedMeal.id,
             parsedMeal.name,
             parsedMeal.description,
@@ -73,19 +70,22 @@ export class CartEffects {
       console.log('[Attempt add to cart]', action, currentRestaurant);
       // If cart is empty or if meal belongs to restaurant in the cart => add meal to cart
       if (currentRestaurant === undefined || currentRestaurant.id === action.restaurant.id) {
-        console.log('Success adding to cart');
-        const newCartContent = {...cartContent};
-        // If item exists in cart => update quantity
-        if (newCartContent[action.meal.id]) {
-          newCartContent[action.meal.id] = Meal.withQuantity(
-            action.meal,
-            action.meal.quantity + newCartContent[action.meal.id].quantity
-          );
-        } else {
-          // Else add a new meal to cart
-          newCartContent[action.meal.id] = action.meal;
+        let itemAdded = false;
+        const updatedCart = cartContent.map((meal: Meal) => {
+          if (meal.id === action.meal.id) {
+            itemAdded = true;
+            return Meal.withQuantity(meal, meal.quantity + action.meal.quantity);
+          } else {
+            return meal;
+          }
+        });
+        if (!itemAdded) {
+          updatedCart.push(action.meal);
         }
-        return CartActions.addToCart({cartContent: newCartContent, restaurant: action.restaurant});
+        return CartActions.addToCart({
+         cartContent: updatedCart,
+         restaurant: action.restaurant
+        });
       } else {
         // Else prompt user to decide if old cart should be kept, or erased in favour of new restaurant
         console.log('Prompt user');
@@ -101,22 +101,34 @@ export class CartEffects {
   addToCart = createEffect(() => this.actions$.pipe(
     ofType(CartActions.addToCart),
     // Save cart to local storage for persistence
-    tap(({cartContent, restaurant}) => {
-      localStorage.setItem('cartContent', JSON.stringify(cartContent));
-      localStorage.setItem('cartRestaurant', JSON.stringify(restaurant === undefined ? null : restaurant));
+    map(() => {
+      return CartActions.saveToLocal();
     })
-  ), {dispatch: false});
+  ));
 
   updateQuantity = createEffect(() => this.actions$.pipe(
     ofType(CartActions.updateQuantity),
+    map(() => {
+      return CartActions.saveToLocal();
+    })
+  ));
+
+  removeItem = createEffect(() => this.actions$.pipe(
+    ofType(CartActions.removeItem),
+    map(() => {
+      return CartActions.saveToLocal();
+    })
+  ));
+
+  saveToLocal = createEffect(() => this.actions$.pipe(
+    ofType(CartActions.saveToLocal),
     withLatestFrom(
       this.store$.select(selectCurrentRestaurant),
       this.store$.select(selectCartContent)
     ),
-    map(([action, currentRestaurant, cartContent]) => {
-      const newCartContent = {...cartContent};
-      newCartContent[action.meal.id] = action.meal;
-      return CartActions.addToCart({cartContent: newCartContent, restaurant: action.restaurant});
+    tap(([action, restaurant, cartContent]) => {
+      localStorage.setItem('cartContent', JSON.stringify(cartContent));
+      localStorage.setItem('cartRestaurant', JSON.stringify(restaurant === undefined ? null : restaurant));
     })
-  ));
+  ), {dispatch: false});
 }

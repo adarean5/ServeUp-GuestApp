@@ -5,24 +5,26 @@
   <ng-container class="header-subtitle">
     {{restaurant.street + ' ' + restaurant.houseNumber + ', ' + restaurant.city}}
   </ng-container>
-  <app-restaurant-grid>
-    <app-meal-card *ngFor="let meal of cartContent$ | async | keyvalue; trackBy: mealTrack"
-                   [title]="meal.value.name"
-                   [info]="meal.value.description"
-                   [value]="meal.value.price * meal.value.quantity"
-                   [id]="meal.value.id"
-                   [showActions]="true"
-    >
-      <app-icon-button class="delete-button" icon="delete"
-                       (click)="deleteItem(meal.value.id)"
-      ></app-icon-button>
-      <span class="vertical-div light"></span>
-      <app-counter [quantity]="meal.value.quantity"
-                   (updateQuantity)="updateQuantity(meal.value, $event)"
-      ></app-counter>
-    </app-meal-card>
-  </app-restaurant-grid>
-  <div>
+  <div class="top-content">
+    <app-restaurant-grid>
+      <app-meal-card *ngFor="let meal of cartContent$ | async | keyvalue; trackBy: mealTrack"
+                     [title]="meal.value.name"
+                     [info]="meal.value.description"
+                     [value]="meal.value.price * meal.value.quantity"
+                     [id]="meal.value.id"
+                     [showActions]="true"
+      >
+        <app-icon-button class="delete-button" icon="delete"
+                         (click)="deleteItem(meal.value.id)"
+        ></app-icon-button>
+        <span class="vertical-div light"></span>
+        <app-counter [quantity]="meal.value.quantity"
+                     (updateQuantity)="updateQuantity(meal.value.id, $event)"
+        ></app-counter>
+      </app-meal-card>
+    </app-restaurant-grid>
+  </div>
+  <div class="bottom-content">
     <p>{{totalPrice$ | async}}</p>
   </div>
 </app-list-layout>

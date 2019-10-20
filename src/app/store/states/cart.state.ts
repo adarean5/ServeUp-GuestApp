@@ -3,10 +3,10 @@ import {Meal} from '../models/meal.model';
 
 export interface ICartState {
   cartRestaurant: Restaurant;
-  cartContent: {[mealId: number]: Meal};
+  cartContent: Meal[];
 }
 
 export const initialCartState: ICartState = {
   cartRestaurant: undefined,
-  cartContent: {}
+  cartContent: []
 };

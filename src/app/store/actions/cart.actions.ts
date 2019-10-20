@@ -10,7 +10,7 @@ export const attemptAddToCart = createAction(
 
 export const addToCart = createAction(
   '[Cart] Add to cart',
-  props<{cartContent: {[mealId: number]: Meal}, restaurant: Restaurant}>()
+  props<{cartContent: Meal[], restaurant: Restaurant}>()
 );
 
 // If user selects a different restaurant await for confirmation to clear cart or cancel add
@@ -21,10 +21,14 @@ export const promptRestaurantChange = createAction(
 
 export const updateQuantity = createAction(
   '[Cart] Update quantity',
-  props<{meal: Meal, restaurant: Restaurant}>()
+  props<{mealId: number, quantity: number}>()
 );
 
-/*export const updateQuantitySuccess = createAction(
-  '[Cart] Update quantity success',
-  props<{meal: Meal}>()
-);*/
+export const removeItem = createAction(
+  '[Cart] Remove item',
+  props<{mealId: number}>()
+);
+
+export const saveToLocal = createAction(
+  '[Cart] Save to local'
+);
