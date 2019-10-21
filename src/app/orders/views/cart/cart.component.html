@@ -28,7 +28,7 @@
       <div id="arrival-counter">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
       <div class="button-container">
         <button id="more-button" mat-stroked-button color="accent" [routerLink]="'/main/meals/' + restaurant.id">Dodaj jedi</button>
-        <button id="order-button" mat-stroked-button color="primary">Naroči</button>
+        <button id="order-button" mat-stroked-button color="primary" (click)="openPaymentDialog()">Naroči</button>
       </div>
     </div>
 </app-list-layout>

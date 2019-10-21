@@ -25,6 +25,8 @@ import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-
 import { LoadingComponent } from './components/loading/loading.component';
 import { CartComponent } from './views/cart/cart.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { DialogPaymentComponent } from './components/dialog-payment/dialog-payment.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { CounterComponent } from './components/counter/counter.component';
     LoadingComponent,
     CartComponent,
     CounterComponent,
+    DialogPaymentComponent,
   ],
   imports: [
     CommonModule,
@@ -53,11 +56,13 @@ import { CounterComponent } from './components/counter/counter.component';
     EffectsModule.forFeature([AuthEffects]),
     SharedModule,
     BarRatingModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   entryComponents: [
     DialogSearchComponent,
-    DialogAddCartComponent
+    DialogAddCartComponent,
+    DialogPaymentComponent
   ]
 })
 export class OrdersModule { }

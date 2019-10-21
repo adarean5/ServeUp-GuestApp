@@ -6,7 +6,13 @@ import {
   MatTabsModule,
   MatMenuModule,
   MatCardModule,
-  MatRippleModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatBadgeModule
+  MatRippleModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatBadgeModule,
+  MatRadioModule
 } from '@angular/material';
 
 @NgModule({
@@ -23,7 +29,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule
   ],
   exports: [
     MatButtonModule,
@@ -37,7 +44,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

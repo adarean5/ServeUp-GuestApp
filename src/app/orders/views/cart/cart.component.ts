@@ -8,6 +8,8 @@ import {map, takeWhile, tap} from 'rxjs/operators';
 import {addToCart, attemptAddToCart, removeItem, updateQuantity} from '../../../store/actions/cart.actions';
 import {Observable, ReplaySubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
 
 @Component({
   selector: 'app-cart',
@@ -22,6 +24,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private store: Store<IAppState>,
+    private dialogPaymentOption: MatDialog
   ) { }
 
   ngOnInit() {
@@ -47,12 +50,11 @@ export class CartComponent implements OnInit {
     this.store.dispatch(removeItem({mealId}));
   }
 
-  mealTrack(index, item) {
-    return item.key;
-  }
-
-  func(r) {
-    console.log('Func', r);
-    return r;
+  openPaymentDialog() {
+    console.log('Open dialog');
+    const dialogRefPayment = this.dialogPaymentOption.open(DialogPaymentComponent);
+    dialogRefPayment.afterClosed().subscribe((paymentOption: string) => {
+      console.log(paymentOption);
+    });
   }
 }

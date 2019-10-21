@@ -1,0 +1,11 @@
+.payment-radio-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+mat-dialog-actions {
+  button {
+    margin: 0.25em 0.25em 0.5em;
+  }
+}
