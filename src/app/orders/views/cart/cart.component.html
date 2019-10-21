@@ -24,9 +24,9 @@
     </app-restaurant-grid>
 
     <div class="cart-actions">
-      <div>Skupaj: <span>{{totalPrice$ | async | number}} €</span></div>
-      <div>Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
-      <app-icon-button matStyle="stroked" palette="primary" icon="cart" text="Naroči"></app-icon-button>
+      <div id="total-text">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | number}} €</span></div>
+      <div id="arrival-counter">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
+      <button id="order-button" mat-flat-button color="primary">Naroči</button>
     </div>
 </app-list-layout>
 

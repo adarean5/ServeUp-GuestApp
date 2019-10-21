@@ -1,4 +1,5 @@
 @import "serveup-palette";
+@import "variables";
 
 :host {
   height: 100%;
@@ -9,6 +10,41 @@
   }
 
   .cart-actions {
+    border-top: $sup-border-light;
+    margin: 0.5em;
+    padding: 1em;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > *:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    #arrival-counter {
+      display: flex;
+      align-items: center;
+
+      app-counter {
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+    }
+
+    #order-button {
+      color: white;
+      padding-right: 5em;
+      padding-left: 5em;
+    }
+
+    #total-text {
+      span {
+        margin-left: 0.5em;
+        color: $sup-c-primary;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+    }
   }
 }
