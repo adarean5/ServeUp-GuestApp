@@ -1,6 +1,7 @@
 import {IAppState} from '../states/app.state';
 import {createSelector} from '@ngrx/store';
 import {ICartState} from '../states/cart.state';
+import {Meal} from '../models/meal.model';
 
 const selectCartState = (state: IAppState) => state.cart;
 
@@ -17,7 +18,7 @@ export const selectCartContent = createSelector(
 export const selectTotalPrice = createSelector(
   selectCartContent,
   (cartContent) => {
-    console.log(cartContent);
-    return cartContent;
+    return cartContent.map((meal: Meal) => meal.quantity * meal.price)
+      .reduce((total: number, add: number) => total + add);
   }
 );

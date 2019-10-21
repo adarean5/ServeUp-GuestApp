@@ -5,7 +5,6 @@
   <ng-container class="header-subtitle">
     {{restaurant.street + ' ' + restaurant.houseNumber + ', ' + restaurant.city}}
   </ng-container>
-  <div class="top-content">
     <app-restaurant-grid>
       <app-meal-card *ngFor="let meal of cartContent$ | async | keyvalue; trackBy: mealTrack"
                      [title]="meal.value.name"
@@ -23,10 +22,11 @@
         ></app-counter>
       </app-meal-card>
     </app-restaurant-grid>
-  </div>
-  <div class="bottom-content">
-    <p>{{totalPrice$ | async}}</p>
-  </div>
+
+    <div class="cart-actions">
+      <p>Skupna cena: {{totalPrice$ | async | number}}</p>
+      <app-icon-button icon="cart" text="Naroči"></app-icon-button>
+    </div>
 </app-list-layout>
 
 <ng-template #empty>
