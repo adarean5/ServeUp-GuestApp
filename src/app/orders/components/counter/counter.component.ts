@@ -11,6 +11,7 @@ export class CounterComponent implements OnInit {
   @Input() debounceTime = 0;
   @Input() quantity = 1;
   @Input() change = 1;
+  @Input() min = 1;
   @Output() updateQuantity: EventEmitter<number> = new EventEmitter();
 
   quantityUpdate: ReplaySubject<undefined>;
@@ -26,6 +27,7 @@ export class CounterComponent implements OnInit {
   }
 
   changeQuantity(quantity: number) {
+    console.log(this.quantity, quantity);
     this.quantity += quantity;
     this.quantityUpdate.next();
   }
