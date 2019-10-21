@@ -34,8 +34,8 @@ $sup-theme-primary: (
 );
 
 $sup-palette-primary: mat-palette($sup-theme-primary);
-$sup-palette-accent: mat-palette($mat-pink);
-$sup-palette-warn: mat-palette($mat-red);
+$sup-palette-accent: mat-palette($mat-pink, A200);
+$sup-palette-warn: mat-palette($mat-red, A200);
 
 $sup-c-background: whitesmoke;
 

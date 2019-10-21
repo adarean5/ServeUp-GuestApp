@@ -1,10 +1,10 @@
 <span class="amount-container">
-  <button class="button-amount" mat-button
+  <button class="button-amount" mat-button color="accent"
           [disabled]="quantity <= min"
           (click)="changeQuantity(-change)"
   >-</button>
   <span class="amountText">{{quantity}}</span>
-  <button class="button-amount"
+  <button class="button-amount" color="primary"
           mat-button (click)="changeQuantity(change)"
   >+</button>
 </span>

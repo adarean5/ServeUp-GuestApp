@@ -32,10 +32,23 @@
       }
     }
 
-    #order-button {
-      color: white;
-      padding-right: 5em;
-      padding-left: 5em;
+    .button-container {
+      display: flex;
+
+      button {
+        width: 10em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+
+        &#order-button {
+          //color: white;
+          border-color: $sup-c-primary;
+        }
+
+        &#more-button {
+          border-color: $sup-c-accent;
+        }
+      }
     }
 
     #total-text {
@@ -45,6 +58,22 @@
         font-weight: bold;
         font-size: 1.2em;
       }
+    }
+  }
+
+  #cart-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+
+    p {
+      font-size: 1.5em;
+    }
+
+    button {
+      font-size: 1.5em;
     }
   }
 }

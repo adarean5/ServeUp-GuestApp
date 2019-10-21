@@ -7,6 +7,7 @@ import {selectCartContent, selectCurrentRestaurant, selectTotalPrice} from '../.
 import {map, takeWhile, tap} from 'rxjs/operators';
 import {addToCart, attemptAddToCart, removeItem, updateQuantity} from '../../../store/actions/cart.actions';
 import {Observable, ReplaySubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit {
   totalPrice$: Observable<any>;
 
   constructor(
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
   ) { }
 
   ngOnInit() {

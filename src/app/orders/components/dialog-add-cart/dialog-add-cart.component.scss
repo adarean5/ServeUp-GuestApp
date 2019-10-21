@@ -3,7 +3,7 @@
 
 .button-amount {
   font-size: 2em;
-  color: $sup-c-primary;
+  // color: $sup-c-primary;
 }
 
 .description {
@@ -40,13 +40,12 @@
 .amountText {
   text-align: center;
   width: 3.5em;
-  background: $sup-c-primary;
+  border: $sup-border-light;
   padding: 0.5em;
   margin-left: 1em;
   margin-right: 1em;
   border-radius: 0.3em;
   font-weight: bold;
-  color: white;
 }
 
 .dialog-title {

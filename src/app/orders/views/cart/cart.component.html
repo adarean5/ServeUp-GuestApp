@@ -26,12 +26,18 @@
     <div class="cart-actions">
       <div id="total-text">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | number}} €</span></div>
       <div id="arrival-counter">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
-      <button id="order-button" mat-flat-button color="primary">Naroči</button>
+      <div class="button-container">
+        <button id="more-button" mat-stroked-button color="accent" [routerLink]="'/main/meals/' + restaurant.id">Dodaj jedi</button>
+        <button id="order-button" mat-stroked-button color="primary">Naroči</button>
+      </div>
     </div>
 </app-list-layout>
 
 <ng-template #empty>
-  <p>Košarica je prazna</p>
+  <div id="cart-empty">
+    <p>Košarica je prazna.</p>
+    <button mat-button color="accent" [routerLink]="'/main/home'">Dodaj jedi</button>
+  </div>
 </ng-template>
 
 <ng-template #loading>
