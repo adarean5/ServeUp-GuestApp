@@ -24,7 +24,7 @@
     </app-restaurant-grid>
 
     <div class="cart-actions">
-      <div id="total-text">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | number}} €</span></div>
+      <div id="total-text">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | currency:'EUR':true:'1.2-2'}}</span></div>
       <div id="arrival-counter">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
       <div class="button-container">
         <button id="more-button" mat-stroked-button color="accent" [routerLink]="'/main/meals/' + restaurant.id">Dodaj jedi</button>

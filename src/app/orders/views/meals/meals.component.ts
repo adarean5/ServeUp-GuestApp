@@ -11,7 +11,8 @@ import {Meal} from '../../../store/models/meal.model';
 import {take, takeWhile} from 'rxjs/operators';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {attemptAddToCart} from '../../../store/actions/cart.actions';
-import {selectCartContent} from '../../../store/selectors/cart.selectors';
+import {selectCartContent, selectTotalPrice} from '../../../store/selectors/cart.selectors';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-meals',
@@ -31,6 +32,7 @@ export class MealsComponent implements OnInit {
   selectedCategory: string; // What to display on the category page
   selectedIndex: number; // Which tab is active
   restaurantFromId: Restaurant;
+  total$: Observable<number>;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +45,8 @@ export class MealsComponent implements OnInit {
   ngOnInit() {
     this.selectedIndex = this.mealTabs.categories;
     this.restaurantId = this.route.snapshot.params.id;
+
+    this.total$ = this.store.select(selectTotalPrice);
 
     // API does not support getting restaurant by ID, so we must resort to this
     this.store.select(selectRestaurants)
