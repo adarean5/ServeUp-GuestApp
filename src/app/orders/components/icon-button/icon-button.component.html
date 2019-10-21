@@ -1,4 +1,4 @@
-<button class="sup-icon-button" mat-button>
+<button class="sup-icon-button" [ngClass]="buttonClass" mat-button [color]="palette">
   <span class="icon-button-container">
     <app-icon *ngIf="icon"
               [iconName]="icon"
