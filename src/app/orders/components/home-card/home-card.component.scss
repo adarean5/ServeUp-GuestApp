@@ -45,6 +45,10 @@
       .card-rating-container {
         display: flex;
       }
+
+      .restaurant-rating {
+        pointer-events: none;
+      }
     }
   }
 }
