@@ -13,8 +13,8 @@ export class IconComponent implements OnInit {
   private defaultWidth = '24px';
   private defaultHeight = '24px';
 
-  private actualWidth: string;
-  private actualHeight: string;
+  actualWidth: string;
+  actualHeight: string;
 
   constructor() { }
 

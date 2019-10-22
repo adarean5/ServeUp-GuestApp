@@ -12,12 +12,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./restaurant-search-display.component.scss']
 })
 export class RestaurantSearchDisplayComponent implements OnInit {
-  private restaurants: Restaurant[];
-  private loadingSearch: boolean;
+  restaurants: Restaurant[];
+  loadingSearch: boolean;
 
   constructor(
     private store: Store<IAppState>,
-    private router: Router
+    public router: Router
   ) { }
 
   ngOnInit() {

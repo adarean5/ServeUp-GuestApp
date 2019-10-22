@@ -14,8 +14,8 @@ import {Subscription} from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  private loadingRestaurants: boolean;
-  private restaurants: Restaurant[];
+  loadingRestaurants: boolean;
+  restaurants: Restaurant[];
 
   constructor(
     private store: Store<IAppState>,
@@ -32,13 +32,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private openSearchDialog() {
+  openSearchDialog() {
     this.store.dispatch(openSearchDialog());
   }
 
-  private restaurantClicked(restaurantId: number) {
+  restaurantClicked(restaurantId: number) {
     this.router.navigate(['/main/meals', restaurantId]);
     // this.store.dispatch(getMealsForRestaurant({restaurantId}));
+  }
+
+  homeCardTrack(index: number, restaurant: Restaurant) {
+    return restaurant.id;
   }
 
   ngOnDestroy(): void {

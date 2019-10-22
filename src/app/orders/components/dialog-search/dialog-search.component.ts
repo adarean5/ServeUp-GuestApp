@@ -12,10 +12,10 @@ import {selectRestaurantTypes} from '../../../store/selectors/home.selector';
   styleUrls: ['./dialog-search.component.scss']
 })
 export class DialogSearchComponent implements OnInit {
-  private location: string;
-  private foodType: string;
+  location: string;
+  foodType: string;
 
-  private restaurantTypes: RestaurantType[];
+  restaurantTypes: RestaurantType[];
 
   constructor(
     public dialogRef: MatDialogRef<DialogSearchComponent>,
@@ -37,9 +37,4 @@ export class DialogSearchComponent implements OnInit {
     this.dialogRef.close();
     console.log(this.foodType, this.location);
   }
-
-  changeFoodType(event) {
-    console.log(event);
-  }
-
 }

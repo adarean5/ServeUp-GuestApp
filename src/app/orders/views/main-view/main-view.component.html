@@ -17,12 +17,10 @@
 
           <app-icon-button icon="home" text="Domov"
                            [class.toolbar-tab-active]="currentTab == tabLinks.home"
-                           (click)="changeTab(tabLinks.home)"
                            [routerLink]="[tabLinks.home]"
           ></app-icon-button>
           <app-icon-button icon="orders" text="Naročila"
                            [class.toolbar-tab-active]="currentTab == tabLinks.orders"
-                           (click)="changeTab(tabLinks.orders)"
                            [routerLink]="[tabLinks.orders]"
           ></app-icon-button>
         </span>
@@ -32,14 +30,12 @@
         <span id="toolbar-actions-right">
           <app-icon-button icon="cart" text="Košarica"
                            [class.toolbar-tab-active]="currentTab == tabLinks.cart"
-                           (click)="changeTab(tabLinks.cart)"
                            [routerLink]="[tabLinks.cart]"
           ></app-icon-button>
 
           <span class="vertical-div"></span>
 
           <button mat-button [class.toolbar-tab-active]="currentTab == tabLinks.profile"
-                  (click)="changeTab(tabLinks.profile)"
                   [routerLink]="[tabLinks.profile]">
             <span class="profile-button-container">
               <span>{{user.displayName.split(' ')[0]}}</span>

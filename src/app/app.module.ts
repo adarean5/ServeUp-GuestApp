@@ -25,6 +25,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {HomeEffects} from './store/effects/home.effects';
 import {CartEffects} from './store/effects/cart.effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
@@ -57,6 +58,7 @@ export const firebaseConfig = environment.firebaseConfig;
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthModule,
     OrdersModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

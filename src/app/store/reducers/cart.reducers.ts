@@ -1,9 +1,9 @@
-import {createReducer, on} from '@ngrx/store';
-import {initialCartState} from '../states/cart.state';
+import {Action, createReducer, on} from '@ngrx/store';
+import {ICartState, initialCartState} from '../states/cart.state';
 import * as CartActions from '../actions/cart.actions';
 import {Meal} from '../models/meal.model';
 
-export const cartReducers = createReducer(
+const cartReducer = createReducer(
   initialCartState,
   on(CartActions.addToCart, (state, {cartContent, restaurant}) => ({
     ...state,
@@ -26,3 +26,7 @@ export const cartReducers = createReducer(
     })
   }))
 );
+
+export function cartReducers(state: ICartState, action: Action) {
+  return cartReducer(state, action);
+}

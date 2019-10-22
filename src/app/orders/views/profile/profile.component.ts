@@ -12,7 +12,8 @@ import {gSignOut} from '../../../store/actions/auth.actions';
 })
 export class ProfileComponent implements OnInit {
 
-  private user;
+  user: User;
+
   @Output() emSignOut = new EventEmitter();
 
   constructor(

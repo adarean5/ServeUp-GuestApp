@@ -25,7 +25,7 @@ export class AuthService {
   async googleSignIn() {
     console.log('Google sign in triggered');
     const provider = new auth.GoogleAuthProvider();
-    return this.afAuth.auth.signInWithPopup(provider);
+    return this.afAuth.auth.signInWithRedirect(provider);
   }
 
   async signOut() {

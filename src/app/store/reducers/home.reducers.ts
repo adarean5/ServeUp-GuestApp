@@ -1,9 +1,9 @@
-import {createReducer, on} from '@ngrx/store';
-import {initialHomeState} from '../states/home.state';
+import {Action, createReducer, on} from '@ngrx/store';
+import {IHomeState, initialHomeState} from '../states/home.state';
 import * as HomeActions from '../actions/home.actions';
 import {ROOT_EFFECTS_INIT} from '@ngrx/effects';
 
-export const homeReducers = createReducer(
+const homeReducer = createReducer(
   initialHomeState,
   // Get restaurants
   on(HomeActions.getRestaurants, state => ({
@@ -64,3 +64,7 @@ export const homeReducers = createReducer(
     loadingMeals: false
   }))
 );
+
+export function homeReducers(state: IHomeState, action: Action) {
+  return homeReducer(state, action);
+}

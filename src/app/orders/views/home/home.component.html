@@ -13,7 +13,7 @@
   <app-restaurant-grid>
     <ng-container>
       <app-home-card
-        *ngFor="let restaurant of restaurants"
+        *ngFor="let restaurant of restaurants; trackBy: homeCardTrack"
         [restaurant]="restaurant"
         (clickEmitter)="restaurantClicked($event)"
       ></app-home-card>

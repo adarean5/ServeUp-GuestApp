@@ -21,15 +21,15 @@ import {Observable, Subscription} from 'rxjs';
 export class MainViewComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
-  private tabLinks = {
+  tabLinks = {
     home: '/main/home',
     orders: '/main/orders' ,
     profile: '/main/profile',
     cart: '/main/cart'
   };
-  private currentTab: string;
-  private user: User;
-  private searchOpened = false;
+  currentTab: string;
+  user: User;
+  searchOpened = false;
 
   constructor(
     private store: Store<IAppState>,
@@ -76,16 +76,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private gSignOut() {
-    console.log('Sign out from main component.');
-    this.store.dispatch(gSignOut());
-  }
-
-  private changeTab(tabName) {
-    // this.currentTab = tabName;
-  }
-
-  private openSearchDialog() {
+  openSearchDialog() {
     this.store.dispatch(openSearchDialog());
   }
 

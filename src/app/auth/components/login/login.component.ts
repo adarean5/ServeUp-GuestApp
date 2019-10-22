@@ -12,7 +12,7 @@ import {selectLoading, selectUser} from '../../../store/selectors/auth.selectors
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  private loading: boolean;
+  loading: boolean;
 
   constructor(
     private store: Store<IAppState>,
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private gSignIn() {
+  gSignIn() {
     console.log('G sign in button clicked');
     this.store.dispatch(gSignIn());
   }

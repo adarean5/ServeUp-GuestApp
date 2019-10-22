@@ -7,8 +7,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   styleUrls: ['./dialog-add-cart.component.scss']
 })
 export class DialogAddCartComponent implements OnInit {
-  private quantity: number;
-  private totalPrice: number;
+  quantity: number;
+  totalPrice: number;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddCartComponent>,

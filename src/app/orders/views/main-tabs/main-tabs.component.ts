@@ -14,14 +14,13 @@ import { HostListener } from '@angular/core';
 })
 export class MainTabsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  private tabLinks = {
+  tabLinks = {
     home: '/main/home',
     orders: '/main/orders' ,
     cart: '/main/cart',
     profile: '/main/profile'
   };
-  private currentTab: string;
-  speed: '1000ms';
+  currentTab: string;
 
   constructor(
     private router: Router,

@@ -38,8 +38,8 @@ export class MealsComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store<IAppState>,
     private router: Router,
-    private location: Location,
-    private dialogAddCart: MatDialog
+    private dialogAddCart: MatDialog,
+    public location: Location,
   ) { }
 
   ngOnInit() {
