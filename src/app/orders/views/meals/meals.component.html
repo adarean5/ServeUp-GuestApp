@@ -50,7 +50,7 @@
   </mat-tab-group>
   <div class="cart-overview">
     <p>Naročilo</p>
-    <p class="total-price">{{total$ | async | currency:'EUR':true:'1.2-2'}}</p>
+    <p class="total-price">{{total$ | async | currency:'EUR':'symbol':'1.2-2'}}</p>
     <button mat-flat-button color="accent" [routerLink]="'/main/cart'">Košarica</button>
   </div>
 </ng-template>

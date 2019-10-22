@@ -57,4 +57,8 @@ export class CartComponent implements OnInit {
       console.log(paymentOption);
     });
   }
+
+  mealTrack(index: number, meal: Meal) {
+    return meal.id;
+  }
 }

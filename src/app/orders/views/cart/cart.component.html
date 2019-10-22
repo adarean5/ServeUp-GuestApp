@@ -6,26 +6,26 @@
     {{restaurant.street + ' ' + restaurant.houseNumber + ', ' + restaurant.city}}
   </ng-container>
     <app-restaurant-grid>
-      <app-meal-card *ngFor="let meal of cartContent$ | async | keyvalue; trackBy: mealTrack"
-                     [title]="meal.value.name"
-                     [info]="meal.value.description"
-                     [value]="meal.value.price * meal.value.quantity"
-                     [id]="meal.value.id"
+      <app-meal-card *ngFor="let meal of cartContent$ | async; trackBy: mealTrack"
+                     [title]="meal.name"
+                     [info]="meal.description"
+                     [value]="meal.price * meal.quantity"
+                     [id]="meal.id"
                      [showActions]="true"
       >
         <app-icon-button class="delete-button" icon="delete"
-                         (click)="deleteItem(meal.value.id)"
+                         (click)="deleteItem(meal.id)"
         ></app-icon-button>
         <span class="vertical-div light"></span>
-        <app-counter [quantity]="meal.value.quantity"
-                     (updateQuantity)="updateQuantity(meal.value.id, $event)"
+        <app-counter [quantity]="meal.quantity"
+                     (updateQuantity)="updateQuantity(meal.id, $event)"
         ></app-counter>
       </app-meal-card>
     </app-restaurant-grid>
 
     <div class="cart-actions">
-      <div id="total-text">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | currency:'EUR':true:'1.2-2'}}</span></div>
-      <div id="arrival-counter">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
+      <div id="total-text" class="text-muted">Skupaj: <span class="sup-text-primary">{{totalPrice$ | async | currency:'EUR':'symbol':'1.2-2'}}</span></div>
+      <div id="arrival-counter" class="text-muted">Prihod čez <app-counter [quantity]="30" [min]="30" [change]="10"></app-counter> minut.</div>
       <div class="button-container">
         <button id="more-button" mat-stroked-button color="accent" [routerLink]="'/main/meals/' + restaurant.id">Dodaj jedi</button>
         <button id="order-button" mat-stroked-button color="primary" (click)="openPaymentDialog()">Naroči</button>
