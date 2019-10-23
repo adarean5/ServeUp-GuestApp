@@ -7,13 +7,13 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canLoad: [MainGuard],
+    // canLoad: [MainGuard],
     canActivate: [MainGuard],
   },
   {
     path: 'main',
     loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule),
-    canLoad: [AuthGuard],
+    // canLoad: [AuthGuard],
     canActivate: [AuthGuard],
   },
   {
