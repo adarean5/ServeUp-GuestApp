@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import {auth} from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Observable} from 'rxjs';
-import {User} from '../../store/models/user.model';
+import {User} from '../../../store/models/user.model';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

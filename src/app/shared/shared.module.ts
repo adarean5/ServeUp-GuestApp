@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule} from './material/material.module';
-import { IconComponent } from './icon/icon.component';
+import { IconComponent } from './components/icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import {LoadingComponent} from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [IconComponent],
-  exports: [
-    IconComponent,
+  declarations: [IconComponent, LoadingComponent],
+  imports: [
     MaterialModule,
     HttpClientModule,
+    CommonModule,
   ],
-  imports: [
+  exports: [
+    IconComponent,
+    LoadingComponent,
     MaterialModule,
     HttpClientModule,
     CommonModule

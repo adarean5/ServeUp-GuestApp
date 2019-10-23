@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainViewComponent } from './views/main-view/main-view.component';
-import { MaterialModule } from '../shared/material/material.module';
 import { ProfileComponent } from './views/profile/profile.component';
-import {StoreModule} from '@ngrx/store';
-import {authReducers} from '../store/reducers/auth.reducers';
-import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from '../store/effects/auth.effects';
 import {SharedModule} from '../shared/shared.module';
 import { HomeComponent } from './views/home/home.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MainTabsComponent} from './views/main-tabs/main-tabs.component';
 import { OrdersTabComponent } from './views/orders-tab/orders-tab.component';
 import { DialogSearchComponent } from './components/dialog-search/dialog-search.component';
@@ -22,11 +17,61 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 import { MealsComponent } from './views/meals/meals.component';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
 import { DialogAddCartComponent } from './components/dialog-add-cart/dialog-add-cart.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { CartComponent } from './views/cart/cart.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { DialogPaymentComponent } from './components/dialog-payment/dialog-payment.component';
 import {FormsModule} from '@angular/forms';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MainViewComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/main/home'
+      },
+      {
+        path: '',
+        component: MainTabsComponent,
+        data: {num: 1},
+        children: [
+          {
+            path: 'home',
+            component: HomeComponent,
+            data: {num: 1}
+          },
+          {
+            path: 'cart',
+            component: CartComponent,
+            data: {num: 2}
+          },
+          {
+            path: 'orders',
+            component: OrdersTabComponent,
+            data: {num: 3}
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+            data: {num: 4}
+          },
+        ]
+      },
+      {
+        path: 'search-results',
+        component: RestaurantSearchDisplayComponent,
+        data: {num: 2},
+      },
+      {
+        path: 'meals/:id',
+        component: MealsComponent,
+        data: {num: 3},
+      },
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -44,20 +89,19 @@ import {FormsModule} from '@angular/forms';
     MealsComponent,
     MealCardComponent,
     DialogAddCartComponent,
-    LoadingComponent,
     CartComponent,
     CounterComponent,
     DialogPaymentComponent,
   ],
   imports: [
     CommonModule,
-    MaterialModule,
-    StoreModule.forFeature('auth', authReducers),
-    EffectsModule.forFeature([AuthEffects]),
     SharedModule,
     BarRatingModule,
-    RouterModule,
+    RouterModule.forChild(routes),
     FormsModule
+  ],
+  exports: [
+    RouterModule
   ],
   entryComponents: [
     DialogSearchComponent,

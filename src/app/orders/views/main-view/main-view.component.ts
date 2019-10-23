@@ -38,6 +38,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log('Starting main view');
     this.subscription = new Subscription();
 
     // Set initial url
@@ -53,6 +54,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
     // Select current user from store
     this.subscription.add(this.store.select(selectUser).subscribe((newUser: User) => {
+      console.log('main new user', newUser);
       if (newUser === null) {
         this.router.navigate(['/login']);
       } else {

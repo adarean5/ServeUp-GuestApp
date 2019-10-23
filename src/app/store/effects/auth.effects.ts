@@ -5,7 +5,7 @@ import {catchError, exhaustMap, map, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 
 import * as AuthActions from '../actions/auth.actions';
-import {AuthService} from '../../auth/services/auth.service';
+import {AuthService} from '../../shared/services/auth/auth.service';
 import {User} from '../models/user.model';
 import {Action} from '@ngrx/store';
 
@@ -16,11 +16,11 @@ export class AuthEffects {
     private actions$: Actions,
   ) {}
 
-  init = createEffect(() => this.actions$.pipe(
+  /*init = createEffect(() => this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     tap(() => {console.log('[ROOT_EFFECTS_INIT] Started'); }),
     exhaustMap(() => this.getUserFromFire())
-  ));
+  ));*/
 
   getUser = createEffect(() => this.actions$.pipe(
     // Check if action type matches getUser type

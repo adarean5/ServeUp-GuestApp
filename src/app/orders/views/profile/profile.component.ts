@@ -4,6 +4,7 @@ import {IAppState} from '../../../store/states/app.state';
 import {selectUser} from '../../../store/selectors/auth.selectors';
 import {User} from '../../../store/models/user.model';
 import {gSignOut} from '../../../store/actions/auth.actions';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import {gSignOut} from '../../../store/actions/auth.actions';
 })
 export class ProfileComponent implements OnInit {
 
-  user: User;
+  user$: Observable<User>;
 
   @Output() emSignOut = new EventEmitter();
 
@@ -21,9 +22,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectUser).subscribe((newUser: User) => {
-      this.user = newUser;
-    });
+    this.user$ = this.store.select(selectUser);
   }
 
   signOut() {

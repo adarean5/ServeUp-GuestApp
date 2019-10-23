@@ -1,4 +1,12 @@
 <div id="app-container">
-  <router-outlet></router-outlet>
+  <ng-container *ngIf="(signedIn$ | async) === undefined then loading; else notLoading"></ng-container>
 </div>
+
+<ng-template #notLoading>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading>ServeUp</app-loading>
+</ng-template>
 

@@ -12,7 +12,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
 import { OrdersModule } from './orders/orders.module';
 
 import {StoreModule} from '@ngrx/store';
@@ -20,12 +19,13 @@ import {EffectsModule} from '@ngrx/effects';
 import {appReducers} from './store/reducers/app.reducers';
 import {AuthEffects} from './store/effects/auth.effects';
 
-import {environment} from '../environments/environment';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {HomeEffects} from './store/effects/home.effects';
 import {CartEffects} from './store/effects/cart.effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {SharedModule} from './shared/shared.module';
 export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
@@ -44,6 +44,7 @@ export const firebaseConfig = environment.firebaseConfig;
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
     }),
+    SharedModule,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictActionImmutability: true,
@@ -56,7 +57,6 @@ export const firebaseConfig = environment.firebaseConfig;
       CartEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AuthModule,
     OrdersModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],

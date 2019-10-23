@@ -4,7 +4,8 @@ import {User} from './store/models/user.model';
 import {IAppState} from './store/states/app.state';
 import {Store} from '@ngrx/store';
 import {getUser} from './store/actions/auth.actions';
-import {selectUser} from './store/selectors/auth.selectors';
+import {selectSignedIn, selectUser} from './store/selectors/auth.selectors';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import {selectUser} from './store/selectors/auth.selectors';
 export class AppComponent implements OnInit {
   title = 'ServeUp';
   user$: Observable<User>;
+  signedIn$: Observable<boolean>;
 
   constructor(private store: Store<IAppState>) {}
 
@@ -21,15 +23,7 @@ export class AppComponent implements OnInit {
     /*navigator.geolocation.getCurrentPosition(position => {
       console.log('Position',  position);
     });*/
-    console.log('Starting app component init');
     this.user$ = this.store.select(selectUser);
-    console.log('Starting dispatchUser');
-    console.log('Ending dispatch user.');
-    console.log('Ending app component init');
-  }
-
-  async dispatchUser() {
-    // const dispatchResult = await this.store.dispatch(getUser());
-    // console.log('Dispatch result:', dispatchResult);
+    this.signedIn$ = this.store.select(selectSignedIn);
   }
 }

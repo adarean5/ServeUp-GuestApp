@@ -3,14 +3,15 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Router
+  Router, Route
 } from '@angular/router';
 
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Store} from '@ngrx/store';
-import {selectSignedIn} from '../store/selectors/auth.selectors';
-import {IAppState} from '../store/states/app.state';
+import {filter, map, take, tap} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
+import {selectSignedIn} from '../../store/selectors/auth.selectors';
+import {IAppState} from '../../store/states/app.state';
+import {getUser} from '../../store/actions/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,22 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin();
   }
 
-  canLoad(): Observable<boolean> {
+  canLoad(route: Route): Observable<boolean> {
     return this.checkLogin();
   }
 
   checkLogin(): Observable<boolean> {
-    return this.store.select(selectSignedIn).pipe(
+    return this.store.pipe(
+      select(selectSignedIn),
+      tap((authStatus: boolean) => {
+        if (authStatus === undefined) {
+          this.store.dispatch(getUser());
+        }
+      }),
+      filter((authStatus: boolean) => authStatus !== undefined),
+      take(1),
       map((authStatus: boolean) => {
+        console.log('AUTH GUARD Auth status', authStatus);
         if (authStatus !== false) {
           return true;
         } else {
