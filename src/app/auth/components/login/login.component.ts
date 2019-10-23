@@ -5,6 +5,8 @@ import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {User} from '../../../store/models/user.model';
 import {selectLoading, selectUser} from '../../../store/selectors/auth.selectors';
+import {pipe} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log('Login component init');
-    this.store.select(selectUser).subscribe((user: User) => {
+    this.store.select(selectUser).pipe(takeWhile(user => !user, true)).subscribe((user: User) => {
       if (user) {
         this.router.navigate(['/main']);
       }
