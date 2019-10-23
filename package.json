@@ -7,7 +7,7 @@
     "postinstall": "ng build --aot --prod",
     "start-local": "ng serve",
     "start-ssl": "ng serve --ssl",
-    "start-network": "ng serve --ssl --host 0.0.0.0",
+    "start-network": "ng serve --host 0.0.0.0",
     "prod-network": "ng serve --ssl --host 0.0.0.0 --prod",
     "build": "ng build",
     "test": "ng test",

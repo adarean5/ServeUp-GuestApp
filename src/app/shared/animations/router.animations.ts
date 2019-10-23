@@ -22,17 +22,17 @@ export function routerAnimation(slideTime: string, slideOut: string, slideIn: st
       ]),
 
       query(':enter', [
-        style({ transform: 'translate(-100%)'})
+        style({ transform: 'translateX(-100%)'})
       ]),
 
       query(':leave', animateChild()),
 
       group([
         query(':leave', [
-          animate(slideTime + ' ' + slideOut, style({ transform: 'translate(100%)'}))
+          animate(slideTime + ' ' + slideOut, style({ transform: 'translateX(100%)'}))
         ]),
         query(':enter', [
-          animate(slideTime + ' ' + slideIn, style({ transform: 'translate(0%)'}))
+          animate(slideTime + ' ' + slideIn, style({ transform: 'translateX(0%)'}))
         ])
       ]),
       query(':enter', animateChild()),
@@ -53,7 +53,7 @@ export function routerAnimation(slideTime: string, slideOut: string, slideIn: st
       ]),
       // Move the entering component to the far right side
       query(':enter', [
-        style({ transform: 'translate(100%)'})
+        style({ transform: 'translateX(100%)'})
       ]),
       // Trigger the leaving component's child animations.
       query(':leave', animateChild()),
@@ -61,11 +61,11 @@ export function routerAnimation(slideTime: string, slideOut: string, slideIn: st
       group([
         // Leaving component animations:
         query(':leave', [
-          animate(slideTime + ' ' + slideOut, style({ transform: 'translate(-100%)'}))
+          animate(slideTime + ' ' + slideOut, style({ transform: 'translateX(-100%)'}))
         ]),
         // Entering component animations:
         query(':enter', [
-          animate(slideTime + ' ' + slideIn, style({ transform: 'translate(0%)'}))
+          animate(slideTime + ' ' + slideIn, style({ transform: 'translateX(0%)'}))
         ])
       ]),
       // Trigger the entering component's child animations.

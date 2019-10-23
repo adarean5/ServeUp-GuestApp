@@ -18,7 +18,7 @@ export const selectCartContent = createSelector(
 export const selectTotalPrice = createSelector(
   selectCartContent,
   (cartContent) => {
-    return cartContent.map((meal: Meal) => meal.quantity * meal.price)
+    return cartContent.length === 0 ? 0 : cartContent.map((meal: Meal) => meal.quantity * meal.price)
       .reduce((total: number, add: number) => total + add);
   }
 );

@@ -5,19 +5,23 @@
   min-width: 20%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   //grid-template-rows: 1fr 2fr;
 
   #profile-info {
-    flex: 1;
+    // flex-grow: 1;
     background: $sup-c-primary;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1em;
 
     #profile-picture {
+      margin-bottom: 1em;
       border-radius: 50%;
-      height: 50%;
+      height: 10em;
+      width: 10em;
     }
 
     #profile-name {
@@ -27,9 +31,10 @@
   }
 
   #profile-actions {
-    flex: 2;
+    flex-grow: 2;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 
     button {
       margin: 0.5em;
