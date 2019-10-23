@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogSearchComponent } from './dialog-search.component';
+import {DialogSearchComponent} from './dialog-search.component';
 
 describe('DialogSearchComponent', () => {
   let component: DialogSearchComponent;

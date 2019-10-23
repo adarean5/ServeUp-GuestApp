@@ -1,9 +1,8 @@
-import {IAppState} from '../states/app.state';
-import {createSelector} from '@ngrx/store';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {ICartState} from '../states/cart.state';
 import {Meal} from '../models/meal.model';
 
-const selectCartState = (state: IAppState) => state.cart;
+const selectCartState = createFeatureSelector<ICartState>('cart');
 
 export const selectCurrentRestaurant = createSelector(
   selectCartState,

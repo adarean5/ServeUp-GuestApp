@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OrdersTabComponent } from './orders-tab.component';
+import {OrdersTabComponent} from './orders-tab.component';
 
 describe('OrdersTabComponent', () => {
   let component: OrdersTabComponent;

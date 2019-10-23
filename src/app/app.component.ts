@@ -3,9 +3,7 @@ import {Observable} from 'rxjs';
 import {User} from './store/models/user.model';
 import {IAppState} from './store/states/app.state';
 import {Store} from '@ngrx/store';
-import {getUser} from './store/actions/auth.actions';
 import {selectSignedIn, selectUser} from './store/selectors/auth.selectors';
-import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

@@ -5,7 +5,6 @@ import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {User} from '../../../store/models/user.model';
 import {selectLoading, selectUser} from '../../../store/selectors/auth.selectors';
-import {pipe} from 'rxjs';
 import {takeWhile} from 'rxjs/operators';
 
 @Component({

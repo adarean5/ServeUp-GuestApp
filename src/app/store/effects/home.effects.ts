@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OrdersService} from '../../orders/services/orders.service';
-import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
 import * as HomeActions from '../actions/home.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {Restaurant} from '../models/restaurant.model';
@@ -8,17 +8,22 @@ import {of} from 'rxjs';
 import {RestaurantType} from '../models/restaurant-type.model';
 import {Router} from '@angular/router';
 import {Meal} from '../models/meal.model';
+import {Action, createAction} from '@ngrx/store';
 
 @Injectable()
-export class HomeEffects {
+export class HomeEffects implements OnInitEffects {
   constructor(
     private ordersService: OrdersService,
     private actions$: Actions,
     private router: Router
   ) {}
 
+  homeEffectsInit = createAction(
+    '[HomeEffects] Init'
+  );
+
   init = createEffect(() => this.actions$.pipe(
-    ofType(ROOT_EFFECTS_INIT),
+    ofType(this.homeEffectsInit),
     switchMap(() => {
       return this.ordersService.restaurantsHome().pipe(
         map((response: any[]) => {
@@ -91,4 +96,8 @@ export class HomeEffects {
       );
     })
   ));
+
+  ngrxOnInitEffects(): Action {
+    return this.homeEffectsInit();
+  }
 }

@@ -1,9 +1,7 @@
 import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {routerAnimation} from '../../../shared/animations/router.animations';
-import {MatDialog} from '@angular/material';
 import {Subscription} from 'rxjs';
-import { HostListener } from '@angular/core';
 
 
 @Component({

@@ -1,16 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
-import {gSignOut} from '../../../store/actions/auth.actions';
 import {User} from '../../../store/models/user.model';
 import {selectUser} from '../../../store/selectors/auth.selectors';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {MatDialog, MatDialogConfig} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {DialogSearchComponent} from '../../components/dialog-search/dialog-search.component';
 import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 import {routerAnimation} from '../../../shared/animations/router.animations';
 import {openSearchDialog} from '../../../store/actions/home.actions';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-view',

@@ -1,11 +1,4 @@
-import {
-  animate,
-  query,
-  style,
-  transition,
-  trigger,
-  group, animateChild,
-} from '@angular/animations';
+import {animate, animateChild, group, query, style, transition, trigger,} from '@angular/animations';
 
 export function routerAnimation(slideTime: string, slideOut: string, slideIn: string) {
   return trigger('routerAnimation', [

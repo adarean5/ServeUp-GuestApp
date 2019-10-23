@@ -4,10 +4,9 @@ import {Restaurant} from '../../../store/models/restaurant.model';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectCartContent, selectCurrentRestaurant, selectTotalPrice} from '../../../store/selectors/cart.selectors';
-import {map, takeWhile, tap} from 'rxjs/operators';
-import {addToCart, attemptAddToCart, removeItem, updateQuantity} from '../../../store/actions/cart.actions';
-import {Observable, ReplaySubject} from 'rxjs';
-import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
+import {removeItem, updateQuantity} from '../../../store/actions/cart.actions';
+import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
 

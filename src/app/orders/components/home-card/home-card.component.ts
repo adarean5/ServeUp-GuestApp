@@ -1,4 +1,4 @@
-import {Component, Directive, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core';
 import {Restaurant} from '../../../store/models/restaurant.model';
 
 @Component({

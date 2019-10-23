@@ -1,8 +1,7 @@
-import { IAppState } from '../states/app.state';
-import {createSelector} from '@ngrx/store';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {IHomeState} from '../states/home.state';
 
-const selectHomeState = (state: IAppState) => state.home;
+const selectHomeState = createFeatureSelector<IHomeState>('home');
 
 export const selectRestaurants = createSelector(
   selectHomeState,

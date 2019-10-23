@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RestaurantSearchDisplayComponent } from './restaurant-search-display.component';
+import {RestaurantSearchDisplayComponent} from './restaurant-search-display.component';
 
 describe('RestaurantSearchDisplayComponent', () => {
   let component: RestaurantSearchDisplayComponent;

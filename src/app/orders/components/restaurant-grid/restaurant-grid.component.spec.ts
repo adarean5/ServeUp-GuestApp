@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RestaurantGridComponent } from './restaurant-grid.component';
+import {RestaurantGridComponent} from './restaurant-grid.component';
 
 describe('RestaurantGridComponent', () => {
   let component: RestaurantGridComponent;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';

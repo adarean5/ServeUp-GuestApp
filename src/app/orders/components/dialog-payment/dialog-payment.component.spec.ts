@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogPaymentComponent } from './dialog-payment.component';
+import {DialogPaymentComponent} from './dialog-payment.component';
 
 describe('DialogPaymentComponent', () => {
   let component: DialogPaymentComponent;

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { MaterialModule} from './material/material.module';
-import { IconComponent } from './components/icon/icon.component';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {MaterialModule} from './material/material.module';
+import {IconComponent} from './components/icon/icon.component';
+import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {LoadingComponent} from './components/loading/loading.component';
 

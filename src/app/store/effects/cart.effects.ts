@@ -1,25 +1,29 @@
 import * as CartActions from '../actions/cart.actions';
-import {act, Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {catchError, concatMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {map, tap, withLatestFrom} from 'rxjs/operators';
 import {IAppState} from '../states/app.state';
-import {Store} from '@ngrx/store';
+import {Action, createAction, Store} from '@ngrx/store';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
 import {Meal} from '../models/meal.model';
 import {Restaurant} from '../models/restaurant.model';
-import {of} from 'rxjs';
 import {initialCartState} from '../states/cart.state';
 
 @Injectable()
-export class CartEffects {
+export class CartEffects implements OnInitEffects {
+
   constructor(
     private actions$: Actions,
     private store$: Store<IAppState>
   ) {}
 
+  cartEffectsInit = createAction(
+    '[CartEffects] Init'
+  );
+
   // On init read saved card from local storage, cast it to proper objects and set state
   init = createEffect(() => this.actions$.pipe(
-    ofType(ROOT_EFFECTS_INIT),
+    ofType(this.cartEffectsInit),
     map(() => {
       const savedCart = JSON.parse(localStorage.getItem('cartContent'));
       const savedRestaurant = JSON.parse(localStorage.getItem('cartRestaurant'));
@@ -131,4 +135,8 @@ export class CartEffects {
       localStorage.setItem('cartRestaurant', JSON.stringify(restaurant === undefined ? null : restaurant));
     })
   ), {dispatch: false});
+
+  ngrxOnInitEffects(): Action {
+    return this.cartEffectsInit();
+  }
 }

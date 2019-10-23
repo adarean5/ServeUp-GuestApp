@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {
+  MatBadgeModule,
   MatButtonModule,
-  MatTooltipModule,
-  MatToolbarModule,
-  MatTabsModule,
-  MatMenuModule,
   MatCardModule,
-  MatRippleModule,
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatMenuModule,
+  MatRadioModule,
+  MatRippleModule,
   MatSelectModule,
-  MatBadgeModule,
-  MatRadioModule
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IAppState} from '../../../store/states/app.state';
 import {Store} from '@ngrx/store';
 import {selectLoadingRestaurants, selectRestaurants} from '../../../store/selectors/home.selector';
-import {openSearchDialog, getMealsForRestaurant} from '../../../store/actions/home.actions';
+import {openSearchDialog} from '../../../store/actions/home.actions';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';

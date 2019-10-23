@@ -8,7 +8,7 @@ import {selectLoadingMeals, selectMeals, selectRestaurants} from '../../../store
 import {MatDialog} from '@angular/material';
 import {DialogAddCartComponent} from '../../components/dialog-add-cart/dialog-add-cart.component';
 import {Meal} from '../../../store/models/meal.model';
-import {take, takeWhile} from 'rxjs/operators';
+import {takeWhile} from 'rxjs/operators';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {attemptAddToCart} from '../../../store/actions/cart.actions';
 import {selectCartContent, selectTotalPrice} from '../../../store/selectors/cart.selectors';

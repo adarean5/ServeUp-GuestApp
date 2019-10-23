@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BehaviorSubject, Observable, of, ReplaySubject} from 'rxjs';
+import {ReplaySubject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 
 @Component({

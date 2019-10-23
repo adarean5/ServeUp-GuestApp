@@ -1,18 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from './shared/material/material.module';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { OrdersModule } from './orders/orders.module';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
@@ -21,11 +19,10 @@ import {AuthEffects} from './store/effects/auth.effects';
 
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {HomeEffects} from './store/effects/home.effects';
-import {CartEffects} from './store/effects/cart.effects';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {SharedModule} from './shared/shared.module';
+
 export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
@@ -35,7 +32,6 @@ export const firebaseConfig = environment.firebaseConfig;
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
     NgbModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
@@ -53,11 +49,8 @@ export const firebaseConfig = environment.firebaseConfig;
     }),
     EffectsModule.forRoot([
       AuthEffects,
-      HomeEffects,
-      CartEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    OrdersModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],

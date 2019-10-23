@@ -1,5 +1,4 @@
-import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {Restaurant} from '../../../store/models/restaurant.model';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-restaurant-grid',

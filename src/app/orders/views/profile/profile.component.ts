@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {selectUser} from '../../../store/selectors/auth.selectors';
