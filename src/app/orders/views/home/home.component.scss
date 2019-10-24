@@ -8,19 +8,20 @@
   flex-direction: column;
 
   .search-bar {
-    background: darken($sup-c-background, 10%);
+    background: darken($sup-c-background, 5%);
     margin: 1em;
-    padding: 1em;
+    padding: 1.5em;
+    height: 0;
     border-radius: 24px;
     align-items: center;
     display: flex;
+    cursor: pointer;
 
     @media only screen and (min-width: $size-md) {
       display: none;
     }
 
     .search-text {
-      cursor: pointer;
       margin-left: 1em;
       color: $sup-c-black;
     }
@@ -39,12 +40,5 @@
       font-weight: bold;
       font-size: 1.2em;
     }
-  }
-
-  #restaurant-list {
-    flex: 1;
-    margin-top: 1rem;
-    overflow: auto;
-    padding: 0;
   }
 }

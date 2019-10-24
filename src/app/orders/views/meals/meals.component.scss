@@ -17,9 +17,11 @@
     padding-right: 1em;
     display: flex;
     height: 60px;
-    background: $sup-c-black;
+    background: white;
     align-items: center;
     justify-content: space-between;
+    border-top: $sup-border-light;
+    z-index: 100;
 
     @media only screen and (min-width: $size-md) {
       display: none;
@@ -27,7 +29,6 @@
 
     p {
       font-weight: bold;
-      color: white;
 
       &.total-price {
         color: $sup-c-accent;

@@ -20,8 +20,8 @@
   justify-content: center;
   text-decoration: none;
   flex: 2;
-  color: black;
-  fill: black;
+  color: $sup-c-black;
+  fill: $sup-c-black;
   transition: flex 300ms ease;
 
   span {
@@ -41,6 +41,7 @@
   display: flex;
   z-index: 100;
   background: white;
+  border-top: $sup-border-light;
 }
 
 @media only screen and (min-width: $size-md) {

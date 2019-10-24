@@ -2,7 +2,7 @@
   <router-outlet #router='outlet'></router-outlet>
 </div>
 
-<nav class="tab-nav-bar mat-elevation-z10">
+<nav class="tab-nav-bar shadow">
   <a class="tab-button"
      [routerLink]="tabLinks.home"
      (click)="currentTab = tabLinks.home" [class.tab-active]="currentTab === tabLinks.home">

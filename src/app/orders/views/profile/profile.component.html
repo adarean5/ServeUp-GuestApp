@@ -4,29 +4,29 @@
     <p id="profile-name">{{ user.displayName }}</p>
   </div>
   <div id="profile-actions">
-    <button mat-stroked-button>
-    <span class="button-container">
-      <app-icon iconName="mail"></app-icon>
-      <span>Account info</span>
-    </span>
+    <button mat-stroked-button class="shadow-sm">
+      <span class="button-container">
+        <app-icon iconName="mail"></app-icon>
+        <span>Account info</span>
+      </span>
     </button>
-    <button mat-stroked-button>
-    <span class="button-container">
-      <app-icon iconName="profile"></app-icon>
-      <span>Account info</span>
-    </span>
+    <button mat-stroked-button class="shadow-sm">
+      <span class="button-container">
+        <app-icon iconName="profile"></app-icon>
+        <span>Account info</span>
+      </span>
     </button>
-    <button mat-stroked-button>
-    <span class="button-container">
-      <app-icon iconName="settings"></app-icon>
-      <span>Settings</span>
-    </span>
+    <button mat-stroked-button class="shadow-sm">
+      <span class="button-container">
+        <app-icon iconName="settings"></app-icon>
+        <span>Settings</span>
+      </span>
     </button>
-    <button mat-stroked-button color="warn" (click)="signOut()" class="sign-out-button">
-    <span class="button-container">
-      <app-icon iconName="sign-out"></app-icon>
-      <span>Sign out</span>
-    </span>
+    <button mat-stroked-button color="warn" (click)="signOut()" class="sign-out-button shadow-sm">
+      <span class="button-container">
+        <app-icon iconName="sign-out"></app-icon>
+        <span>Sign out</span>
+      </span>
     </button>
   </div>
 </ng-container>
