@@ -18,6 +18,15 @@ export class Meal {
     );
   }
 
+  static toApi(meal: Meal) {
+    return {
+      id_jed: meal.id,
+      ime_jedi: meal.name,
+      kolicina: meal.quantity,
+      cena: meal.price
+    };
+  }
+
   // Use for changing meal quantity
   static withQuantity(meal: Meal, quantity: number) {
     return new this (
