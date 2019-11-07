@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule),
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
     // canLoad: [AuthGuard],
     canActivate: [AuthGuard],
   },

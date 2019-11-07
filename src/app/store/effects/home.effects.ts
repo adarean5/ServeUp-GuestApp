@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {OrdersService} from '../../orders/services/orders.service';
+import {OrdersService} from '../../main/services/orders.service';
 import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
 import * as HomeActions from '../actions/home.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';

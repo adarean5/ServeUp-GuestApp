@@ -10,7 +10,7 @@ import {StoreModule} from '@ngrx/store';
 import {cartReducers} from '../store/reducers/cart.reducers';
 import {homeReducers} from '../store/reducers/home.reducers';
 
-import {routes} from './orders.routes';
+import {routes} from './main.routes';
 
 import {MainViewComponent} from './views/main-view/main-view.component';
 import {ProfileComponent} from './views/profile/profile.component';
@@ -71,4 +71,4 @@ import {DialogPaymentComponent} from './components/dialog-payment/dialog-payment
     DialogPaymentComponent
   ]
 })
-export class OrdersModule { }
+export class MainModule { }
