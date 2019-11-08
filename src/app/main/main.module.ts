@@ -29,6 +29,8 @@ import {DialogAddCartComponent} from './components/dialog-add-cart/dialog-add-ca
 import {CartComponent} from './views/cart/cart.component';
 import {CounterComponent} from './components/counter/counter.component';
 import {DialogPaymentComponent} from './components/dialog-payment/dialog-payment.component';
+import {OrdersEffects} from '../store/effects/orders.effects';
+import {ordersReducers} from '../store/reducers/orders.reducers';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,11 @@ import {DialogPaymentComponent} from './components/dialog-payment/dialog-payment
     RouterModule.forChild(routes()),
     StoreModule.forFeature('cart', cartReducers),
     StoreModule.forFeature('home', homeReducers),
+    StoreModule.forFeature('orders', ordersReducers),
     EffectsModule.forFeature([
       HomeEffects,
-      CartEffects
+      CartEffects,
+      OrdersEffects
     ]),
     FormsModule
   ],

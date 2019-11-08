@@ -9,6 +9,7 @@ import {removeItem, updateQuantity} from '../../../store/actions/cart.actions';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
+import {submitNewOrder} from '../../../store/actions/orders.actions';
 
 @Component({
   selector: 'app-cart',
@@ -54,6 +55,7 @@ export class CartComponent implements OnInit {
     const dialogRefPayment = this.dialogPaymentOption.open(DialogPaymentComponent);
     dialogRefPayment.afterClosed().subscribe((paymentOption: string) => {
       console.log(paymentOption);
+      this.store.dispatch(submitNewOrder());
     });
   }
 

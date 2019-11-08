@@ -3,8 +3,7 @@ import {ICartState, initialCartState} from '../states/cart.state';
 import * as CartActions from '../actions/cart.actions';
 import {Meal} from '../models/meal.model';
 
-const cartReducer = createReducer(
-  initialCartState,
+const cartReducer = createReducer(initialCartState,
   on(CartActions.addToCart, (state, {cartContent, restaurant}) => ({
     ...state,
     cartContent,

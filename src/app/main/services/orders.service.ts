@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {Order} from '../../store/models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,13 @@ export class OrdersService {
     const url = environment.baseUrlBackend + '/meals/?id_restavracija=' + restaurantId;
 
     return this.http.get(url);
+  }
+
+  public newOrderByUser(order: Order) {
+    const url = environment.baseUrlBackend + '/orders/new_order/';
+    const body = Order.toApi(order);
+    console.log('newOrderByUser body:', body);
+
+    return this.http.post(url, body);
   }
 }

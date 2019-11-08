@@ -2,8 +2,7 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {IHomeState, initialHomeState} from '../states/home.state';
 import * as HomeActions from '../actions/home.actions';
 
-const homeReducer = createReducer(
-  initialHomeState,
+const homeReducer = createReducer(initialHomeState,
   // Get restaurants
   on(HomeActions.getRestaurants, state => ({
     ...state,
