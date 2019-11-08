@@ -32,8 +32,8 @@ export class OrdersEffects {
         console.log('Cart content EFFECTS', cartContent);
         const arrivesIn = 60; // TODO Get actual value from user input
         const now = new Date();
-        const submittedTime = moment(now).format('YYYY-MM-DD"T"hh:mm:ss');
-        const arrivalTime = moment(now).add(arrivesIn, 'm').format('YYYY-MM-DD"T"hh:mm:ss');
+        const submittedTime = moment(now).format('YYYY-MM-DDThh:mm:ss');
+        const arrivalTime = moment(now).add(arrivesIn, 'm').format('YYYY-MM-DDThh:mm:ss');
         console.log(submittedTime);
         console.log(arrivalTime);
         return new Order(
