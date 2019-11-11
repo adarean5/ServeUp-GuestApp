@@ -23,6 +23,11 @@ const cartReducer = createReducer(initialCartState,
         return meal;
       }
     })
+  })),
+  on(CartActions.clearCart, state => ({
+    ...state,
+    cartRestaurant: undefined,
+    cartContent: [],
   }))
 );
 

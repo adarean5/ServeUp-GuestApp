@@ -124,6 +124,13 @@ export class CartEffects implements OnInitEffects {
     })
   ));
 
+  clearCart = createEffect(() => this.actions$.pipe(
+    ofType(CartActions.clearCart),
+    map(() => {
+      return CartActions.saveToLocal();
+    })
+  ));
+
   saveToLocal = createEffect(() => this.actions$.pipe(
     ofType(CartActions.saveToLocal),
     withLatestFrom(

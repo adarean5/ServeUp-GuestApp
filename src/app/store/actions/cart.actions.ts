@@ -32,3 +32,7 @@ export const removeItem = createAction(
 export const saveToLocal = createAction(
   '[Cart] Save to local'
 );
+
+export const clearCart = createAction(
+  '[Cart] Clear'
+);

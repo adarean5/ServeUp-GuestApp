@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import {selectUser} from '../selectors/auth.selectors';
 import {of} from 'rxjs';
 import {MatSnackBar} from '@angular/material';
+import {clearCart} from '../actions/cart.actions';
 
 @Injectable()
 export class OrdersEffects {
@@ -65,15 +66,16 @@ export class OrdersEffects {
 
   submitNewOrderSuccess = createEffect(() => this.actions$.pipe(
     ofType(OrdersActions.submitNewOrderSuccess),
-    tap(() => {
+    map(() => {
       const snackBarRef = this.snackBar.open('Naročilo oddano', 'Naročila', {
         duration: 3000
       });
       snackBarRef.onAction().subscribe(() => {
         this.router.navigate(['/main/orders']);
       });
+      return clearCart();
     })
-  ), {dispatch: false});
+  ));
 
   /*getAllOrders = createEffect(() => this.actions$.pipe(
     ofType(Ord)
