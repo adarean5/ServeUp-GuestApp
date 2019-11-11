@@ -5,6 +5,7 @@
   <ng-container class="header-subtitle">
     {{restaurant.street + ' ' + restaurant.houseNumber + ', ' + restaurant.city}}
   </ng-container>
+  <ng-container *ngIf="!(submittingOrder$ | async) else submittingOrder">
     <app-restaurant-grid>
       <app-meal-card *ngFor="let meal of cartContent$ | async; trackBy: mealTrack"
                      [title]="meal.name"
@@ -31,6 +32,7 @@
         <button id="order-button" mat-stroked-button color="primary" (click)="openPaymentDialog()">Naroči</button>
       </div>
     </div>
+  </ng-container>
 </app-list-layout>
 
 <ng-template #empty>
@@ -42,4 +44,8 @@
 
 <ng-template #loading>
   <app-loading>Košarico</app-loading>
+</ng-template>
+
+<ng-template #submittingOrder>
+  <app-loading [customText]="true">Procesiram naročilo</app-loading>
 </ng-template>

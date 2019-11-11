@@ -20,7 +20,7 @@
     font-size: 1.5em;
     color: $sup-c-primary;
 
-    span {
+    span:not(.action-text) {
       animation: $sup-a-blink;
       font-size: 1.5em;
 

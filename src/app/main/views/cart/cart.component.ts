@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
 import {submitNewOrder} from '../../../store/actions/orders.actions';
+import {selectSubmittingOrder} from '../../../store/selectors/orders.selectors';
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
   cartContent$: Observable<{[mealId: number]: Meal}>;
   cartRestaurant$: Observable<Restaurant>;
   totalPrice$: Observable<any>;
+  submittingOrder$: Observable<boolean>;
 
   constructor(
     private store: Store<IAppState>,
@@ -35,6 +37,7 @@ export class CartComponent implements OnInit {
       tap((newRestaurant: Restaurant) => this.restaurant = newRestaurant)
     );
     this.totalPrice$ = this.store.select(selectTotalPrice);
+    this.submittingOrder$ = this.store.select(selectSubmittingOrder);
   }
 
   updateQuantity(mealId: number, quantity: number) {

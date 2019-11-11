@@ -11,7 +11,6 @@ import {Order} from '../models/order.model';
 import * as moment from 'moment';
 import {selectUser} from '../selectors/auth.selectors';
 import {of} from 'rxjs';
-import {submitNewOrderErr} from '../actions/orders.actions';
 
 @Injectable()
 export class OrdersEffects {
@@ -48,10 +47,15 @@ export class OrdersEffects {
       }),
       mergeMap((apiOrder: Order) => {
         return this.ordersService.newOrderByUser(apiOrder).pipe(
-          map(() => {
-            return OrdersActions.submitNewOrderSuccess();
+          map((response: any) => {
+            if (response.status === 1) {
+              console.log('Order submitted');
+              return OrdersActions.submitNewOrderSuccess();
+            } else {
+              return OrdersActions.submitNewOrderErr({err: 'Error submitting order.'})
+            }
           }),
-          catchError(err => of(submitNewOrderErr({err})))
+          catchError(err => of(OrdersActions.submitNewOrderErr({err})))
         );
       }),
     );
