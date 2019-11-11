@@ -57,8 +57,10 @@ export class CartComponent implements OnInit {
     console.log('Open dialog');
     const dialogRefPayment = this.dialogPaymentOption.open(DialogPaymentComponent);
     dialogRefPayment.afterClosed().subscribe((paymentOption: string) => {
-      console.log(paymentOption);
-      this.store.dispatch(submitNewOrder());
+      if (paymentOption) {
+        console.log(paymentOption);
+        this.store.dispatch(submitNewOrder());
+      }
     });
   }
 

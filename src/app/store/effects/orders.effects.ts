@@ -3,7 +3,7 @@ import {OrdersService} from '../../main/services/orders.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import * as OrdersActions from '../actions/orders.actions';
-import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, mergeMap, tap, withLatestFrom} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
@@ -11,6 +11,7 @@ import {Order} from '../models/order.model';
 import * as moment from 'moment';
 import {selectUser} from '../selectors/auth.selectors';
 import {of} from 'rxjs';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable()
 export class OrdersEffects {
@@ -18,7 +19,8 @@ export class OrdersEffects {
     private ordersService: OrdersService,
     private actions$: Actions,
     private router: Router,
-    private store$: Store<IAppState>
+    private store$: Store<IAppState>,
+    private snackBar: MatSnackBar
   ) {}
 
   submitNewOrder = createEffect(() => {
@@ -60,6 +62,18 @@ export class OrdersEffects {
       }),
     );
   });
+
+  submitNewOrderSuccess = createEffect(() => this.actions$.pipe(
+    ofType(OrdersActions.submitNewOrderSuccess),
+    tap(() => {
+      const snackBarRef = this.snackBar.open('Naročilo oddano', 'Naročila', {
+        duration: 3000
+      });
+      snackBarRef.onAction().subscribe(() => {
+        this.router.navigate(['/main/orders']);
+      });
+    })
+  ), {dispatch: false});
 
   /*getAllOrders = createEffect(() => this.actions$.pipe(
     ofType(Ord)
