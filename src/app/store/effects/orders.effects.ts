@@ -3,13 +3,15 @@ import {OrdersService} from '../../main/services/orders.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import * as OrdersActions from '../actions/orders.actions';
-import {map, mergeMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
 import {Order} from '../models/order.model';
 import * as moment from 'moment';
 import {selectUser} from '../selectors/auth.selectors';
+import {of} from 'rxjs';
+import {submitNewOrderErr} from '../actions/orders.actions';
 
 @Injectable()
 export class OrdersEffects {
@@ -47,10 +49,15 @@ export class OrdersEffects {
       mergeMap((apiOrder: Order) => {
         return this.ordersService.newOrderByUser(apiOrder).pipe(
           map(() => {
-            return OrdersActions.submitNewOrderErr({error: false});
-          })
+            return OrdersActions.submitNewOrderSuccess();
+          }),
+          catchError(err => of(submitNewOrderErr({err})))
         );
-      })
+      }),
     );
   });
+
+  /*getAllOrders = createEffect(() => this.actions$.pipe(
+    ofType(Ord)
+  ));*/
 }

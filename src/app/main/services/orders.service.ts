@@ -50,4 +50,14 @@ export class OrdersService {
 
     return this.http.post(url, body);
   }
+
+  public getAllOrders(userId: string) {
+    const url = environment.baseUrlBackend + '/orders/new_order/';
+    const body = {
+      id_uporabnik: userId,
+      num_orders: 10
+    };
+
+    return this.http.post(url, body);
+  }
 }
