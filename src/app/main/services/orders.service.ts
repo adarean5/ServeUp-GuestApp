@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Order} from '../../store/models/order.model';
+import {Meal} from '../../store/models/meal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,9 +44,15 @@ export class OrdersService {
     return this.http.get(url);
   }
 
-  public newOrderByUser(order: Order) {
+  public newOrderByUser(orderData) {
     const url = environment.baseUrlBackend + '/orders/new_order/';
-    const body = Order.toApi(order);
+    const body = {
+      cas_prevzema: orderData.arrivalTime,
+      cas_narocila: orderData.submittedTime,
+      id_restavracija: orderData.restaurantId,
+      id_uporabnik: orderData.userId,
+      jedi: orderData.items.map((meal: Meal) => Meal.toApi(meal))
+    };
     console.log('newOrderByUser body:', body);
 
     return this.http.post(url, body);

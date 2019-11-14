@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
 import {getOrders} from '../../../store/actions/orders.actions';
+import {Order} from '../../../store/models/order.model';
+import {Observable} from 'rxjs';
+import {selectAllOrders} from '../../../store/selectors/orders.selectors';
 
 @Component({
   selector: 'app-orders-tab',
@@ -9,13 +12,14 @@ import {getOrders} from '../../../store/actions/orders.actions';
   styleUrls: ['./orders-tab.component.scss']
 })
 export class OrdersTabComponent implements OnInit {
-
+  orders$: Observable<Order[]>;
 
   constructor(
     private store: Store<IAppState>
   ) { }
 
   ngOnInit() {
+    this.orders$ = this.store.select(selectAllOrders);
     this.store.dispatch(getOrders());
   }
 

@@ -1,1 +1,5 @@
-<p>orders-tab works!</p>
+<ul>
+  <li *ngFor="let order of (orders$ | async)">
+    {{order.orderId}}
+  </li>
+</ul>

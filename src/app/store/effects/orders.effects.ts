@@ -40,18 +40,16 @@ export class OrdersEffects {
         const arrivalTime = moment(now).add(arrivesIn, 'm').format('YYYY-MM-DDThh:mm:ss');
         console.log(submittedTime);
         console.log(arrivalTime);
-        return new Order(
+        return {
           arrivalTime,
           submittedTime,
-          cartContent,
-          {
-            restaurantId: currentRestaurant.id,
-            userId: user.uid
-          }
-        );
+          items: cartContent,
+          restaurantId: currentRestaurant.id,
+          userId: user.uid
+        };
       }),
-      mergeMap((apiOrder: Order) => {
-        return this.ordersService.newOrderByUser(apiOrder).pipe(
+      mergeMap((orderData) => {
+        return this.ordersService.newOrderByUser(orderData).pipe(
           map((response: any) => {
             if (response.status === 1) {
               console.log('Order submitted');
