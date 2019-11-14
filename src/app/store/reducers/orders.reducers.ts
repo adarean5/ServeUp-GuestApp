@@ -14,7 +14,20 @@ const ordersReducer = createReducer(initialOrderState,
   on(OrdersActions.submitNewOrderErr, state => ({
     ...state,
     submittingOrder: false
-  }))
+  })),
+  on(OrdersActions.getOrders, state => ({
+    ...state,
+    gettingOrders: true
+  })),
+  on(OrdersActions.getOrdersSuccess, (state, {orders}) => ({
+    ...state,
+    allOrders: orders,
+    gettingOrders: false
+  })),
+  on(OrdersActions.getOrdersErr, state => ({
+    ...state,
+    gettingOrders: false
+  })),
 );
 
 export function ordersReducers(state: IOrdersState, action: Action) {

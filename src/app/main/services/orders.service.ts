@@ -52,11 +52,12 @@ export class OrdersService {
   }
 
   public getAllOrders(userId: string) {
-    const url = environment.baseUrlBackend + '/orders/new_order/';
+    const url = environment.baseUrlBackend + '/user/get_orders/';
     const body = {
-      id_uporabnik: userId,
-      num_orders: 10
+      id_uporabnik: userId
     };
+
+    console.log(body);
 
     return this.http.post(url, body);
   }

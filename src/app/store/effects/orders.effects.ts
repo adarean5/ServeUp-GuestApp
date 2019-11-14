@@ -43,9 +43,11 @@ export class OrdersEffects {
         return new Order(
           arrivalTime,
           submittedTime,
-          currentRestaurant.id,
-          user.uid,
-          cartContent
+          cartContent,
+          {
+            restaurantId: currentRestaurant.id,
+            userId: user.uid
+          }
         );
       }),
       mergeMap((apiOrder: Order) => {
@@ -77,7 +79,33 @@ export class OrdersEffects {
     })
   ));
 
-  /*getAllOrders = createEffect(() => this.actions$.pipe(
-    ofType(Ord)
-  ));*/
+  getOrders = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.getOrders),
+      withLatestFrom(
+        this.store$.select(selectUser),
+      ),
+      map(([action, user]) => user.uid),
+      mergeMap((userId: string) => {
+        return this.ordersService.getAllOrders(userId).pipe(
+          map((response: any) => {
+            if (response.status === 1) {
+              const orders = response.orders.map(apiOrder => Order.fromApi(apiOrder));
+              return OrdersActions.getOrdersSuccess({orders});
+            } else {
+              return OrdersActions.getOrdersErr({err: 'Error getting orders.'});
+            }
+          }),
+          catchError(err => of(OrdersActions.getOrdersErr({err})))
+        );
+      }),
+    );
+  });
+
+  getOrdersErr = createEffect(() => this.actions$.pipe(
+    ofType(OrdersActions.getOrdersErr),
+    tap((err: any) => {
+      console.error('[GetOrdersErr]', err);
+    })
+  ), {dispatch: false});
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
+import {getOrders} from '../../../store/actions/orders.actions';
 
 @Component({
   selector: 'app-orders-tab',
@@ -15,7 +16,7 @@ export class OrdersTabComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.store.select(selectCartContent).pipe(take(1))
+    this.store.dispatch(getOrders());
   }
 
 }

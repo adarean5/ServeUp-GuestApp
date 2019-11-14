@@ -20,7 +20,7 @@ export const getOrders = createAction(
 
 export const getOrdersSuccess = createAction(
   '[Orders] Get all orders success',
-  props<{orders: Order}>()
+  props<{orders: Order[]}>()
 );
 
 export const getOrdersErr = createAction(
