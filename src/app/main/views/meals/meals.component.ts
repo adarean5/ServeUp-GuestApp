@@ -70,7 +70,7 @@ export class MealsComponent implements OnInit {
       if (meals) {
         this.meals = meals;
         console.log('Meals from meals', this.meals);
-        this.mealCategories = Object.keys(meals);
+        this.mealCategories = Object.keys(meals).sort();
         console.log(this.mealCategories);
       }
     });
