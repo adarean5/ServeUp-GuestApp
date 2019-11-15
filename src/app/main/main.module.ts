@@ -32,6 +32,7 @@ import {DialogPaymentComponent} from './components/dialog-payment/dialog-payment
 import {OrdersEffects} from '../store/effects/orders.effects';
 import {ordersReducers} from '../store/reducers/orders.reducers';
 import { OrderCardComponent } from './components/order-card/order-card.component';
+import { DialogOrderDetailsComponent } from './components/dialog-order-details/dialog-order-details.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
     CounterComponent,
     DialogPaymentComponent,
     OrderCardComponent,
+    DialogOrderDetailsComponent,
   ],
   imports: [
     SharedModule,

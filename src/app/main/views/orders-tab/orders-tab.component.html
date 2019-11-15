@@ -1,5 +1,28 @@
-<app-list-layout [displayHeader]="false">
-  <app-restaurant-grid>
-    <app-order-card *ngFor="let order of (orders$ | async)" [order]="order"></app-order-card>
-  </app-restaurant-grid>
-</app-list-layout>
+<ng-container *ngIf="loadingOrders$ | async then loading else content"></ng-container>
+
+<ng-template #content>
+  <ng-container *ngIf="(orders$ | async).length > 0 then notEmpty else empty"></ng-container>
+</ng-template>
+
+<ng-template #notEmpty>
+  <app-list-layout [displayHeader]="false">
+    <app-restaurant-grid>
+      <app-order-card
+        *ngFor="let order of (orders$ | async)" [order]="order"
+        (click)="displayDetails(order.orderId)"
+      ></app-order-card>
+    </app-restaurant-grid>
+  </app-list-layout>
+</ng-template>
+
+<ng-template #empty>
+  <div id="orders-empty">
+    <p>Trenutno še nimate naročil.</p>
+    <button mat-button color="accent" [routerLink]="'/main/home'">Prični naročati</button>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading>Naročila</app-loading>
+</ng-template>
+
