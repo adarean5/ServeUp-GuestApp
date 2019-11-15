@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-list-layout',
@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./list-layout.component.scss']
 })
 export class ListLayoutComponent implements OnInit {
+  @Input() displayHeader = true;
 
   constructor() { }
 

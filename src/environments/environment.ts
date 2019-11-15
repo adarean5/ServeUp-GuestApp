@@ -14,6 +14,7 @@ export const environment = {
     appId: '1:702266610802:web:2e7d5ce412bc6569'
   },
   baseUrlBackend: 'http://localhost:8000/api'
+  // baseUrlBackend: 'https://serveup-backend.herokuapp.com/api'
 };
 
 /*
