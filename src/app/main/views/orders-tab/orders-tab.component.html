@@ -1,5 +1,3 @@
-<ul>
-  <li *ngFor="let order of (orders$ | async)">
-    {{order.orderId}}
-  </li>
-</ul>
+<app-list-layout>
+  <app-order-card *ngFor="let order of (orders$ | async)"></app-order-card>
+</app-list-layout>
