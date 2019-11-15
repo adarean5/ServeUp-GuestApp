@@ -8,6 +8,11 @@ import {Order} from '../../../store/models/order.model';
 })
 export class OrderCardComponent implements OnInit {
   @Input() order: Order;
+  status = [
+    'NOVO',
+    'PRIPRAVLJENO',
+    'ZAKLJUČENO'
+  ];
 
   constructor() { }
 

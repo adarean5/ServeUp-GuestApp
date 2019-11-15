@@ -1,0 +1,55 @@
+@import "serveup-palette";
+
+:host {
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  width: 100%;
+
+  &:first-of-type {
+    margin-top: 1em;
+  }
+}
+.order-header {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+
+  * {
+    margin-bottom: 0;
+
+    &:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
+
+  .arrival-time {
+    color: $sup-c-primary;
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+
+  .order-data {
+    margin-left: 1em;
+    font-weight: bold;
+
+    .order-price {
+      color: $sup-c-primary;
+    }
+
+    .order-status {
+      &.new {
+        color: $sup-c-accent;
+      }
+      &.ready {
+        color: $sup-c-primary;
+      }
+      &.finished {
+        color: lightgray;
+      }
+    }
+  }
+}

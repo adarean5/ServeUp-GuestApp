@@ -1,6 +1,24 @@
-<p>Order id: {{order.orderId}}</p>
-<p>Ime restavracije {{order.restaurantName}}</p>
-<p>Čas prevzema {{order.arrivalTime}}</p>
-<p>Datum naročila {{order.submittedTime}}</p>
-<p>Cena {{order.total | currency:'EUR'}}</p>
-<br>
+<div class="card shadow-sm" mat-ripple>
+  <div class="order-header">
+    <h5 class="card-title">{{order.restaurantName}}</h5>
+    <h5 class="text-muted">ob</h5>
+    <h5 class="arrival-time">{{order.arrivalTime | date:'HH:mm'}}</h5>
+  </div>
+  <div class="card-body">
+    <div class="order-titles">
+      <p>Datum naročila:</p>
+      <p>Cena:</p>
+      <p>Status:</p>
+    </div>
+    <div class="order-data">
+      <p class="text-muted">{{order.submittedTime | date}}</p>
+      <p class="order-price">{{order.total | currency:'EUR'}}</p>
+      <p class="order-status" [ngClass]="{
+        'new' : order.status == 0,
+        'ready' : order.status == 1,
+        'finished' : order.status == 2
+      }">{{status[order.status]}}</p>
+    </div>
+  </div>
+</div>
+

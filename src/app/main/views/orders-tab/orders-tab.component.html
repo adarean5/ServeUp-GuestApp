@@ -1,3 +1,5 @@
 <app-list-layout [displayHeader]="false">
-  <app-order-card *ngFor="let order of (orders$ | async)" [order]="order"></app-order-card>
+  <app-restaurant-grid>
+    <app-order-card *ngFor="let order of (orders$ | async)" [order]="order"></app-order-card>
+  </app-restaurant-grid>
 </app-list-layout>
