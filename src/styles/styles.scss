@@ -57,6 +57,13 @@ button:focus {
 .br-selected:after{color:$sup-c-primary !important;}
 
 // Custom styling for dialogs
+
+.sup-dialog.checkin  {
+  .mat-dialog-container {
+    padding: 0 !important;
+  }
+}
+
 .sup-dialog {
   position: absolute !important;
   left: 0;
@@ -66,6 +73,9 @@ button:focus {
   border: $sup-border-light;
 
   @media only screen and (min-width: $size-sm) {
+    &.checkin {
+
+    }
 
   }
 

@@ -3,8 +3,10 @@
 .button-container {
   display: flex;
   justify-content: center;
-  padding-top: 2em;
-  width: 100%;
+  padding: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  border-top: $sup-border-light;
 
   .scan-button {
     background: $sup-c-primary;
