@@ -5,6 +5,9 @@ import {getOrders} from '../../../store/actions/orders.actions';
 import {Order} from '../../../store/models/order.model';
 import {Observable} from 'rxjs';
 import {selectAllOrders, selectGettingOrders} from '../../../store/selectors/orders.selectors';
+import {MatDialog} from '@angular/material';
+import {DialogCheckinComponent} from '../../components/dialog-checkin/dialog-checkin.component';
+import {Meal} from '../../../store/models/meal.model';
 
 @Component({
   selector: 'app-orders-tab',
@@ -16,7 +19,8 @@ export class OrdersTabComponent implements OnInit {
   loadingOrders$: Observable<boolean>;
 
   constructor(
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -25,7 +29,14 @@ export class OrdersTabComponent implements OnInit {
     this.store.dispatch(getOrders());
   }
 
-  displayDetails(orderId: number) {
+  displayDetails(orderId: number, restaurantName: string, items: Meal[]) {
     console.log(orderId);
+    const dialogCheckin = this.dialog.open(DialogCheckinComponent, {
+      data : {
+        orderId,
+        restaurantName,
+        items
+      }
+    });
   }
 }

@@ -9,6 +9,7 @@ import {CartEffects} from '../store/effects/cart.effects';
 import {StoreModule} from '@ngrx/store';
 import {cartReducers} from '../store/reducers/cart.reducers';
 import {homeReducers} from '../store/reducers/home.reducers';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import {routes} from './main.routes';
 
@@ -61,6 +62,7 @@ import { DialogCheckinComponent } from './components/dialog-checkin/dialog-check
   imports: [
     SharedModule,
     BarRatingModule,
+    ZXingScannerModule,
     RouterModule.forChild(routes()),
     StoreModule.forFeature('cart', cartReducers),
     StoreModule.forFeature('home', homeReducers),
@@ -78,7 +80,8 @@ import { DialogCheckinComponent } from './components/dialog-checkin/dialog-check
   entryComponents: [
     DialogSearchComponent,
     DialogAddCartComponent,
-    DialogPaymentComponent
+    DialogPaymentComponent,
+    DialogCheckinComponent
   ]
 })
 export class MainModule { }

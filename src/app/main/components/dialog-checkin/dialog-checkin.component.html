@@ -1,0 +1,19 @@
+<app-list-layout>
+  <ng-container class="header-title">
+    Podatki o naročilu
+  </ng-container>
+  <ng-container class="header-subtitle">
+    {{data.restaurantName}}
+  </ng-container>
+
+  <app-restaurant-grid>
+    <app-meal-card *ngFor="let item of data.items"
+                   [title]="item.quantity + 'x ' + item.name"
+                   [info]="item.description"
+                   [value]="item.price * item.quantity"
+                   [id]="item.id"
+                   [showActions]="true"
+    >
+    </app-meal-card>
+  </app-restaurant-grid>
+</app-list-layout>

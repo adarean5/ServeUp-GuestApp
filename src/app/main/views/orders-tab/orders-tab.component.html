@@ -9,7 +9,7 @@
     <app-restaurant-grid>
       <app-order-card
         *ngFor="let order of (orders$ | async)" [order]="order"
-        (click)="displayDetails(order.orderId)"
+        (click)="displayDetails(order.orderId, order.restaurantName, order.items)"
       ></app-order-card>
     </app-restaurant-grid>
   </app-list-layout>
