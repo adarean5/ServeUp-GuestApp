@@ -33,6 +33,7 @@ import {OrdersEffects} from '../store/effects/orders.effects';
 import {ordersReducers} from '../store/reducers/orders.reducers';
 import { OrderCardComponent } from './components/order-card/order-card.component';
 import { DialogOrderDetailsComponent } from './components/dialog-order-details/dialog-order-details.component';
+import { DialogCheckinComponent } from './components/dialog-checkin/dialog-checkin.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DialogOrderDetailsComponent } from './components/dialog-order-details/d
     DialogPaymentComponent,
     OrderCardComponent,
     DialogOrderDetailsComponent,
+    DialogCheckinComponent,
   ],
   imports: [
     SharedModule,
