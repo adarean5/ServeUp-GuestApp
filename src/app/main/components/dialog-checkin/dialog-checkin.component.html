@@ -20,7 +20,7 @@
     </app-meal-card>
   </app-restaurant-grid>
   <div class="button-container">
-    <button class="scan-button" mat-flat-button color="primary">
+    <button (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
       <app-icon [iconName]="'scan'"></app-icon>
       <span>Skeniraj naročilo</span>
     </button>

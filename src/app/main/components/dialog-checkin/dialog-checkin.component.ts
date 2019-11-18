@@ -8,9 +8,6 @@ import {Meal} from '../../../store/models/meal.model';
   styleUrls: ['./dialog-checkin.component.scss']
 })
 export class DialogCheckinComponent implements OnInit {
-  /*restaurantName: string;
-  restaurantId: number;
-  items: Meal[];*/
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -22,8 +19,10 @@ export class DialogCheckinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /*this.restaurantName = this.data.restaurantName;
-    this.restaurantId = this.*/
+  }
+
+  openScanner() {
+    console.log('Scan');
   }
 
 }

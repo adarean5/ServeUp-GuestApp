@@ -1,5 +1,6 @@
 @import "serveup-palette";
 
+/*
 .search-button {
   background: $sup-c-primary;
   width: 100%;
@@ -7,6 +8,29 @@
   color: white;
   height: 3em;
   margin-bottom: 1rem;
+}
+*/
+
+.search-button {
+  background: $sup-c-primary;
+  color: white;
+  fill: white;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  border-radius: 40px;
+  width: 100%;
+
+  ::ng-deep.mat-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-right: 24px;
+
+    span {
+      padding-left: 0.5em;
+    }
+  }
 }
 
 .dialog-container {
