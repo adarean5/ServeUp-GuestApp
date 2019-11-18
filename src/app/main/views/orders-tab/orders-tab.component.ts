@@ -32,6 +32,10 @@ export class OrdersTabComponent implements OnInit {
   displayDetails(orderId: number, restaurantName: string, items: Meal[]) {
     console.log(orderId);
     const dialogCheckin = this.dialog.open(DialogCheckinComponent, {
+      panelClass: ['sup-dialog', 'checkin'],
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      autoFocus: false,
       data : {
         orderId,
         restaurantName,

@@ -1,4 +1,7 @@
 <app-list-layout>
+  <ng-container class="header-left">
+    <app-icon-button class="back-button" (click)="dialogRef.close()" icon="close" [iconHeight]="'32px'"></app-icon-button>
+  </ng-container>
   <ng-container class="header-title">
     Podatki o naročilu
   </ng-container>
@@ -16,4 +19,10 @@
     >
     </app-meal-card>
   </app-restaurant-grid>
+  <div class="button-container">
+    <button class="scan-button" mat-flat-button color="primary">
+      <app-icon [iconName]="'scan'"></app-icon>
+      <span>Skeniraj naročilo</span>
+    </button>
+  </div>
 </app-list-layout>

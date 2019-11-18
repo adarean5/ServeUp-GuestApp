@@ -56,7 +56,8 @@ button:focus {
 // Rating bar color
 .br-selected:after{color:$sup-c-primary !important;}
 
-.sup-search-dialog {
+// Custom styling for dialogs
+.sup-dialog {
   position: absolute !important;
   left: 0;
   top: 0;
@@ -65,23 +66,46 @@ button:focus {
   border: $sup-border-light;
 
   @media only screen and (min-width: $size-sm) {
-    top: calc(60px);
-    left: calc(50% - 200px);
-    position: absolute !important;
-    height: 550px;
-    width: 400px;
+
   }
 
   @media only screen and (min-width: $size-md) {
-    left: calc(50% - 200px);
+    &.search {
+      top: calc(60px);
+      left: calc(50% - 200px);
+      position: absolute !important;
+      height: 550px;
+      width: 400px;
+    }
+
+    &.checkin {
+      position: absolute !important;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-height: 90vh !important;
+      width: 90vw;
+    }
   }
 
   @media only screen and (min-width: $size-lg) {
-    left: calc(50% - 325px);
+    &.search {
+      left: calc(50% - 325px);
+    }
+
+    &.checkin {
+      width: 80vw;
+    }
   }
 
   @media only screen and (min-width: $size-xl) {
-    left: calc(50% - 425px);
+    &.search {
+      left: calc(50% - 425px);
+    }
+
+    &.checkin {
+      width: 55vw;
+    }
   }
 }
 

@@ -1,0 +1,29 @@
+@import "serveup-palette";
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+  width: 100%;
+
+  .scan-button {
+    display: inline-flex;
+    background: $sup-c-primary;
+    flex-direction: row;
+    color: white;
+    fill: white;
+    font-weight: bold;
+    padding: 0.5em 2em;
+    border-radius: 40px;
+
+    ::ng-deep.mat-button-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      span {
+        padding-left: 0.5em;
+      }
+    }
+  }
+}

@@ -68,7 +68,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
       console.log(opened);
       if (this.searchOpened) {
         this.searchDialog.open(DialogSearchComponent, {
-          panelClass: 'sup-search-dialog',
+          panelClass: ['sup-dialog', 'search'],
           maxWidth: '100vw',
           maxHeight: '100vh',
           autoFocus: false
