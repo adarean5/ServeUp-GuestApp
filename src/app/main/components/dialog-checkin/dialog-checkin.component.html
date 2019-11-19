@@ -16,8 +16,7 @@
   <ng-template #qrScanner>
     <div class="scanner-container">
       <zxing-scanner [(device)]="currentDevice"
-                     [hidden]="!currentDevice" id="scanner" #scanner
-                     [torch]="torchEnabled "
+                     [hidden]="!currentDevice"
                      (scanError)="onScanError($event)"
                      (scanSuccess)="onScanSuccess($event)"
                      (camerasFound)="onCamerasFound($event)"
@@ -38,19 +37,25 @@
       </app-meal-card>
     </app-restaurant-grid>
   </ng-template>
-  <div class="button-container">
-    <button *ngIf="!displayScanner" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
+  <div class="button-container" *ngIf="!displayScanner">
+    <button  (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
       <app-icon [iconName]="'scan'"></app-icon>
       <span>Skeniraj naročilo</span>
     </button>
+  </div>
 
-    <button [disabled]="!qrResultString" *ngIf="displayScanner" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
+  <div *ngIf="displayScanner" class="qrNameContainer">
+    <p *ngIf="!qrResultString">Skenirajte kodo mize</p>
+    <p *ngIf="qrResultString"><span>{{qrResultString}}</span></p>
+  </div>
+
+  <div class="button-container scanner" *ngIf="displayScanner">
+    <button (click)="closeScanner()" class="scan-button action-button" mat-flat-button color="accent">
+      <app-icon iconName="close"></app-icon>
+    </button>
+    <button [disabled]="!qrResultString" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
       <app-icon [iconName]="'scan'"></app-icon>
       <span>Potrdi</span>
     </button>
-  </div>
-  <div *ngIf="displayScanner" class="qrNameContainer">
-    <p *ngIf="!qrResultString">Skenirajte kodo mize</p>
-    <p *ngIf="qrResultString">Ime mize: {{qrResultString}}</p>
   </div>
 </app-list-layout>

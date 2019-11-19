@@ -4,6 +4,7 @@
   //flex: 1;
   //display: flex;
   height: 100%;
+  width: 100%;
 
   zxing-scanner {
     width: 100%;
@@ -17,14 +18,17 @@
 
 .button-container {
   display: flex;
+  background: rgba(255, 255, 255, 0.81);
+  z-index: 1;
   justify-content: center;
   padding: 1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
   border-top: $sup-border-light;
 
+  &.scanner {
+    justify-content: space-around;
+  }
+
   .scan-button {
-    background: $sup-c-primary;
     color: white;
     fill: white;
     font-weight: bold;
@@ -50,10 +54,15 @@
 }
 
 .qrNameContainer {
-  max-height: 3em;
+  height: 4em;
   z-index: 1;
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   padding: 1em;
   display: flex;
   justify-content: center;
+
+  span {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
 }

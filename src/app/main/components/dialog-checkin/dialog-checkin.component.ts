@@ -22,9 +22,6 @@ export class DialogCheckinComponent implements OnInit {
 
   qrResultString: string;
 
-  torchEnabled = false;
-  torchAvailable$ = new BehaviorSubject<boolean>(false);
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
       restaurantName: string;
@@ -40,6 +37,11 @@ export class DialogCheckinComponent implements OnInit {
 
   openScanner() {
     this.displayScanner = true;
+  }
+
+  closeScanner() {
+    this.displayScanner = false;
+    this.qrResultString = null;
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
@@ -67,13 +69,5 @@ export class DialogCheckinComponent implements OnInit {
   onHasPermission(permission: boolean) {
     console.log('Has permisson', permission);
     this.hasPermission = permission;
-  }
-
-  onTorchCompatible(isCompatible: boolean): void {
-    this.torchAvailable$.next(isCompatible || false);
-  }
-
-  toggleTorch(): void {
-    this.torchEnabled = !this.torchEnabled;
   }
 }
