@@ -9,20 +9,48 @@
     {{data.restaurantName}}
   </ng-container>
 
-  <app-restaurant-grid>
-    <app-meal-card *ngFor="let item of data.items"
-                   [title]="item.quantity + 'x ' + item.name"
-                   [info]="item.description"
-                   [value]="item.price * item.quantity"
-                   [id]="item.id"
-                   [showActions]="true"
-    >
-    </app-meal-card>
-  </app-restaurant-grid>
+  <ng-container *ngIf="displayScanner then qrScanner else itemList">
+
+  </ng-container>
+
+  <ng-template #qrScanner>
+    <div class="scanner-container">
+      <zxing-scanner [(device)]="currentDevice"
+                     [hidden]="!currentDevice" id="scanner" #scanner
+                     [torch]="torchEnabled "
+                     (scanError)="onScanError($event)"
+                     (scanSuccess)="onScanSuccess($event)"
+                     (camerasFound)="onCamerasFound($event)"
+                     (camerasNotFound)="onCamerasFound($event)"></zxing-scanner>
+      <app-loading *ngIf="!currentDevice" [customText]="true">Pridobivam Kamero</app-loading>
+    </div>
+  </ng-template>
+
+  <ng-template  #itemList>
+    <app-restaurant-grid>
+      <app-meal-card *ngFor="let item of data.items"
+                     [title]="item.quantity + 'x ' + item.name"
+                     [info]="item.description"
+                     [value]="item.price * item.quantity"
+                     [id]="item.id"
+                     [showActions]="true"
+      >
+      </app-meal-card>
+    </app-restaurant-grid>
+  </ng-template>
   <div class="button-container">
-    <button (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
+    <button *ngIf="!displayScanner" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
       <app-icon [iconName]="'scan'"></app-icon>
       <span>Skeniraj naročilo</span>
     </button>
+
+    <button [disabled]="!qrResultString" *ngIf="displayScanner" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
+      <app-icon [iconName]="'scan'"></app-icon>
+      <span>Potrdi</span>
+    </button>
+  </div>
+  <div *ngIf="displayScanner" class="qrNameContainer">
+    <p *ngIf="!qrResultString">Skenirajte kodo mize</p>
+    <p *ngIf="qrResultString">Ime mize: {{qrResultString}}</p>
   </div>
 </app-list-layout>
