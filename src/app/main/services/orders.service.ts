@@ -73,6 +73,8 @@ export class OrdersService {
       qr: qrCode
     };
 
+    console.log('Qr body:', body);
+
     return this.http.post(url, body);
   }
 }

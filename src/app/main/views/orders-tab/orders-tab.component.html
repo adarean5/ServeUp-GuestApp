@@ -1,4 +1,8 @@
-<ng-container *ngIf="loadingOrders$ | async then loading else content"></ng-container>
+<ng-container *ngIf="(loadingOrders$ | async) then loading else submittingDecider"></ng-container>
+
+<ng-template #submittingDecider>
+  <ng-container *ngIf="(checkingIn$ | async) then submittingOrder else content"></ng-container>
+</ng-template>
 
 <ng-template #content>
   <ng-container *ngIf="(orders$ | async).length > 0 then notEmpty else empty"></ng-container>
@@ -9,7 +13,7 @@
     <app-restaurant-grid>
       <app-order-card
         *ngFor="let order of (orders$ | async)" [order]="order"
-        (click)="displayDetails(order.orderId, order.restaurantName, order.items, order.status)"
+        (click)="displayDetails(order.orderId, order.restaurantName, order.items, order.checkedIn)"
       ></app-order-card>
     </app-restaurant-grid>
   </app-list-layout>
@@ -24,5 +28,9 @@
 
 <ng-template #loading>
   <app-loading>Naročila</app-loading>
+</ng-template>
+
+<ng-template #submittingOrder>
+  <app-loading [customText]="true">Potrjujem prihod</app-loading>
 </ng-template>
 

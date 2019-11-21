@@ -28,6 +28,18 @@ const ordersReducer = createReducer(initialOrderState,
     ...state,
     gettingOrders: false
   })),
+  on(OrdersActions.checkIn, state => ({
+    ...state,
+    checkingIn: true
+  })),
+  on(OrdersActions.checkInSuccess, state => ({
+    ...state,
+    checkingIn: false
+  })),
+  on(OrdersActions.checkInErr, state => ({
+    ...state,
+    checkingIn: false
+  })),
 );
 
 export function ordersReducers(state: IOrdersState, action: Action) {

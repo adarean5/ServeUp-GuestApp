@@ -17,3 +17,10 @@ export const selectGettingOrders = createSelector(
   selectOrdersState,
   (state: IOrdersState) => state.gettingOrders
 );
+
+export const selectCheckingIn = createSelector(
+  selectOrdersState,
+  (state: IOrdersState) => state.checkingIn
+);
+
+

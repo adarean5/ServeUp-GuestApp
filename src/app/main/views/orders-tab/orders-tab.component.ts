@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../../../store/states/app.state';
-import {getOrders} from '../../../store/actions/orders.actions';
+import {checkIn, getOrders} from '../../../store/actions/orders.actions';
 import {Order} from '../../../store/models/order.model';
 import {Observable} from 'rxjs';
-import {selectAllOrders, selectGettingOrders} from '../../../store/selectors/orders.selectors';
+import {selectAllOrders, selectCheckingIn, selectGettingOrders} from '../../../store/selectors/orders.selectors';
 import {MatDialog} from '@angular/material';
 import {DialogCheckinComponent} from '../../components/dialog-checkin/dialog-checkin.component';
 import {Meal} from '../../../store/models/meal.model';
@@ -17,6 +17,7 @@ import {Meal} from '../../../store/models/meal.model';
 export class OrdersTabComponent implements OnInit {
   orders$: Observable<Order[]>;
   loadingOrders$: Observable<boolean>;
+  checkingIn$: Observable<boolean>;
 
   constructor(
     private store: Store<IAppState>,
@@ -26,10 +27,11 @@ export class OrdersTabComponent implements OnInit {
   ngOnInit() {
     this.orders$ = this.store.select(selectAllOrders);
     this.loadingOrders$ = this.store.select(selectGettingOrders);
+    this.checkingIn$ = this.store.select(selectCheckingIn);
     this.store.dispatch(getOrders());
   }
 
-  displayDetails(orderId: number, restaurantName: string, items: Meal[], orderStatus: number) {
+  displayDetails(orderId: number, restaurantName: string, items: Meal[], checkedIn: boolean) {
     console.log(orderId);
     const dialogCheckin = this.dialog.open(DialogCheckinComponent, {
       panelClass: ['sup-dialog', 'checkin'],
@@ -40,7 +42,17 @@ export class OrdersTabComponent implements OnInit {
         orderId,
         restaurantName,
         items,
-        orderStatus
+        checkedIn
+      }
+    });
+
+    dialogCheckin.afterClosed().subscribe(result => {
+      console.log('QR dialog closed, value:', result);
+      if (result) {
+        this.store.dispatch(checkIn({
+          qrCode: result.qrResultString,
+          orderId: result.orderId
+        }));
       }
     });
   }

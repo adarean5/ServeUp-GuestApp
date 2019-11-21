@@ -25,14 +25,15 @@ export class DialogCheckinComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
       restaurantName: string;
-      restaurantId: number;
+      orderId: number;
       items: Meal[];
-      orderStatus: number;
+      checkedIn: boolean;
     },
     public dialogRef: MatDialogRef<DialogCheckinComponent>
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
     this.displayScanner = false;
   }
 
@@ -46,7 +47,10 @@ export class DialogCheckinComponent implements OnInit {
   }
 
   submitQrCode() {
-    console.log('Ime mize:', this.qrResultString);
+    this.dialogRef.close({
+      orderId: this.data.orderId,
+      qrResultString: this.qrResultString
+    });
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {

@@ -3,7 +3,7 @@ import {OrdersService} from '../../main/services/orders.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import * as OrdersActions from '../actions/orders.actions';
-import {catchError, map, mergeMap, tap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
@@ -104,6 +104,33 @@ export class OrdersEffects {
     ofType(OrdersActions.getOrdersErr),
     tap((err: any) => {
       console.error('[GetOrdersErr]', err);
+    })
+  ), {dispatch: false});
+
+  checkIn = createEffect(() => this.actions$.pipe(
+    ofType(OrdersActions.checkIn),
+    mergeMap((action) => {
+      console.log('Action', action);
+      const orderId = 345;
+      const qrCode = 'sampleCode';
+      return this.ordersService.checkIn(action.orderId, action.qrCode).pipe(
+        map((response: any) => {
+          console.log('Response', response);
+          if (response.status === 1) {
+            return OrdersActions.checkInSuccess();
+          } else {
+            return OrdersActions.checkInErr({err: response.description});
+          }
+        }),
+        catchError(err => of(OrdersActions.checkInErr({err})))
+      );
+    })
+  ));
+
+  checkInErr = createEffect(() => this.actions$.pipe(
+    ofType(OrdersActions.checkInErr),
+    tap((err: any) => {
+      console.error('[CheckInErr]', err);
     })
   ), {dispatch: false});
 }

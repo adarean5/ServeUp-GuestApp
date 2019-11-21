@@ -27,3 +27,17 @@ export const getOrdersErr = createAction(
   '[Orders] Get all orders error',
   props<{err: any}>()
 );
+
+export const checkIn = createAction(
+  '[Orders] Check in',
+  props<{orderId: number, qrCode: string}>()
+);
+
+export const checkInSuccess = createAction(
+  '[Orders] Check in success'
+);
+
+export const checkInErr = createAction(
+  '[Orders] Check in error',
+  props<{err: any}>()
+);
