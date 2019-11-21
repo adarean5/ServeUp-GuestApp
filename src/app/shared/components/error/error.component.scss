@@ -1,0 +1,17 @@
+@import "serveup-palette";
+
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: $sup-c-warn;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 1em;
+  }
+}

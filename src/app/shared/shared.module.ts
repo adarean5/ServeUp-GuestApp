@@ -5,9 +5,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {LoadingComponent} from './components/loading/loading.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
-  declarations: [IconComponent, LoadingComponent, SnackbarComponent],
+  declarations: [IconComponent, LoadingComponent, SnackbarComponent, ErrorComponent],
   imports: [
     MaterialModule,
     HttpClientModule,
@@ -18,7 +19,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     LoadingComponent,
     MaterialModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ErrorComponent
   ]
 })
 export class SharedModule { }

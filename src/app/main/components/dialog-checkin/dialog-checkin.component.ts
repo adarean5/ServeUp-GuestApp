@@ -44,10 +44,15 @@ export class DialogCheckinComponent implements OnInit {
     this.qrResultString = null;
   }
 
+  submitQrCode() {
+    console.log('Ime mize:', this.qrResultString);
+  }
+
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     console.log('Cameras found:', devices);
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
+    console.log('Has devices?', this.hasDevices);
   }
 
   onScanError(err: any) {

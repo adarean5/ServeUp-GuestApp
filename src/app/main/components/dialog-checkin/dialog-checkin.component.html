@@ -9,19 +9,54 @@
     {{data.restaurantName}}
   </ng-container>
 
-  <ng-container *ngIf="displayScanner then qrScanner else itemList">
+  <ng-container *ngIf="displayScanner then permissionCheck else itemList"></ng-container>
 
-  </ng-container>
-
-  <ng-template #qrScanner>
-    <div class="scanner-container">
+  <ng-template #permissionCheck>
+    <div class="scanner-container" [hidden]="!currentDevice">
       <zxing-scanner [(device)]="currentDevice"
-                     [hidden]="!currentDevice"
+                     (permissionResponse)="onHasPermission($event)"
                      (scanError)="onScanError($event)"
                      (scanSuccess)="onScanSuccess($event)"
                      (camerasFound)="onCamerasFound($event)"
                      (camerasNotFound)="onCamerasFound($event)"></zxing-scanner>
-      <app-loading *ngIf="!currentDevice" [customText]="true">Pridobivam Kamero</app-loading>
+    </div>
+    <ng-container *ngIf="hasPermission then gettingDevices else noPermission"></ng-container>
+  </ng-template>
+
+  <ng-template #noPermission>
+    <app-error>Aplikacija potrebuje dovoljenje za dostop do kamere!</app-error>
+  </ng-template>
+
+  <ng-template #gettingDevices>
+    <ng-container *ngIf="hasDevices === undefined then loadingDevices else deviceCheck"></ng-container>
+  </ng-template>
+
+  <ng-template #loadingDevices>
+    <app-loading *ngIf="!currentDevice" [customText]="true">Pridobivam Kamero</app-loading>
+  </ng-template>
+
+  <ng-template #deviceCheck>
+    <ng-container *ngIf="hasDevices then qrScanner else noDevices"></ng-container>
+  </ng-template>
+
+  <ng-template #noDevices>
+    <app-error>Za skeniranje naročila potrebujete kamero.</app-error>
+  </ng-template>
+
+  <ng-template #qrScanner>
+    <div class="qrNameContainer">
+      <p *ngIf="!qrResultString">Skenirajte kodo mize</p>
+      <p *ngIf="qrResultString"><span>{{qrResultString}}</span></p>
+    </div>
+
+    <div class="button-container scanner">
+      <button (click)="closeScanner()" class="scan-button action-button" mat-flat-button color="accent">
+        <app-icon iconName="close"></app-icon>
+      </button>
+      <button [disabled]="!qrResultString" (click)="submitQrCode()" class="scan-button" mat-flat-button color="primary">
+        <app-icon [iconName]="'scan'"></app-icon>
+        <span>Potrdi</span>
+      </button>
     </div>
   </ng-template>
 
@@ -36,26 +71,12 @@
       >
       </app-meal-card>
     </app-restaurant-grid>
+
+    <div class="button-container">
+      <button  (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
+        <app-icon [iconName]="'scan'"></app-icon>
+        <span>Skeniraj naročilo</span>
+      </button>
+    </div>
   </ng-template>
-  <div class="button-container" *ngIf="!displayScanner">
-    <button  (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
-      <app-icon [iconName]="'scan'"></app-icon>
-      <span>Skeniraj naročilo</span>
-    </button>
-  </div>
-
-  <div *ngIf="displayScanner" class="qrNameContainer">
-    <p *ngIf="!qrResultString">Skenirajte kodo mize</p>
-    <p *ngIf="qrResultString"><span>{{qrResultString}}</span></p>
-  </div>
-
-  <div class="button-container scanner" *ngIf="displayScanner">
-    <button (click)="closeScanner()" class="scan-button action-button" mat-flat-button color="accent">
-      <app-icon iconName="close"></app-icon>
-    </button>
-    <button [disabled]="!qrResultString" (click)="openScanner()" class="scan-button" mat-flat-button color="primary">
-      <app-icon [iconName]="'scan'"></app-icon>
-      <span>Potrdi</span>
-    </button>
-  </div>
 </app-list-layout>
