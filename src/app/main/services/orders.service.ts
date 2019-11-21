@@ -53,7 +53,6 @@ export class OrdersService {
       id_uporabnik: orderData.userId,
       jedi: orderData.items.map((meal: Meal) => Meal.toApi(meal))
     };
-    console.log('newOrderByUser body:', body);
 
     return this.http.post(url, body);
   }
@@ -64,7 +63,15 @@ export class OrdersService {
       id_uporabnik: userId
     };
 
-    console.log(body);
+    return this.http.post(url, body);
+  }
+
+  public checkIn(orderId: number, qrCode: string) {
+    const url = environment.baseUrlBackend + '/user/check_in/';
+    const body = {
+      id_narocilo: orderId,
+      qr: qrCode
+    };
 
     return this.http.post(url, body);
   }
