@@ -29,7 +29,7 @@ export class OrdersTabComponent implements OnInit {
     this.store.dispatch(getOrders());
   }
 
-  displayDetails(orderId: number, restaurantName: string, items: Meal[]) {
+  displayDetails(orderId: number, restaurantName: string, items: Meal[], orderStatus: number) {
     console.log(orderId);
     const dialogCheckin = this.dialog.open(DialogCheckinComponent, {
       panelClass: ['sup-dialog', 'checkin'],
@@ -39,7 +39,8 @@ export class OrdersTabComponent implements OnInit {
       data : {
         orderId,
         restaurantName,
-        items
+        items,
+        orderStatus
       }
     });
   }

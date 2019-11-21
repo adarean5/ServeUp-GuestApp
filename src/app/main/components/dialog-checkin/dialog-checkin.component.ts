@@ -27,6 +27,7 @@ export class DialogCheckinComponent implements OnInit {
       restaurantName: string;
       restaurantId: number;
       items: Meal[];
+      orderStatus: number;
     },
     public dialogRef: MatDialogRef<DialogCheckinComponent>
   ) { }
