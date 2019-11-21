@@ -127,10 +127,19 @@ export class OrdersEffects {
     })
   ));
 
+  checkInSuccess = createEffect(() => this.actions$.pipe(
+    ofType(OrdersActions.checkInSuccess),
+    map(() => {
+      this.snackBar.open('Check-in uspešen.', 'Dober tek!');
+      return OrdersActions.getOrders();
+    })
+  ));
+
   checkInErr = createEffect(() => this.actions$.pipe(
     ofType(OrdersActions.checkInErr),
     tap((err: any) => {
       console.error('[CheckInErr]', err);
+      this.snackBar.open('Prišlo je do napake pri check-inu. Prosimo poskusite znova.', 'Skrij');
     })
   ), {dispatch: false});
 }
