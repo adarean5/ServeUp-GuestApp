@@ -1,6 +1,7 @@
 {
   "name": "ServeUp",
   "short_name": "ServeUp",
+  "description": "An application for ordering food online from a selection of restaurants.",
   "theme_color": "#00c4ab",
   "background_color": "#fafafa",
   "display": "standalone",
