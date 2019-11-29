@@ -1,9 +1,6 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Meal} from '../../../store/models/meal.model';
-import {ZXingScannerComponent} from '@zxing/ngx-scanner';
-import {BehaviorSubject} from 'rxjs';
-import {last} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dialog-checkin',

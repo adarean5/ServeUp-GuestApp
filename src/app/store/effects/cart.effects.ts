@@ -8,13 +8,16 @@ import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.sele
 import {Meal} from '../models/meal.model';
 import {Restaurant} from '../models/restaurant.model';
 import {initialCartState} from '../states/cart.state';
+import {MatDialog} from '@angular/material';
+import {DialogSwitchRestaurantComponent} from '../../main/components/dialog-switch-restaurant/dialog-switch-restaurant.component';
 
 @Injectable()
 export class CartEffects implements OnInitEffects {
 
   constructor(
     private actions$: Actions,
-    private store$: Store<IAppState>
+    private store$: Store<IAppState>,
+    private restaurantChangeDialog: MatDialog
   ) {}
 
   cartEffectsInit = createAction(
@@ -92,7 +95,6 @@ export class CartEffects implements OnInitEffects {
         });
       } else {
         // Else prompt user to decide if old cart should be kept, or erased in favour of new restaurant
-        console.log('Prompt user');
         return CartActions.promptRestaurantChange({
           meal: action.meal,
           currentRestaurant,

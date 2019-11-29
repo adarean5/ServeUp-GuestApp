@@ -10,6 +10,11 @@ import {selectSearchDialogOpened} from '../../../store/selectors/home.selector';
 import {routerAnimation} from '../../../shared/animations/router.animations';
 import {openSearchDialog} from '../../../store/actions/home.actions';
 import {Subscription} from 'rxjs';
+import {Actions, ofType} from '@ngrx/effects';
+import {promptRestaurantChange} from '../../../store/actions/cart.actions';
+import {tap} from 'rxjs/operators';
+import {DialogSwitchRestaurantComponent} from '../../components/dialog-switch-restaurant/dialog-switch-restaurant.component';
+import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
 
 @Component({
   selector: 'app-main-view',
@@ -33,7 +38,9 @@ export class MainViewComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<IAppState>,
     private router: Router,
-    private searchDialog: MatDialog
+    private searchDialog: MatDialog,
+    private restaurantChangeDialog: MatDialog,
+    private updates$: Actions
   ) {}
 
   ngOnInit() {
@@ -62,7 +69,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
     }));
 
     // Search dialog handling based on store state
-
     this.subscription.add(this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
       this.searchOpened = opened;
       console.log(opened);
@@ -75,6 +81,23 @@ export class MainViewComponent implements OnInit, OnDestroy {
         });
       }
     }));
+
+    // Prompt user to change restaurant dialog
+    this.subscription.add(this.updates$.pipe(
+      ofType(promptRestaurantChange),
+      tap(({meal, currentRestaurant, newRestaurant, type}) => {
+        const dialogRef = this.restaurantChangeDialog.open(DialogSwitchRestaurantComponent, {
+          data: {
+            meal,
+            currentRestaurant,
+            newRestaurant,
+          }
+        });
+        dialogRef.afterClosed().subscribe((result: any) => {
+          console.log(result);
+        });
+      })
+    ).subscribe());
   }
 
   openSearchDialog() {
