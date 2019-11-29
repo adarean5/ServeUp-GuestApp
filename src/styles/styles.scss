@@ -30,6 +30,19 @@ p {
   padding: 0;
 }
 
+// Theme text colors
+.sup-text-primary {
+  color: $sup-c-primary;
+}
+
+.sup-text-accent {
+  color: $sup-c-accent;
+}
+
+.sup-text-warn {
+  color: $sup-c-warn;
+}
+
 button:focus {
   outline:0;
 }

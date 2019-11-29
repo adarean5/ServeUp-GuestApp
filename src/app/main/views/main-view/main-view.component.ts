@@ -11,10 +11,9 @@ import {routerAnimation} from '../../../shared/animations/router.animations';
 import {openSearchDialog} from '../../../store/actions/home.actions';
 import {Subscription} from 'rxjs';
 import {Actions, ofType} from '@ngrx/effects';
-import {promptRestaurantChange} from '../../../store/actions/cart.actions';
+import {attemptAddToCart, clearCart, promptRestaurantChange} from '../../../store/actions/cart.actions';
 import {tap} from 'rxjs/operators';
 import {DialogSwitchRestaurantComponent} from '../../components/dialog-switch-restaurant/dialog-switch-restaurant.component';
-import {DialogPaymentComponent} from '../../components/dialog-payment/dialog-payment.component';
 
 @Component({
   selector: 'app-main-view',
@@ -94,7 +93,10 @@ export class MainViewComponent implements OnInit, OnDestroy {
           }
         });
         dialogRef.afterClosed().subscribe((result: any) => {
-          console.log(result);
+          if (result) {
+            this.store.dispatch(clearCart());
+            this.store.dispatch(attemptAddToCart({meal, restaurant: newRestaurant}))
+          }
         });
       })
     ).subscribe());

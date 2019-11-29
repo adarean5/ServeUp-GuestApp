@@ -1,1 +1,11 @@
-<p>dialog-switch-restaurant works!</p>
+<mat-dialog-content>
+  <p class="sup-text-warn">V košarici ne morete imeti jedi iz več restavracij na enkrat!</p>
+  <br>
+  <p>Trenutno imate v košarici jedi iz restavracije <span class="sup-text-accent">{{data.currentRestaurant.name}}</span>.</p>
+  <br>
+  <p>Ali želite izprazniti košarico in dodati <span class="sup-text-primary">{{data.meal.quantity}}x {{data.meal.name}}</span>?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-stroked-button color="primary" (click)="dialogRef.close(false)">Ne</button>
+  <button mat-stroked-button color="warn" (click)="dialogRef.close(true)">Da</button>
+</mat-dialog-actions>
