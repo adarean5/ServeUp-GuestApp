@@ -35,6 +35,5 @@ export class DialogSearchComponent implements OnInit {
   search() {
     this.store.dispatch(searchRestaurants({location: this.location, restaurantType: this.foodType}));
     this.dialogRef.close();
-    console.log(this.foodType, this.location);
   }
 }

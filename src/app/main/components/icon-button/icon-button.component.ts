@@ -18,7 +18,6 @@ export class IconButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Style', this.matStyle, this.matStyle === 'stroked');
     this.buttonClass = 'mat-' + this.matStyle + (this.matStyle ? '-' : '') + 'button';
   }
 }

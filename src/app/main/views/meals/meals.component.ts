@@ -11,7 +11,7 @@ import {Meal} from '../../../store/models/meal.model';
 import {takeWhile} from 'rxjs/operators';
 import {Restaurant} from '../../../store/models/restaurant.model';
 import {attemptAddToCart} from '../../../store/actions/cart.actions';
-import {selectCartContent, selectTotalPrice} from '../../../store/selectors/cart.selectors';
+import {selectTotalPrice} from '../../../store/selectors/cart.selectors';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -54,7 +54,6 @@ export class MealsComponent implements OnInit {
       .pipe(takeWhile(restaurants => restaurants === undefined, true)).subscribe((restaurants: Restaurant[]) => {
       if (restaurants && restaurants.length > 0) {
         this.restaurantFromId = restaurants.find((restaurant: Restaurant) => {
-          console.log(restaurant, +this.restaurantId);
           return restaurant.id === +this.restaurantId;
         });
       }
@@ -69,15 +68,8 @@ export class MealsComponent implements OnInit {
     this.store.select(selectMeals).subscribe(meals => {
       if (meals) {
         this.meals = meals;
-        console.log('Meals from meals', this.meals);
         this.mealCategories = Object.keys(meals).sort();
-        console.log(this.mealCategories);
       }
-    });
-
-    // TODO just for testing, remove later
-    this.store.select(selectCartContent).subscribe(cartContent => {
-      console.log('Cart content: ', cartContent);
     });
 
     // Start loading meals for current restaurantId
@@ -85,10 +77,8 @@ export class MealsComponent implements OnInit {
   }
 
   categoryClicked(category: string) {
-    console.log(category);
     this.selectedCategory = category;
     this.selectedIndex = this.mealTabs.category;
-    console.log(this.meals[this.selectedCategory]);
   }
 
   mealClicked(mealId: number) {

@@ -30,7 +30,6 @@ export class HomeEffects implements OnInitEffects {
           const restaurants: Restaurant[] =  response.map(apiRestaurant => {
             return Restaurant.fromApi(apiRestaurant);
           });
-          console.log('[ROOT Home effect response] ', restaurants);
           return HomeActions.getRestaurantsSuccess({restaurants});
         }),
         catchError(err => {
@@ -43,7 +42,6 @@ export class HomeEffects implements OnInitEffects {
   getRestaurantsSuccess = createEffect(() => this.actions$.pipe(
     ofType(HomeActions.getRestaurantsErr),
     map(action => {
-      console.log('[GetRestaurantsErr] ', action);
     })
   ), {dispatch: false});
 
@@ -53,7 +51,6 @@ export class HomeEffects implements OnInitEffects {
       return this.ordersService.getRestaurantTypes().pipe(
         map((response: []) => {
           const restaurantTypes = response.map(apiType => RestaurantType.fromApi(apiType));
-          console.log('Response:', restaurantTypes);
           return HomeActions.getRestaurantTypesSuccess({restaurantTypes});
         }),
         catchError((err: any) => of(HomeActions.getRestaurantsErr({err})))
@@ -68,12 +65,10 @@ export class HomeEffects implements OnInitEffects {
       const restaurantType = action.restaurantType;
       return this.ordersService.searchRestaurants(action.location).pipe(
         map((result: any[]) => {
-          console.log('[SearchRestaurants] Api result before filter', result);
           result = restaurantType
             ? result.filter(responseRestaurant => responseRestaurant.tip === restaurantType)
             : result;
           const restaurantsSearch = result.map(responseRestaurant => Restaurant.fromApi(responseRestaurant));
-          console.log('[SearchRestaurants] Api result after filter', restaurantsSearch);
           return HomeActions.searchRestaurantsSuccess({restaurantsSearch});
         }),
         catchError(err => of(HomeActions.searchRestaurantsErr({err})))
@@ -89,7 +84,6 @@ export class HomeEffects implements OnInitEffects {
           Object.keys(meals).forEach(key => {
             meals[key] = meals[key].map(apiMeal => Meal.fromApi(apiMeal));
           });
-          console.log('Final meals', meals);
           return HomeActions.getMealsForRestaurantSuccess({meals});
         }),
         catchError(err => of(HomeActions.getMealsForRestaurantErr({err})))

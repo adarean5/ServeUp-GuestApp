@@ -30,9 +30,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cartContent$ = this.store.select(selectCartContent).pipe(
-      tap((response) => console.log('Cart restaurants', response))
-    );
+    this.cartContent$ = this.store.select(selectCartContent).pipe();
     this.cartRestaurant$ = this.store.select(selectCurrentRestaurant).pipe(
       tap((newRestaurant: Restaurant) => this.restaurant = newRestaurant)
     );
@@ -41,7 +39,6 @@ export class CartComponent implements OnInit {
   }
 
   updateQuantity(mealId: number, quantity: number) {
-    console.log('Update quantity', mealId, quantity);
     this.store.dispatch(updateQuantity({
       mealId,
       quantity
@@ -49,16 +46,13 @@ export class CartComponent implements OnInit {
   }
 
   deleteItem(mealId: number) {
-    console.log('Delete id', mealId);
     this.store.dispatch(removeItem({mealId}));
   }
 
   openPaymentDialog() {
-    console.log('Open dialog');
     const dialogRefPayment = this.dialogPaymentOption.open(DialogPaymentComponent);
     dialogRefPayment.afterClosed().subscribe((paymentOption: string) => {
       if (paymentOption) {
-        console.log(paymentOption);
         this.store.dispatch(submitNewOrder());
       }
     });

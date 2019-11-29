@@ -15,7 +15,5 @@ export class DialogSwitchRestaurantComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit() {
-    console.log('Dialog data:', this.data);
-  }
+  ngOnInit() {}
 }

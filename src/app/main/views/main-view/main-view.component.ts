@@ -43,7 +43,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('Starting main view');
     this.subscription = new Subscription();
 
     // Set initial url
@@ -53,13 +52,11 @@ export class MainViewComponent implements OnInit, OnDestroy {
     this.subscription.add(this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.currentTab = val.url;
-        console.log('Current tab', this.currentTab);
       }
     }));
 
     // Select current user from store
     this.subscription.add(this.store.select(selectUser).subscribe((newUser: User) => {
-      console.log('main new user', newUser);
       if (newUser === null) {
         this.router.navigate(['/login']);
       } else {
@@ -70,7 +67,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
     // Search dialog handling based on store state
     this.subscription.add(this.store.select(selectSearchDialogOpened).subscribe((opened: boolean) => {
       this.searchOpened = opened;
-      console.log(opened);
       if (this.searchOpened) {
         this.searchDialog.open(DialogSearchComponent, {
           panelClass: ['sup-dialog', 'search'],
@@ -95,7 +91,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
         dialogRef.afterClosed().subscribe((result: any) => {
           if (result) {
             this.store.dispatch(clearCart());
-            this.store.dispatch(attemptAddToCart({meal, restaurant: newRestaurant}))
+            this.store.dispatch(attemptAddToCart({meal, restaurant: newRestaurant}));
           }
         });
       })

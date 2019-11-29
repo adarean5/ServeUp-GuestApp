@@ -35,7 +35,6 @@ export class MainGuard implements CanActivate {
       filter((authStatus: boolean) => authStatus !== undefined),
       take(1),
       map((authStatus: boolean) => {
-        console.log('MAIN GUARD Auth status', authStatus);
         if (authStatus === false) {
           return true;
         } else {

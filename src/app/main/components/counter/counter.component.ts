@@ -27,7 +27,6 @@ export class CounterComponent implements OnInit {
   }
 
   changeQuantity(quantity: number) {
-    console.log(this.quantity, quantity);
     this.quantity += quantity;
     this.quantityUpdate.next();
   }

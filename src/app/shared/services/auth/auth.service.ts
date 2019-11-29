@@ -18,12 +18,10 @@ export class AuthService {
   ) {}
 
   public getUserData(): Observable<User | null> {
-    console.log('Service: Getting user data', this.afAuth.authState);
     return this.afAuth.authState;
   }
 
   async googleSignIn() {
-    console.log('Google sign in triggered');
     const provider = new auth.GoogleAuthProvider();
     return this.afAuth.auth.signInWithRedirect(provider);
   }

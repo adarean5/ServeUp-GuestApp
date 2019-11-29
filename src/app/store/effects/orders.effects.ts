@@ -3,7 +3,7 @@ import {OrdersService} from '../../main/services/orders.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import * as OrdersActions from '../actions/orders.actions';
-import {catchError, map, mergeMap, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, mergeMap, tap, withLatestFrom} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {IAppState} from '../states/app.state';
 import {selectCartContent, selectCurrentRestaurant} from '../selectors/cart.selectors';
@@ -33,13 +33,10 @@ export class OrdersEffects {
         this.store$.select(selectUser)
       ),
       map(([action, cartContent, currentRestaurant, user]) => {
-        console.log('Cart content EFFECTS', cartContent);
         const arrivesIn = 60; // TODO Get actual value from user input
         const now = new Date();
         const submittedTime = moment(now).format('YYYY-MM-DDThh:mm:ss');
         const arrivalTime = moment(now).add(arrivesIn, 'm').format('YYYY-MM-DDThh:mm:ss');
-        console.log(submittedTime);
-        console.log(arrivalTime);
         return {
           arrivalTime,
           submittedTime,
@@ -52,10 +49,9 @@ export class OrdersEffects {
         return this.ordersService.newOrderByUser(orderData).pipe(
           map((response: any) => {
             if (response.status === 1) {
-              console.log('Order submitted');
               return OrdersActions.submitNewOrderSuccess();
             } else {
-              return OrdersActions.submitNewOrderErr({err: 'Error submitting order.'})
+              return OrdersActions.submitNewOrderErr({err: 'Error submitting order.'});
             }
           }),
           catchError(err => of(OrdersActions.submitNewOrderErr({err})))
@@ -110,12 +106,8 @@ export class OrdersEffects {
   checkIn = createEffect(() => this.actions$.pipe(
     ofType(OrdersActions.checkIn),
     mergeMap((action) => {
-      console.log('Action', action);
-      const orderId = 345;
-      const qrCode = 'sampleCode';
       return this.ordersService.checkIn(action.orderId, action.qrCode).pipe(
         map((response: any) => {
-          console.log('Response', response);
           if (response.status === 1) {
             return OrdersActions.checkInSuccess();
           } else {

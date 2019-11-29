@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Order} from '../../store/models/order.model';
 import {Meal} from '../../store/models/meal.model';
 
 @Injectable({
@@ -72,8 +71,6 @@ export class OrdersService {
       id_narocilo: orderId,
       qr: qrCode
     };
-
-    console.log('Qr body:', body);
 
     return this.http.post(url, body);
   }

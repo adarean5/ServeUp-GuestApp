@@ -16,16 +16,9 @@ export class AuthEffects {
     private actions$: Actions,
   ) {}
 
-  /*init = createEffect(() => this.actions$.pipe(
-    ofType(ROOT_EFFECTS_INIT),
-    tap(() => {console.log('[ROOT_EFFECTS_INIT] Started'); }),
-    exhaustMap(() => this.getUserFromFire())
-  ));*/
-
   getUser = createEffect(() => this.actions$.pipe(
     // Check if action type matches getUser type
     ofType(AuthActions.getUser),
-    tap(() => {console.log('[GetUser] Started'); }),
     /* Call authService to get the currently authenticated user.
     exhaustMap makes sure the current authService.getUserData() call completes
     before accepting new requests. */
@@ -36,17 +29,14 @@ export class AuthEffects {
         else trigger a new NotAuthenticated action. */
         map(userData => {
           if (userData) {
-            console.log('[GetUser] AuthData received:', userData);
             const user: User = {
               uid: userData.uid,
               email: userData.email,
               photoURL: userData.photoURL,
               displayName: userData.displayName
             };
-            console.log('[GetUser] User:', user);
             return AuthActions.authenticated({user});
           } else {
-            console.log('[GetUser] AuthData not received');
             return  AuthActions.notAuthenticated();
           }
         }),
@@ -57,7 +47,6 @@ export class AuthEffects {
 
   gSignIn = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignIn),
-    tap(() => {console.log('[GSignIn] Started'); }),
     exhaustMap(() => {
       return fromPromise(this.authService.googleSignIn()).pipe(
         map( () => {
@@ -70,7 +59,6 @@ export class AuthEffects {
 
   gSignOut = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.gSignOut),
-    tap(() => {console.log('[GSignOut] Started'); }),
     exhaustMap(() => {
       return of(this.authService.signOut()).pipe(
         map( () => {
@@ -90,7 +78,6 @@ export class AuthEffects {
 
   authenticated = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.authenticated),
-    tap(() => {console.log('[Authenticated] Started'); }),
     map((action) => AuthActions.bRegister({uid: action.user.uid})),
   ));
 
@@ -99,7 +86,6 @@ export class AuthEffects {
     exhaustMap((action) => {
       return this.authService.serveUpRegister(action.uid).pipe(
         map(response => {
-          console.log('Backend response: ', response);
           return AuthActions.bRegisterSuccess();
         })
       );
@@ -113,17 +99,14 @@ export class AuthEffects {
       else trigger a new NotAuthenticated action. */
       map(userData => {
         if (userData) {
-          console.log('[GetUser] AuthData received:', userData);
           const user: User = {
             uid: userData.uid,
             email: userData.email,
             photoURL: userData.photoURL,
             displayName: userData.displayName
           };
-          console.log('[GetUser] User:', user);
           return AuthActions.authenticated({user});
         } else {
-          console.log('[GetUser] AuthData not received');
           return  AuthActions.notAuthenticated();
         }
       }),

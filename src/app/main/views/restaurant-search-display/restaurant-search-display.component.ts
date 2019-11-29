@@ -22,7 +22,6 @@ export class RestaurantSearchDisplayComponent implements OnInit {
   ngOnInit() {
     this.store.select(selectLoadingSearch).subscribe((loading: boolean) => {
       this.loadingSearch = loading;
-      console.log('Loading search', this.loadingSearch);
     });
     this.store.select(selectRestaurantsSearch).subscribe((restaurants: Restaurant[]) => {
       this.restaurants = restaurants;
@@ -30,8 +29,6 @@ export class RestaurantSearchDisplayComponent implements OnInit {
   }
 
   cardClicked(restaurantId: number) {
-    // console.log('Card clicked from search', restaurantId);
-    // this.store.dispatch(getMealsForRestaurant({restaurantId}));
     this.router.navigate(['/main/meals', restaurantId]);
   }
 }

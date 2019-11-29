@@ -32,7 +32,6 @@ export class OrdersTabComponent implements OnInit {
   }
 
   displayDetails(orderId: number, restaurantName: string, items: Meal[], checkedIn: boolean) {
-    console.log(orderId);
     const dialogCheckin = this.dialog.open(DialogCheckinComponent, {
       panelClass: ['sup-dialog', 'checkin'],
       maxWidth: '100vw',
@@ -47,7 +46,6 @@ export class OrdersTabComponent implements OnInit {
     });
 
     dialogCheckin.afterClosed().subscribe(result => {
-      console.log('QR dialog closed, value:', result);
       if (result) {
         this.store.dispatch(checkIn({
           qrCode: result.qrResultString,

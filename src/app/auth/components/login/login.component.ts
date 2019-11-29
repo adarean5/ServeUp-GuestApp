@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('Login component init');
     this.store.select(selectUser).pipe(takeWhile(user => !user, true)).subscribe((user: User) => {
       if (user) {
         this.router.navigate(['/main']);
@@ -29,13 +28,11 @@ export class LoginComponent implements OnInit {
     });
 
     this.store.select(selectLoading).subscribe((loading: boolean) => {
-      console.log('Loading status: ', loading);
       this.loading = loading;
     });
   }
 
   gSignIn() {
-    console.log('G sign in button clicked');
     this.store.dispatch(gSignIn());
   }
 }

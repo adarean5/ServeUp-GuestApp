@@ -20,7 +20,6 @@ export class HomeCardComponent implements OnInit {
   @HostBinding('class.col-xxl-3')
 
   @HostListener('click') onClick() {
-    console.log('Clicked restaurant:', this.restaurant.id);
     this.clickEmitter.emit(this.restaurant.id);
   }
 

@@ -9,7 +9,6 @@ import {Meal} from '../models/meal.model';
 import {Restaurant} from '../models/restaurant.model';
 import {initialCartState} from '../states/cart.state';
 import {MatDialog} from '@angular/material';
-import {DialogSwitchRestaurantComponent} from '../../main/components/dialog-switch-restaurant/dialog-switch-restaurant.component';
 
 @Injectable()
 export class CartEffects implements OnInitEffects {
@@ -17,7 +16,6 @@ export class CartEffects implements OnInitEffects {
   constructor(
     private actions$: Actions,
     private store$: Store<IAppState>,
-    private restaurantChangeDialog: MatDialog
   ) {}
 
   cartEffectsInit = createAction(
@@ -56,7 +54,6 @@ export class CartEffects implements OnInitEffects {
           savedRestaurant.image
         );
 
-        console.log('Final parsed items:', cartContent, restaurant);
         return CartActions.addToCart({cartContent, restaurant});
       } else {
         return CartActions.addToCart({
@@ -74,7 +71,6 @@ export class CartEffects implements OnInitEffects {
       this.store$.select(selectCartContent)
     ),
     map(([action, currentRestaurant, cartContent]) => {
-      console.log('[Attempt add to cart]', action, currentRestaurant);
       // If cart is empty or if meal belongs to restaurant in the cart => add meal to cart
       if (currentRestaurant === undefined || currentRestaurant.id === action.restaurant.id) {
         let itemAdded = false;

@@ -22,7 +22,6 @@ export class MainTabsComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private elementRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +34,6 @@ export class MainTabsComponent implements OnInit, OnDestroy {
     this.subscription.add(this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.currentTab = val.url;
-        console.log('Current tab', this.currentTab);
       }
     }));
   }

@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log('Starting can activate');
     return this.checkLogin();
   }
 
@@ -37,7 +36,6 @@ export class AuthGuard implements CanActivate {
       filter((authStatus: boolean) => authStatus !== undefined),
       take(1),
       map((authStatus: boolean) => {
-        console.log('AUTH GUARD Auth status', authStatus);
         if (authStatus !== false) {
           return true;
         } else {
