@@ -14,6 +14,15 @@ import {attemptAddToCart} from '../../../store/actions/cart.actions';
 import {selectTotalPrice} from '../../../store/selectors/cart.selectors';
 import {Observable} from 'rxjs';
 
+enum CategoryOrder {
+  'Pijače',
+  'Juhe',
+  'Solate',
+  'Glavne jedi',
+  'Sladice'
+}
+
+
 @Component({
   selector: 'app-meals',
   templateUrl: './meals.component.html',
@@ -25,6 +34,10 @@ export class MealsComponent implements OnInit {
     categories : 0,
     category: 1
   };
+
+
+  juhe = CategoryOrder['Glavne jedi'];
+
   restaurantId: number; // ID of the currently displayed restaurant
   meals: []; // Meals for restaurant from API
   mealCategories: any;
@@ -43,6 +56,7 @@ export class MealsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('Juhe', this.juhe);
     this.selectedIndex = this.mealTabs.categories;
     this.restaurantId = this.route.snapshot.params.id;
 
@@ -68,7 +82,9 @@ export class MealsComponent implements OnInit {
     this.store.select(selectMeals).subscribe(meals => {
       if (meals) {
         this.meals = meals;
-        this.mealCategories = Object.keys(meals).sort();
+        this.mealCategories = Object.keys(meals).sort((categoryA, categoryB) => {
+          return CategoryOrder[categoryA] - CategoryOrder[categoryB];
+        });
       }
     });
 
