@@ -13,6 +13,7 @@ export class DialogCheckinComponent implements OnInit {
 
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
+  currentDeviceIndex: number = null;
 
   hasDevices: boolean;
   hasPermission: boolean;
@@ -40,6 +41,10 @@ export class DialogCheckinComponent implements OnInit {
   closeScanner() {
     this.displayScanner = false;
     this.qrResultString = null;
+    this.currentDeviceIndex = null;
+    this.currentDevice = null;
+    this.availableDevices = null;
+    this.hasDevices = undefined;
   }
 
   submitQrCode() {
@@ -63,9 +68,20 @@ export class DialogCheckinComponent implements OnInit {
     this.failedCounter = 0;
   }
 
-  onDeviceSelectChange(selected: string) {
-    const device = this.availableDevices.find(x => x.deviceId === selected);
-    this.currentDevice = device || null;
+  onDeviceSelectChange(event: any) {
+    console.log('Event', event);
+    if (event) {
+      const selected = event.deviceId;
+      this.currentDeviceIndex = this.availableDevices.findIndex(x => x.deviceId === selected);
+      this.currentDevice = this.availableDevices[this.currentDeviceIndex] || null;
+    }
+  }
+
+  toggleDevice() {
+    if (this.availableDevices && this.availableDevices.length > 0) {
+      this.currentDeviceIndex = (this.currentDeviceIndex + 1) % this.availableDevices.length;
+      this.currentDevice = this.availableDevices[this.currentDeviceIndex] || null;
+    }
   }
 
   onHasPermission(permission: boolean) {

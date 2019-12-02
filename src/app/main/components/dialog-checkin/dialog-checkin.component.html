@@ -13,8 +13,9 @@
 
   <ng-template #permissionCheck>
     <div class="scanner-container" [hidden]="!currentDevice">
-      <zxing-scanner [(device)]="currentDevice"
+      <zxing-scanner [device]="currentDevice"
                      (permissionResponse)="onHasPermission($event)"
+                     (deviceChange)="onDeviceSelectChange($event)"
                      (scanError)="onScanError($event)"
                      (scanSuccess)="onScanSuccess($event)"
                      (camerasFound)="onCamerasFound($event)"
@@ -56,6 +57,9 @@
       <button [disabled]="!qrResultString" (click)="submitQrCode()" class="scan-button" mat-flat-button color="primary">
         <app-icon [iconName]="'scan'"></app-icon>
         <span>Potrdi</span>
+      </button>
+      <button (click)="toggleDevice()" class="scan-button action-button" mat-flat-button color="accent">
+        <app-icon iconName="flipCamera"></app-icon>
       </button>
     </div>
   </ng-template>
