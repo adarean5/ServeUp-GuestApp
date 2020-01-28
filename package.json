@@ -7,7 +7,7 @@
     "postinstall": "ng build --aot --prod",
     "start-local": "ng serve",
     "start-ssl": "ng serve --ssl",
-    "start-network": "ng serve --host 0.0.0.0 --ssl",
+    "start-network": "ng serve --host 0.0.0.0 --ssl --ssl-key C:\\Users\\Jernej\\Documents\\ServeUpCerts\\localhost.key  --ssl-cert C:\\Users\\Jernej\\Documents\\ServeUpCerts\\localhost.crt",
     "prod-network": "ng serve --host 0.0.0.0 --prod",
     "build": "ng build --aot --prod",
     "test": "ng test",
