@@ -1,15 +1,24 @@
 <div mat-dialog-title>
-  Izberi plačilno sredstvo
+  Način plačila
 </div>
 <mat-dialog-content>
   <mat-radio-group [(ngModel)]="selectedOption" class="payment-radio-group">
-    <mat-radio-button *ngFor="let paymentOption of paymentOptions" [value]="paymentOption">
-      {{paymentOption}}
+    <mat-radio-button class="payment-option" [value]="paymentOptions[0]">
+      <img class="icon-payment" src="assets/img/masterCard.svg" alt="">
+      {{paymentOptions[0]}}
+    </mat-radio-button>
+    <mat-radio-button class="payment-option" [value]="paymentOptions[1]">
+      <img class="icon-payment" src="assets/img/visa.svg" alt="">
+      {{paymentOptions[1]}}
+    </mat-radio-button>
+    <mat-radio-button class="payment-option" [value]="paymentOptions[2]">
+      <img class="icon-payment" src="assets/img/payPal.svg" alt="">
+      {{paymentOptions[2]}}
     </mat-radio-button>
   </mat-radio-group>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-stroked-button color="warn" [mat-dialog-close]="null">Prekini</button>
-  <button mat-stroked-button color="primary" [disabled]="selectedOption === ''" [mat-dialog-close]="selectedOption">Potrdi</button>
+  <button mat-stroked-button color="primary" [disabled]="selectedOption === ''" [mat-dialog-close]="selectedOption">Plačaj</button>
 </mat-dialog-actions>

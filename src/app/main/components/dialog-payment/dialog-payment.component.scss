@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   padding: 0.5em;
+
+  .payment-option {
+    margin: 0.5em;
+  }
+
+  .icon-payment {
+    width: 3em;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
 }
 
 mat-dialog-actions {
