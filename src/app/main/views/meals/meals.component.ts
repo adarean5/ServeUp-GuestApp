@@ -100,7 +100,9 @@ export class MealsComponent implements OnInit {
   mealClicked(mealId: number) {
     const meal = this.getMealById(mealId);
     const dialogRefCart = this.dialogAddCart.open(DialogAddCartComponent, {
-      maxHeight: '80vh',
+      panelClass: ['sup-dialog', 'checkin'],
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       autoFocus: false,
       data: {
         name: meal.name,

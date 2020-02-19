@@ -1,6 +1,26 @@
 @import "serveup-palette";
 @import "variables";
 
+:host {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button {
+  align-self: flex-start;
+}
+
+.card {
+  padding: 20px;
+  width: 100%;
+}
+
 .button-amount {
   font-size: 2em;
   // color: $sup-c-primary;
@@ -66,6 +86,26 @@ mat-dialog-actions {
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+
+.search-button {
+  background: $sup-c-primary;
+  color: white;
+  fill: white;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  border-radius: 40px;
+
+  ::ng-deep.mat-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      padding-right: 0.5em;
     }
   }
 }
